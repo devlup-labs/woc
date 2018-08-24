@@ -1,0 +1,29 @@
+language: python
+python:
+  - "3.6"
+addons:
+  postgresql: "9.6"
+dist: trusty
+before_script:
+  - psql -c "CREATE DATABASE wocdb;" -U postgres
+  - psql -c "CREATE USER wocuser WITH LOGIN PASSWORD 'password';" -U postgres
+  - psql -c "ALTER ROLE wocuser WITH CREATEDB;" -U postgres
+  - psql -c "GRANT ALL PRIVILEGES ON DATABASE wocdb TO wocuser;" -U postgres
+before_install:
+  - export DJANGO_SETTINGS_MODULE=woc.settings
+  - export DJANGO_SECRET_KEY='q$o5mx19x9(9_^rzqf@o@s^t%t!ghix7($f9ymy49_^ryzq9x9'
+install:
+  - pip3 install pipenv
+  - pipenv install --dev
+script:
+  - cd src
+  - source "$(pipenv --venv)"/bin/activate
+  - flake8 .
+  - python manage.py makemigrations
+  - python manage.py migrate
+  - coverage run manage.py test
+  - cd ../ui
+  - npm install
+  - npm run build
+#after_success:
+#  - coveralls

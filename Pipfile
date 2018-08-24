@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==2.1"
+django-decouple = "==2.1"
+django-cleanup = "==2.1.0"
+social-auth-app-django = "==2.1.0"
+djangorestframework = "==3.8.2"
+coreapi = "==2.3.3"
+psycopg2 = "==2.7.5"
+
+[dev-packages]
+flake8 = "==3.5.0"
+coveralls = "*"
+
+[requires]
+python_version = "3.6"
