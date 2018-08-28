@@ -10,7 +10,7 @@ class StudentProfileAdmin(admin.ModelAdmin):
 
 
 @admin.register(MentorProfile)
-class MentorProifileAdmin(admin.ModelAdmin):
+class MentorProfileAdmin(admin.ModelAdmin):
     class Meta:
         model = MentorProfile
         fields = '__all__'
