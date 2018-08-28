@@ -1,12 +1,19 @@
 from django.db import models
-from uuid import uuid4
 from account.models import StudentProfile, MentorProfile
 
 
 class Project(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid4())
-    Name = models.CharField(max_length=50)
-    student = models.ManyToManyField(StudentProfile)
-    mentor = models.ManyToManyField(MentorProfile)
-    Description = models.TextField()
-    Github_link = models.URLField()
+    name = models.CharField(max_length=64)
+    description = models.TextField()
+    github_link = models.URLField()
+    # associations
+    students = models.ManyToManyField(StudentProfile, through='Proposal', through_fields=('project', 'student'))
+    mentors = models.ManyToManyField(MentorProfile)
+
+
+class Proposal(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    student = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)
+    drive_link = models.URLField()
+    file = models.FileField(upload_to='proposals')
+    is_accepted = models.BooleanField(default=False)
