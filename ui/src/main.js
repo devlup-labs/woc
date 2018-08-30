@@ -11,7 +11,11 @@ import {
   VIcon,
   VGrid,
   VToolbar,
-  transitions
+  transitions,
+  VCard,
+  VForm,
+  VTextField,
+  VCarousel
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
 
@@ -25,7 +29,11 @@ Vue.use(Vuetify, {
     VIcon,
     VGrid,
     VToolbar,
-    transitions
+    transitions,
+    VCard,
+    VForm,
+    VTextField,
+    VCarousel
   },
   theme: {
     primary: '#ee44aa',
