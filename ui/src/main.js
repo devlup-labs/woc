@@ -15,7 +15,8 @@ import {
   VCard,
   VForm,
   VTextField,
-  VCarousel
+  VCarousel,
+  VParallax
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
 
@@ -33,7 +34,8 @@ Vue.use(Vuetify, {
     VCard,
     VForm,
     VTextField,
-    VCarousel
+    VCarousel,
+    VParallax
   },
   theme: {
     primary: '#ee44aa',

@@ -1,35 +1,39 @@
-
 <template>
+<div>
+  <v-parallax src="http://www.kinyu-z.net/data/wallpapers/234/1524119.jpg">
   <v-layout>
     <v-flex xs12 sm6 offset-sm3>
-      <v-card dark>
+      <v-card flat color="transparent">
         <v-img
           src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
           aspect-ratio="2.75"
-        ></v-img>
+        >
+        </v-img>
 
-        <v-card-title primary-title>
+        <v-card-title primary-title raised textsixe="30sp">
           <div>
-            <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-            <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
+            <h1 class="headline mb-0"><u><br><br>ABOUT</u></h1>
+            <div align="left">
+
+            <h3><br><br><br><br>Google Summer of Code is a global program focused on introducing students to open source software development.
+             Students work on a 3 month programming project with an open source organization during their break from university.
+              <br>
+              </h3>
+              <h2>
+              <br>
+               Since its inception in 2005, the program has brought together 13,000+ student participants and 12,000
+              mentors from over 125 countries worldwide. Google Summer of Code has produced 33,000,000+ lines of code for 608
+              open source organizations.
+              </h2>
+              </div>
           </div>
         </v-card-title>
 
-        <v-card-actions>
-          <v-btn flat color="orange">Share</v-btn>
-          <v-btn flat color="orange">Explore</v-btn>
-        </v-card-actions>
+
       </v-card>
     </v-flex>
   </v-layout>
-</template>
+  </v-parallax>
 
-<script>
-  export default {
-    data () {
-      return {
-        card_text: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.'
-      }
-    }
-  }
-</script>
+  </div>
+</template>
