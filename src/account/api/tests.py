@@ -1,0 +1,28 @@
+from django.test import TestCase
+from django.shortcuts import reverse
+from rest_framework import status
+from account.models import StudentProfile
+from django.contrib.auth.models import User
+
+
+class StudentProfileCreateTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.user = User.objects.create_user(username='student', password='password')
+
+    def test_bad_request(self):
+        response = self.client.post(reverse('api:account:student-profile-list'))
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_created(self):
+        data = {
+            'phone': 9999999999,
+            'github': 'https://github.com/abc',
+            'gender': StudentProfile.GENDER_CHOICES[0][0],
+            'branch': StudentProfile.BRANCH_CHOICES[0][0],
+            'year': StudentProfile.YEAR_CHOICES[0][0],
+            'user': self.user.id
+        }
+        response = self.client.post(reverse('api:account:student-profile-list'), data=data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
