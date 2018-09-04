@@ -21,6 +21,7 @@ import {
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
 
+
 Vue.use(Vuetify, {
   components: {
     VApp,

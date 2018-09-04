@@ -12,8 +12,10 @@
 
     </v-content>
 
+
   </v-app>
 </template>
+ import('./assets/styles/style.css')
 
 <script>
   import AppNavbar from './components/AppNavbar'
@@ -22,6 +24,7 @@
     components: {AppNavbar, AppFooter}
   }
 </script>
+
 
 
 
