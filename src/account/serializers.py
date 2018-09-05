@@ -1,7 +1,6 @@
 from rest_framework import serializers
-from rest_framework.validators import UniqueValidator
-from django.contrib.auth.models import User
 from account.models import StudentProfile
+from account.models import MentorProfile
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -14,4 +13,3 @@ class MentorSerializer(serializers.ModelSerializer):
     class Meta:
         model = MentorProfile
         fields = '__all__'
-
