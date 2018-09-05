@@ -16,9 +16,11 @@ import {
   VForm,
   VTextField,
   VCarousel,
-  VParallax
+  VParallax,
+  VDivider
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
+
 
 Vue.use(Vuetify, {
   components: {
@@ -35,7 +37,8 @@ Vue.use(Vuetify, {
     VForm,
     VTextField,
     VCarousel,
-    VParallax
+    VParallax,
+    VDivider
   },
   theme: {
     primary: '#ee44aa',

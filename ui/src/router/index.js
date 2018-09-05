@@ -5,8 +5,9 @@ import AppLogin from '../components/AppLogin.vue'
 import AppAbout from '../components/AppAbout.vue'
 import AppProjects from '../components/AppProjects.vue'
 
-
 Vue.use(Router)
+
+
 
 export default new Router({
   routes: [
@@ -31,5 +32,5 @@ export default new Router({
       name: 'AppProjects',
       component: AppProjects
     }
-          ]
+  ]
 })
