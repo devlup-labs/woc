@@ -5,18 +5,6 @@ from account.models import StudentProfile
 from account.models import MentorProfile
 from django.contrib.auth.models import User
 
-WRONG_PHONE = (
-    99999,
-    'ABC',
-    99999999999
-
-)
-
-WRONG_BRANCH = (
-    'AB',
-    'ABCD'
-)
-
 
 class StudentProfileCreateTest(TestCase):
     @classmethod
@@ -26,8 +14,7 @@ class StudentProfileCreateTest(TestCase):
 
     def test_bad_request(self):
         response = self.client.post(reverse('api:account:student-profile-list'))
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST,
-                         'Error: Wrong response[User entered no data]')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_created(self):
         data = {
@@ -39,10 +26,9 @@ class StudentProfileCreateTest(TestCase):
             'user': self.user.id
         }
         response = self.client.post(reverse('api:account:student-profile-list'), data=data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED,
-                         'Error : Wrong response[Error in creation of user]')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-    def test_missing_userid(self):
+    def test_missing_user_id(self):
         data = {
             'phone': 9999999999,
             'github': 'https://github.com/abc',
@@ -51,10 +37,10 @@ class StudentProfileCreateTest(TestCase):
             'year': StudentProfile.YEAR_CHOICES[0][0],
         }
         response = self.client.post(reverse('api:account:student-profile-list'), data=data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST,
-                         'Error : Wrong response[Missing user id]')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.content.decode('utf-8'), '{"user":["This field is required."]}')
 
-    def test_invalid_userid(self):
+    def test_invalid_user_id(self):
         data = {
             'phone': 9999999999,
             'github': 'https://github.com/abc',
@@ -64,8 +50,8 @@ class StudentProfileCreateTest(TestCase):
             'user': self.user.id + 12
         }
         response = self.client.post(reverse('api:account:student-profile-list'), data=data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST,
-                         'Error : Wrong response[Invalid user id]')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.content.decode('utf-8'), '{"user":["Invalid pk \\"13\\" - object does not exist."]}')
 
 
 class MentorProfileCreateTest(TestCase):
@@ -76,8 +62,7 @@ class MentorProfileCreateTest(TestCase):
 
     def test_bad_request(self):
         response = self.client.post(reverse('api:account:mentor-profile-list'))
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST,
-                         'Error: Wrong response[User entered no data]')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_created(self):
         data = {
@@ -89,10 +74,9 @@ class MentorProfileCreateTest(TestCase):
             'user': self.user.id
         }
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED,
-                         'Error : Wrong response[Error in creation of user]')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-    def test_missing_userid(self):
+    def test_missing_user_id(self):
         data = {
             'phone': 9999999999,
             'github': 'https://github.com/abc',
@@ -101,18 +85,18 @@ class MentorProfileCreateTest(TestCase):
             'year': MentorProfile.YEAR_CHOICES[0][0],
         }
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST,
-                         'Error : Wrong response[Missing user id]')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.content.decode('utf-8'), '{"user":["This field is required."]}')
 
-    def test_invalid_userid(self):
+    def test_invalid_user_id(self):
         data = {
             'phone': 9999999999,
             'github': 'https://github.com/abc',
             'gender': MentorProfile.GENDER_CHOICES[0][0],
             'branch': MentorProfile.BRANCH_CHOICES[0][0],
             'year': MentorProfile.YEAR_CHOICES[0][0],
-            'user': self.user.id+12
+            'user': self.user.id + 12
         }
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST,
-                         'Error : Wrong response[Invalid user id]')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.content.decode('utf-8'), '{"user":["Invalid pk \\"13\\" - object does not exist."]}')
