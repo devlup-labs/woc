@@ -7,8 +7,6 @@ import AppProjects from '../components/AppProjects.vue'
 
 Vue.use(Router)
 
-
-
 export default new Router({
   routes: [
     {
