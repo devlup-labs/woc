@@ -15,7 +15,6 @@
 
   </v-app>
 </template>
- import('./assets/styles/style.css')
 
 <script>
   import AppNavbar from './components/AppNavbar'
@@ -25,6 +24,20 @@
   }
 </script>
 
+<style>
+import('./assets/styles/style.css')
+h1 {
+	display: inline;
+	position: relative;
+	font: 200px Helvetica, Sans-Serif;
+	letter-spacing: -5px;
+	color: rgba(0,0,255,0.5);
+}
 
+h1:after {
+	position: absolute; left: 10px; top: 5px;
+	color: rgba(255,0,0,0.5);
+}
+</style>
 
 

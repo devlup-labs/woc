@@ -1,7 +1,7 @@
 
 <template>
+<v-parallax src="http://www.kinyu-z.net/data/wallpapers/234/1524119.jpg">
 <div>
-  <v-parallax src="http://www.kinyu-z.net/data/wallpapers/234/1524119.jpg">
   <v-layout>
     <v-flex xs12 sm6 offset-sm3>
       <v-card flat color="transparent">
@@ -13,10 +13,10 @@
 
         <v-card-title primary-title raised textsixe="30sp">
           <div id="headline">
-            <h1><u><br><br>ABOUT</u></h1>
+            <h1><br><br>ABOUT</h1>
             <div align="left">
             <h4><br><br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            ut labore et<br /> dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               <br>
               </h4>
               <h3>
@@ -28,12 +28,36 @@
               </div>
           </div>
         </v-card-title>
-
-
       </v-card>
     </v-flex>
   </v-layout>
-  </v-parallax>
-
   </div>
+</v-parallax>
 </template>
+
+<style scoped>
+
+h1 {
+	display: inline;
+	position: relative;
+	font: 40px Helvetica, Sans-Serif;
+	letter-spacing: 0px;
+	font-size:55px;
+	font-family:Stencil Std, fantasy;
+	color:#0C4812;
+	text-shadow: 0 0 3px #0C4812, 0 0 20px #1A9B27;
+	margin-top:12px;
+}
+h4{
+font-size:18px;
+text-align:left;
+text-shadow: 2px 2px 7px #66B222;
+}
+h3{
+font-size:18px;
+text-align:left;
+text-shadow: 2px 2px 8px #93F140;
+}
+
+</style>
+

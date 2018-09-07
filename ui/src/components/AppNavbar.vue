@@ -4,7 +4,7 @@
   <v-toolbar flat>
     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
     <v-spacer></v-spacer>
-    <div><router-link to="/"><v-btn flat>Winter Of Code IIT Jodhpur</v-btn></router-link></div>
+    <div id="woc"><router-link to="/"><v-btn flat>Winter Of Code IIT Jodhpur</v-btn></router-link></div>
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
     <div class="hidden-sm-and-down">
@@ -19,15 +19,6 @@
 
 
     </div>
-
-
-
-
-
-
-
-
-
 
     <v-spacer></v-spacer>
 
@@ -94,3 +85,12 @@
     }
   }
 </script>
+
+<style>
+ #woc
+{
+  font-size:40px;
+  text_align:center;
+
+}
+</style>
