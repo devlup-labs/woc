@@ -86,7 +86,7 @@
   }
 </script>
 
-<style>
+<style scoped>
  #woc
 {
   font-size:40px;

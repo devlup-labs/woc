@@ -51,12 +51,10 @@ h1 {
 h4{
 font-size:18px;
 text-align:left;
-text-shadow: 2px 2px 7px #66B222;
 }
 h3{
 font-size:18px;
 text-align:left;
-text-shadow: 2px 2px 8px #93F140;
 }
 
 </style>

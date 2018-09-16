@@ -1,61 +1,83 @@
-
 <template>
-<div>
-  <v-parallax src="http://wallpapercave.net/images/light-coloured-hd-wallpapers/light-coloured-hd-wallpapers-7.jpg">
- <v-layout>
-    <v-flex xs12 sm6 offset-sm3>
-      <v-card flat>
-        <v-card-title primary-title>
-        </v-card-title>
-          <v-container>
-         <v-form @submit.prevent="submit">
-        <h2>Hurry Up!</h2>
-        <v-text-field
-          v-model="email"
-          label="E-mail"
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="password"
-          label="Password"
-          type="password"
-          required
-        ></v-text-field>
-      </v-form>
-    </v-container>
-        <v-card-actions>
-          <v-btn flat color="#E8AD3D">LOG IN</v-btn>
-          <v-btn flat color="#E8AD3D">REGISTER</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
-</v-parallax>
-
-</div>
+  <v-parallax src="http://paktho.ratchaburi.doae.go.th/Background/1920x.jpg">
+  <v-container grid-list-lg>
+    <v-layout column>
+       <v-flex xs12 sm6 offset-sm4>
+        <v-card max width=500px align=center>
+          <v-container
+            fluid>
+            <v-card-title primary-title>
+              <div class="a">Login</div>
+            </v-card-title>
+            <v-form>
+              <v-text-field prepend-icon="person" name="Username" label="Username"></v-text-field>
+              <v-text-field prepend-icon="lock" name="Password" label="Password" type="password"></v-text-field>
+              <v-flex>
+                <v-layout align-center justify-space-around wrap>
+                  <router-link to="password-reset">
+                    <div class="b"><i>Forgot Password?</i></div>
+                  </router-link>
+                </v-layout>
+              </v-flex>
+            </v-form>
+            <v-spacer></v-spacer>
+            <v-divider light></v-divider>
+     <v-speed-dial
+      v-model="fab"
+    >
+      <v-btn
+        fab
+        dark
+        medium
+        color="purple"
+      >
+        <v-icon>account_circle</v-icon>
+        <v-icon>close</v-icon>
+      </v-btn>
+      <v-btn
+        fab
+        dark
+        medium
+        color="pink"
+      >
+        <v-icon>add</v-icon>
+      </v-btn>
+    </v-speed-dial>
+          </v-container>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
+ </v-parallax>
 </template>
 
-
 <script>
-  export default {
-    data () {
-      return {
-        password: '',
-        email: '' }
-    },
-    methods: {
-      submit () {
-        console.log('Email is ' + this.email + ' Password is ' + this.password)
-      }
-    }
-  }
+ export default {
+   data () {
+     return {
+       password: '',
+       email: '' }
+   },
+   methods: {
+     submit () {
+       console.log('Email is ' + this.email + ' Password is ' + this.password)
+     }
+   }
+ }
 </script>
 <style>
-h2{
-font-size:39px;
+div.b{
+font-size:18px;
 text-align:center;
-color: white;
-text-shadow: 1px 1px 2px black, 0 0 25px #EAAC35, 0 0 5px #F9C802;
+color:#271821;
+margin-bottom:10px;
+margin-top:10px;
 }
+div.a{
+color:#F7069C;
+margin-left:160px;
+margin-top:10px;
+font-size:35px;
+}
+
 </style>
