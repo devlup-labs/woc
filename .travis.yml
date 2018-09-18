@@ -26,6 +26,6 @@ script:
   - npm install
   - npm run build
   - cd ../src
-  - coverage run --omit='*/virtualenvs/*,manage.py,woc/*' manage.py test
+  - coverage run --omit='*/virtualenvs/*,*/virtualenv/*,manage.py,woc/*' manage.py test
 after_success:
   - coveralls
