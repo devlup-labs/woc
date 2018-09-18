@@ -20,6 +20,10 @@ Procedure:
     ```
     pip install pipenv
     ```
+- Copy `.env.example` to `.env`
+    ```
+    cp .env.example .env
+    ```
 - Use pipenv to install other dependencies from `Pipfile`
     ```
     pipenv install --dev
