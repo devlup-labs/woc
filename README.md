@@ -42,3 +42,11 @@ Procedure:
     ```
     python manage.py runserver
     ```
+    
+### API Documentation  
+
+The API documentation for this project is available in 3 formats viz.
+- JSON -> `/api/docs/swagger.json`
+- YAML -> `/api/docs/swagger.yaml`
+- Browsable UI -> `/api/docs/swagger/` and `/api/docs/redoc/`
+> Note: `DEBUG` should be set to `True` in order to access the API documentation.
