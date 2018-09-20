@@ -100,3 +100,21 @@ class MentorProfileCreateTest(TestCase):
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.content.decode('utf-8'), '{"user":["Invalid pk \\"13\\" - object does not exist."]}')
+
+
+class UserTestCase(TestCase):
+
+    def setUp(self):
+        User.objects.create(username='user1', password='password')
+
+    def test_status_OK(self):
+        response = self.client.get(reverse('api:account:user-list'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_create(self):
+        data = {
+            'username': 'user2',
+            'password': 'password'
+        }
+        response = self.client.post(reverse('api:account:user-list'), data=data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
