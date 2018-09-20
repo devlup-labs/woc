@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from project.models import Proposal,Project
+from project.models import Proposal, Project
 
 
 class ProjectSerializer(serializers.ModelSerializer):

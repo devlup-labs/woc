@@ -2,10 +2,9 @@ from django.test import TestCase
 from django.shortcuts import reverse
 from rest_framework import status
 from django.contrib.auth.models import User
-from rest_framework.utils import json
 
 from account.models import StudentProfile, MentorProfile
-from project.models import Project, Proposal
+from project.models import Project
 
 
 class ProjectViewTest(TestCase):

@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from project.api.serializers import ProjectSerializer, ProposalSerializer
-from project.models import Proposal,Project
+from project.models import Proposal, Project
 
 
 class ProjectViewSet(ModelViewSet):
@@ -11,4 +11,3 @@ class ProjectViewSet(ModelViewSet):
 class ProposalUpload(ModelViewSet):
     serializer_class = ProposalSerializer
     queryset = Proposal.objects.all()
-
