@@ -50,9 +50,9 @@ integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fW
        console.log('Email is ' + this.email + ' Password is ' + this.password)
      }
    },
-     icons: [
-        'fab fa-google-plus-square',
-      ]
+   icons: [
+     'fab fa-google-plus-square'
+   ]
 
  }
 </script>
