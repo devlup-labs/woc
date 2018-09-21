@@ -8,6 +8,6 @@ class ProjectViewSet(ModelViewSet):
     queryset = Project.objects.all()
 
 
-class ProposalUpload(ModelViewSet):
+class ProposalViewSet(ModelViewSet):
     serializer_class = ProposalSerializer
     queryset = Proposal.objects.all()
