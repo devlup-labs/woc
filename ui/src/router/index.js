@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import AppHome from '../components/AppHome.vue'
 import AppLogin from '../components/AppLogin.vue'
 import AppAbout from '../components/AppAbout.vue'
-import AppProjects from '../components/AppProjects.vue'
+import AppHowItWorks from '../components/AppHowItWorks.vue'
 
 Vue.use(Router)
 
@@ -26,9 +26,9 @@ export default new Router({
       component: AppAbout
     },
     {
-      path: '/projects',
-      name: 'AppProjects',
-      component: AppProjects
+      path: '/howitworks',
+      name: 'AppHowItWorks',
+      component: AppHowItWorks
     }
   ]
 })

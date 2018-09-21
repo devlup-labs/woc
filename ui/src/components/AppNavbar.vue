@@ -4,18 +4,17 @@
   <v-toolbar flat>
     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
     <v-spacer></v-spacer>
-    <div id="woc"><router-link to="/"><v-btn flat>Winter Of Code IIT Jodhpur</v-btn></router-link></div>
+    <div id="woc"><router-link to="/" style="color:transparent;" ><v-btn flat style="font-size:2rem;" >Winter Of Code IIT Jodhpur</v-btn></router-link></div>
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
     <div class="hidden-sm-and-down">
 
 
+      <router-link to="/about" style="color:transparent;"><v-btn flat>ABOUT</v-btn></router-link>
 
-      <router-link to="/about"><v-btn flat>ABOUT</v-btn></router-link>
+      <router-link to="/howitworks" style="color:transparent;" ><v-btn flat>HOW IT WORKS</v-btn></router-link>
 
-      <router-link to="/projects"><v-btn flat>PROJECTS</v-btn></router-link>
-
-      <router-link to="/login"><v-btn flat>Log In</v-btn></router-link>
+      <router-link to="/login" style="color:transparent;" ><v-btn flat>Log In</v-btn></router-link>
 
 
     </div>
@@ -53,20 +52,20 @@
         <v-divider light></v-divider>
 
          <v-list-tile>
-           <router-link to="/"><h1 style="color: white">HOME</h1></router-link>
+           <router-link to="/" style="color:transparent;" ><h1 style="color: white">HOME</h1></router-link>
          </v-list-tile>
 
 
          <v-list-tile >
-           <router-link to="/about"><h1 style="color: white">ABOUT</h1></router-link>
+           <router-link to="/about" style="color:transparent;" ><h1 style="color: white">ABOUT</h1></router-link>
         </v-list-tile>
 
          <v-list-tile >
-           <router-link to="/projects"><h1 style="color: white">PROJECTS</h1></router-link>
+           <router-link to="/howitworks" style="color:transparent;" ><h1 style="color: white">HOW IT WORKS</h1></router-link>
         </v-list-tile>
 
          <v-list-tile >
-           <router-link to="/login"><h1 style="color: white">LOG IN</h1></router-link>
+           <router-link to="/login" style="color:transparent;" ><h1 style="color: white">LOG IN</h1></router-link>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
