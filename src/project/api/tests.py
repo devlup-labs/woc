@@ -33,3 +33,17 @@ class ProjectViewTest(TestCase):
         self.assertEqual(response.content.decode('utf-8'),
                          '[{"id":1,"name":"Project 1","description":"Description","github_link":'
                          '"https://github.com","students":[],"mentors":[1]}]')
+
+    def test_create(self):
+        data = {
+            'name': 'Project 2',
+            'github_link': 'https://github.com',
+            'description': 'Description',
+            'mentors': [self.mentor_profile.id]
+        }
+        response = self.client.post(reverse('api:project:projects-list'), data=data)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.client.login(username=self.mentor.username, password='password')
+        response = self.client.post(reverse('api:project:projects-list'), data=data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertTrue(Project.objects.filter(name='Project 2', mentors='{}'.format(self.mentor_profile.id)).exists())
