@@ -1,4 +1,5 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework import mixins
 from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer, UserSerializer
 from account.models import StudentProfile, MentorProfile
 from django.contrib.auth.models import User
@@ -14,6 +15,6 @@ class MentorProfileViewSet(ModelViewSet):
     queryset = MentorProfile.objects.all()
 
 
-class UserViewSet(ModelViewSet):
+class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, GenericViewSet):
     serializer_class = UserSerializer
-    queryset = User.objects.all()
+    queryset = User.objects.filter(is_active=True)
