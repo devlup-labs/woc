@@ -1,5 +1,5 @@
 from rest_framework.permissions import BasePermission
-from account.models import MentorProfile, StudentProfile
+from account.models import MentorProfile
 
 
 class IsMentor(BasePermission):
