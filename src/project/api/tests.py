@@ -33,13 +33,3 @@ class ProjectViewTest(TestCase):
         self.assertEqual(response.content.decode('utf-8'),
                          '[{"id":1,"name":"Project 1","description":"Description","github_link":'
                          '"https://github.com","students":[],"mentors":[1]}]')
-
-    # def test_create(self):
-    #     project_data = {
-    #         'name' : 'Test Project',
-    #         'description' : 'Test Description',
-    #         'github_link' : 'https://github.com',
-    #          'mentors' : self.mentor_profile
-    #     }
-    #     response = self.client.post(reverse('api:project:projects-list'), data=project_data)
-    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)

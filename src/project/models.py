@@ -16,5 +16,5 @@ class Proposal(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, help_text='Proposal for the project')
     student = models.ForeignKey(StudentProfile, on_delete=models.CASCADE, help_text='Name of the student proposed')
     drive_link = models.URLField(help_text='Custom drive link for proposal')
-    file = models.FileField(upload_to='proposals')
+    file = models.FileField(upload_to='proposals', 'File link')
     is_accepted = models.BooleanField(default=False, help_text='Accepted/Rejected')
