@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
 ]
 
+if DEBUG:
+    INSTALLED_APPS += ['drf_yasg']
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

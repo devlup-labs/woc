@@ -23,11 +23,11 @@ class BaseProfile(models.Model):
         ('3', '3rd Year'),
         ('4', '4th Year')
     )
-    phone = models.CharField(max_length=10, validators=[phone_validator])
-    github = models.URLField()
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    branch = models.CharField(max_length=3, choices=BRANCH_CHOICES)
-    year = models.CharField(max_length=1, choices=YEAR_CHOICES)
+    phone = models.CharField(max_length=10, validators=[phone_validator], help_text='10 digit mobile number')
+    github = models.URLField(help_text='Github link of user')
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, help_text='Gender')
+    branch = models.CharField(max_length=3, choices=BRANCH_CHOICES, help_text='Department of the user')
+    year = models.CharField(max_length=1, choices=YEAR_CHOICES, help_text='Year of studying')
 
     class Meta:
         abstract = True
