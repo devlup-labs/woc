@@ -1,15 +1,15 @@
 <template>
   <v-layout >
-    <Card></Card>
+    <StudentMentorCard/>
   </v-layout>
 </template>
 
 <script>
   import Parralax from './Parralax'
-  import Card from './Card'
+  import StudentMentorCard from './StudentMentorCard'
 
   export default {
     name: 'HowItWorks',
-    components: {Parralax, Card}
+    components: {Parralax, StudentMentorCard}
   }
 </script>
