@@ -2,10 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/Home'
 import Timeline from '../components/Timeline'
+import HowItWorks from '../components/HowItWorks'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -16,6 +18,11 @@ export default new Router({
       path: '/timeline',
       name: 'Timeline',
       component: Timeline
+    },
+    {
+      path: '/howitworks',
+      name: 'HowItWorks',
+      component: HowItWorks
     }
   ]
 })
