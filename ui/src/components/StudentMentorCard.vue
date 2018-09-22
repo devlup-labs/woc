@@ -1,10 +1,8 @@
 <template>
-  <v-layout>
+  <v-container grid-list-xl>
+    <v-layout>
     <v-flex>
       <v-card flat>
-        <v-card-title primary-title>
-          <div class="display-1 text-md-center">How It Works</div>
-        </v-card-title>
         <v-card-text>
           <h1 class="headline">Students</h1>
           <p>{{studentText}}</p>
@@ -14,7 +12,8 @@
         </v-card-text>
       </v-card>
     </v-flex>
-  </v-layout>
+    </v-layout>
+  </v-container>
 </template>
 <script>
   export default {
