@@ -40,7 +40,7 @@
             first_name: 'Anshul',
             last_name: 'Ahuja',
             link: '',
-            accepted: 0,
+            accepted: 0
           }
         ]
       }

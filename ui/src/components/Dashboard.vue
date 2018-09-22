@@ -34,11 +34,10 @@
 
 <script>
   import Projects from './Projects'
-  import Proposals from './Proposals'
 
   export default {
     name: 'Dashboard',
-    components: {Projects, Proposals}
+    components: {Projects}
   }
 </script>
 <style>
