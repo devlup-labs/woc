@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from project.models import StudentProposal, Project, MentorProposal
+from project.models import StudentProposal, Project
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -12,11 +12,3 @@ class StudentProposalSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentProposal
         fields = '__all__'
-
-
-class MentorProposalSerializer(serializers.ModelSerializer):
-    is_approved = serializers.BooleanField(read_only=True)
-
-    class Meta:
-        model = MentorProposal
-        exclude = ('id',)

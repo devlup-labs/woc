@@ -10,6 +10,8 @@ class StudentProfileSerializer(serializers.ModelSerializer):
 
 
 class MentorProfileSerializer(serializers.ModelSerializer):
+    is_approved = serializers.BooleanField(read_only=True)
+
     class Meta:
         model = MentorProfile
         fields = '__all__'
