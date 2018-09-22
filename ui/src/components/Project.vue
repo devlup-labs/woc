@@ -1,29 +1,22 @@
 <template>
   <v-card flat>
     <v-layout row>
-      <h3>{{title}}</h3>
+      <h2>{{title}}</h2>
       <v-spacer></v-spacer>
       <v-icon :href="github">fa-github</v-icon>
     </v-layout>
 
     {{short_description}}
-    <h4> Applied Students</h4>
+    <h4>Proposals</h4>
     <li v-for="student in students">
       {{student.first_name}} {{student.last_name}}
-      <span v-if="student.accepted==1">
-          <v-icon color="green">check_circle</v-icon>
-      </span>
-      <span v-if="student.accepted==0">
-          <v-icon color="red">block</v-icon>
-      </span>
-      <v-icon :href="student.link">fa-external-link</v-icon>
     </li>
   </v-card>
 </template>
 
 <script>
   export default {
-    name: 'Projects',
+    name: 'Project',
     data () {
       return {
         title: 'Project 1',

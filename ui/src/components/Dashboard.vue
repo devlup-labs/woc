@@ -23,7 +23,7 @@
           <v-divider></v-divider>
 
           <v-card-text>
-            <Projects></Projects>
+            <Project v-for="i in 'xxxxx'"></Project>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -33,11 +33,11 @@
 
 
 <script>
-  import Projects from './Projects'
+  import Project from './Project'
 
   export default {
     name: 'Dashboard',
-    components: {Projects}
+    components: {Project}
   }
 </script>
 <style>
