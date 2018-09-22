@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
+from .views import VueView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,3 +32,7 @@ if settings.DEBUG:
         re_path(r'^api/docs/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
         re_path(r'^api/docs/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     ]
+
+urlpatterns += [
+    re_path(r'.*', VueView.as_view(), name='vue-js')    # Catch all URL to send all urls to VueJS
+]
