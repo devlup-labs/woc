@@ -39,3 +39,4 @@ class StudentProfile(BaseProfile):
 
 class MentorProfile(BaseProfile):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_approved = models.BooleanField(default=False)

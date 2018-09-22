@@ -25,14 +25,9 @@ class ProjectViewTest(TestCase):
                                                           branch=StudentProfile.BRANCH_CHOICES[0][0])
 
     def test_status_OK(self):
-        project = Project.objects.create(name='Project 1', github_link='https://github.com', description='Description')
-        project.mentors.add(self.mentor_profile)
-        project.save()
         response = self.client.get(reverse('api:project:projects-list'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.content.decode('utf-8'),
-                         '[{"id":1,"name":"Project 1","description":"Description","github_link":'
-                         '"https://github.com","students":[],"mentors":[1]}]')
+        self.assertEqual(response.content.decode('utf-8'), '[]')
 
     def test_create(self):
         data = {
@@ -44,6 +39,10 @@ class ProjectViewTest(TestCase):
         response = self.client.post(reverse('api:project:projects-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.client.login(username=self.mentor.username, password='password')
+        response = self.client.post(reverse('api:project:projects-list'), data=data)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.mentor_profile.is_approved = True
+        self.mentor_profile.save()
         response = self.client.post(reverse('api:project:projects-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertTrue(Project.objects.filter(name='Project 2', mentors='{}'.format(self.mentor_profile.id)).exists())

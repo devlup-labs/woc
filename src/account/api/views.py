@@ -15,6 +15,6 @@ class MentorProfileViewSet(ModelViewSet):
     queryset = MentorProfile.objects.all()
 
 
-class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, GenericViewSet):
+class UserViewSet(mixins.UpdateModelMixin, GenericViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.filter(is_active=True)
