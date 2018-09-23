@@ -3,25 +3,41 @@
     <v-layout row>
       <h2>{{title}}</h2>
       <v-spacer></v-spacer>
+      <v-icon :href="github" style="width: 40px">fa-pencil</v-icon>
       <v-icon :href="github">fa-github</v-icon>
     </v-layout>
-
-    {{short_description}}
-    <h4>Proposals</h4>
-    <li v-for="student in students">
+    <v-layout row>
+      {{short_description}}
+    </v-layout>
+    <v-layout row>
+      <h4>Proposals</h4>
+    </v-layout>
+    <v-flex v-for="student in students">
+      <span v-if="student.accepted==1">
+        <v-icon color="green" style="height:18px;">check_circle</v-icon>
+      </span>
+      <span v-else>
+        <v-icon color="red" style="height:18px;">block</v-icon>
+      </span>
       {{student.first_name}} {{student.last_name}}
-    </li>
+    </v-flex>
+    <br>
+    <v-divider></v-divider>
+    <br>
   </v-card>
 </template>
 
 <script>
   export default {
     name: 'Project',
-    data () {
+    data() {
       return {
         title: 'Project 1',
         github: 'www.github.com/devlup-labs',
-        short_description: 'lorem ipsum doler lorem upsum doler',
+        short_description: 'orem ipsum doler lorem upsum doler' +
+          'orem ipsum doler lorem upsum doler' +
+          'orem ipsum doler lorem upsum dolerorem ipsum doler lorem upsum dolerorem ipsum doler lorem upsum dolerorem ipsum doler lorem upsum doler' +
+          'orem ipsum doler lorem upsum doler',
         students: [
           {
             first_name: 'Ajat',
