@@ -13,7 +13,7 @@ class IsApprovedMentor(BasePermission):
 
 class IsStudent(BasePermission):
     """
-    Allows access only to instances of MentorProfile class.
+    Allows access only to instances of StudentProfile class.
     """
 
     def has_permission(self, request, view):

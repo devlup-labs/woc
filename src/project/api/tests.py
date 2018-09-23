@@ -20,9 +20,7 @@ class ProjectViewTest(TestCase):
                                                             branch=StudentProfile.BRANCH_CHOICES[0][0])
         cls.mentor_profile = MentorProfile.objects.create(user=cls.mentor, phone='9999999999',
                                                           github='https://github.com',
-                                                          year=StudentProfile.YEAR_CHOICES[0][0],
-                                                          gender=StudentProfile.GENDER_CHOICES[0][0],
-                                                          branch=StudentProfile.BRANCH_CHOICES[0][0])
+                                                          gender=StudentProfile.GENDER_CHOICES[0][0])
 
     def test_status_OK(self):
         response = self.client.get(reverse('api:project:projects-list'))
