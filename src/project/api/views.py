@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
@@ -22,7 +22,7 @@ class ProjectViewSet(ModelViewSet):
             self.permission_classes = [AllowAny]
         return super().get_permissions()
 
-    @detail_route(methods=['get'])
+    @action(methods=['get'], detail=True)
     def all_students(self, request, pk=None):
         proposals = get_object_or_404(Project, pk=pk).studentproposal_set.all()
         serializer = StudentProposalSerializer(proposals, many=True)
