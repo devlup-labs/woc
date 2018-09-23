@@ -30,7 +30,7 @@
 <script>
   export default {
     name: 'Project',
-    data() {
+    data () {
       return {
         title: 'Project 1',
         github: 'www.github.com/devlup-labs',
