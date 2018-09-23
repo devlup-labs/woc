@@ -4,6 +4,7 @@ import Home from '../components/Home'
 import Timeline from '../components/Timeline'
 import HowItWorks from '../components/HowItWorks'
 import Dashboard from '../components/Dashboard'
+import MentorProfile from '../components/MentorProfile'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard
+    },
+    {
+      path: '/mentorprofile',
+      name: 'MentorProfile',
+      component: MentorProfile
     }
 
   ]

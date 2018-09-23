@@ -3,7 +3,8 @@
     <v-layout row>
       <h2>{{title}}</h2>
       <v-spacer></v-spacer>
-      <v-icon :href="github" style="width: 40px">fa-pencil</v-icon>
+      <v-icon :href="remove">fa-trash</v-icon>
+      <v-icon :href="edit" style="width: 40px">fa-pencil</v-icon>
       <v-icon :href="github">fa-github</v-icon>
     </v-layout>
     <v-layout row>
@@ -14,10 +15,10 @@
     </v-layout>
     <v-flex v-for="(student,i) in students" :key="i"  pt-2>
       <span v-if="student.accepted==1">
-        <v-icon color="green" style="height:18px;">check_circle</v-icon>
+        <v-icon color="green" style="height:18px;">fa-check</v-icon>
       </span>
       <span v-else>
-        <v-icon color="red" style="height:18px;">block</v-icon>
+        <v-icon color="red" style="height:18px;">fa-times</v-icon>
       </span>
       {{student.first_name}} {{student.last_name}}
     </v-flex>
@@ -33,6 +34,8 @@
     data () {
       return {
         title: 'Project 1',
+        edit: 'Edit',
+        remove: 'Remove',
         github: 'www.github.com/devlup-labs',
         short_description: 'orem ipsum doler lorem upsum doler' +
           'orem ipsum doler lorem upsum doler' +
