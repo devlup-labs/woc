@@ -26,6 +26,9 @@ import {
   VTextarea
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
+import httpClient from './plugins/httpClient'
+
+Vue.use(httpClient)
 
 Vue.use(Vuetify, {
   components: {
