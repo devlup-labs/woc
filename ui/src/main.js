@@ -55,9 +55,9 @@ Vue.use(Vuetify, {
     VTextarea
   },
   theme: {
-    primary: '#b362ee',
-    secondary: '#424242',
-    accent: '#82B1FF',
+    primary: '#607D8B',
+    secondary: '#009688',
+    accent: '#455A64',
     error: '#FF5252',
     info: '#2196F3',
     success: '#4CAF50',

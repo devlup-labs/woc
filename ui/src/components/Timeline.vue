@@ -13,8 +13,7 @@
             :step="key+1"
           >
             <v-flex>
-              <div flat @click="nextTimeline(key)" id="timelineTitle">{{item.title}}<v-spacer></v-spacer>{{item.startTime | humanize }}</div>
-
+              <div @click="nextTimeline(key)" :style="{color: $vuetify.theme.primary}">{{item.title}}<v-spacer></v-spacer>{{item.startTime | humanize }}</div>
             </v-flex>
           </v-stepper-step>
           <v-stepper-content
@@ -169,7 +168,6 @@
         ]
       }
     },
-
     methods: {
       nextTimeline (n) {
         if (n === this.timeline.length) {
@@ -191,8 +189,4 @@
   .v-stepper {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
   }
-  #timelineTitle:hover{
-    color: #00b0ff;
-  }
-
 </style>
