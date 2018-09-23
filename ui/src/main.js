@@ -7,6 +7,7 @@ import {
   VNavigationDrawer,
   VFooter,
   VList,
+  VChip,
   VBtn,
   VImg,
   VIcon,
@@ -21,7 +22,8 @@ import {
   VParallax,
   VDivider,
   VStepper,
-  VCombobox
+  VCombobox,
+  VTextArea
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
 
@@ -32,6 +34,7 @@ Vue.use(Vuetify, {
     VFooter,
     VList,
     VBtn,
+    VChip,
     VImg,
     VIcon,
     VGrid,
@@ -45,7 +48,8 @@ Vue.use(Vuetify, {
     VParallax,
     VDivider,
     VStepper,
-    VCombobox
+    VCombobox,
+    VTextArea
   },
   theme: {
     primary: '#b362ee',

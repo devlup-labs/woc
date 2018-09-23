@@ -50,17 +50,18 @@
   // import axios from 'axios'
 
   export default {
+    name: 'MentorProfile',
     data: () => ({
       selectOptions: [
         'Male',
         'Female'
       ],
-      valid: true,
-      name: '',
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters'
-      ]
+      valid: true
+      // name: '',
+      // nameRules: [
+      //   v => !!v || 'Name is required',
+      //   v => (v && v.length <= 10) || 'Name must be less than 10 characters'
+      // ]
     })
 
     // methods: {

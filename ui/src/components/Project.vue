@@ -20,7 +20,7 @@
       <span v-else>
         <v-icon color="red" style="height:18px;">fa-times</v-icon>
       </span>
-      {{student.first_name}} {{student.last_name}}
+       {{student.first_name}} {{student.last_name}}
     </v-flex>
     <br>
     <v-divider></v-divider>

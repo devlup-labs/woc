@@ -5,6 +5,7 @@ import Timeline from '../components/Timeline'
 import HowItWorks from '../components/HowItWorks'
 import Dashboard from '../components/Dashboard'
 import MentorProfile from '../components/MentorProfile'
+import ProjectUpdate from '../components/ProjectUpdate'
 
 Vue.use(Router)
 
@@ -35,7 +36,11 @@ export default new Router({
       path: '/mentorprofile',
       name: 'MentorProfile',
       component: MentorProfile
+    },
+    {
+      path: '/projectupdate',
+      name: 'ProjectUpdate',
+      component: ProjectUpdate
     }
-
   ]
 })
