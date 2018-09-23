@@ -10,4 +10,4 @@ router.register(r'student-profile', StudentProfileViewSet, base_name='student-pr
 router.register(r'mentor-profile', MentorProfileViewSet, base_name='mentor-profile')
 router.register(r'user', UserViewSet, base_name='user')
 
-urlpatterns = router.urls + path('auth-check/', AuthenticationCheckAPIView.as_view(), name='auth-check')
+urlpatterns = router.urls + [path('auth-check/', AuthenticationCheckAPIView.as_view(), name='auth-check')]

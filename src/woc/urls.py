@@ -2,10 +2,9 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from .views import VueView
-from django.shortcuts import reverse
 
 urlpatterns = [
-    path(reverse('social:begin' 'google-oauth2')),
+    path('', include('social_django.urls', namespace='social')),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls'))
 ]
@@ -36,5 +35,5 @@ if settings.DEBUG:
     ]
 
 urlpatterns += [
-    re_path(r'.*', VueView.as_view(), name='vue-js')  # Catch all URL to send all urls to VueJS
+    re_path(r'.*', VueView.as_view(), name='vue-js')    # Catch all URL to send all urls to VueJS
 ]

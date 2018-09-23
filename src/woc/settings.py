@@ -27,8 +27,6 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
-LOGIN_REDIRECT_URL = '/login/'
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -163,9 +161,11 @@ if not DEBUG:
 
 LOGIN_URL = 'login'
 
-LOGIN_ERROR_URL = '/login/'
+LOGIN_REDIRECT_URL = '/login'
 
-_AUTH_LOGIN_ERROR_URL = '/login/'
+LOGIN_ERROR_URL = '/login'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_LOGIN_ERROR_URL = '/login/'
 
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
@@ -174,6 +174,10 @@ AUTHENTICATION_BACKENDS = [
 
 # Social Auth settings
 SOCIAL_AUTH_CLEAN_USERNAMES = True
+
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
 
 SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['username', 'email']
 
