@@ -23,7 +23,7 @@ import {
   VDivider,
   VStepper,
   VCombobox,
-  VTextArea
+  VTextarea
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
 
@@ -49,7 +49,7 @@ Vue.use(Vuetify, {
     VDivider,
     VStepper,
     VCombobox,
-    VTextArea
+    VTextarea
   },
   theme: {
     primary: '#b362ee',
