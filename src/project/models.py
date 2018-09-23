@@ -6,10 +6,17 @@ class Project(models.Model):
     name = models.CharField(max_length=64, help_text='Name of project')
     description = models.TextField(help_text='Description of project')
     github_link = models.URLField(help_text='Github link of the project')
+    technologies = models.CharField(help_text='Technologies to be used in the project', max_length=2048)
     # associations
     students = models.ManyToManyField(StudentProfile, through='StudentProposal', through_fields=('project', 'student'),
                                       help_text='Students working on the project')
     mentors = models.ManyToManyField(MentorProfile, help_text='Mentors of the project')
+
+    @property
+    def technologies_as_list(self):
+        if self.technologies == '' or not self.technologies:
+            return ['']
+        return self.technologies.split('|')
 
 
 class StudentProposal(models.Model):

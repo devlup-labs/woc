@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from account.api.permissions import IsApprovedMentor, IsStudent
-from project.api.serializers import ProjectSerializer, StudentProposalSerializer
+from project.api.serializers import ProjectSerializer, StudentProposalSerializer, StudentProposalApproveSerializer
 from project.models import StudentProposal, Project
 
 
@@ -36,5 +36,12 @@ class StudentProposalViewSet(ModelViewSet):
 
     def get_permissions(self):
         if self.action in ['retrieve', 'list']:
-            self.permission_classes = [IsApprovedMentor]
+            self.permission_classes = [IsApprovedMentor, IsStudent]
         return super().get_permissions()
+
+    def get_serializer_class(self):
+        return StudentProposalApproveSerializer if self.action == 'approve' else super().get_serializer_class()
+
+    @detail_route(methods=['put'])
+    def approve(self, request, *args, **kwargs):
+        return self.update(request, args, kwargs)
