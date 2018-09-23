@@ -69,8 +69,6 @@ class MentorProfileViewSetTest(TestCase):
             'phone': 9999999999,
             'github': 'https://github.com/abc',
             'gender': MentorProfile.GENDER_CHOICES[0][0],
-            'branch': MentorProfile.BRANCH_CHOICES[0][0],
-            'year': MentorProfile.YEAR_CHOICES[0][0],
             'user': self.user.id
         }
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
@@ -81,8 +79,6 @@ class MentorProfileViewSetTest(TestCase):
             'phone': 9999999999,
             'github': 'https://github.com/abc',
             'gender': MentorProfile.GENDER_CHOICES[0][0],
-            'branch': MentorProfile.BRANCH_CHOICES[0][0],
-            'year': MentorProfile.YEAR_CHOICES[0][0],
         }
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -93,8 +89,6 @@ class MentorProfileViewSetTest(TestCase):
             'phone': 9999999999,
             'github': 'https://github.com/abc',
             'gender': MentorProfile.GENDER_CHOICES[0][0],
-            'branch': MentorProfile.BRANCH_CHOICES[0][0],
-            'year': MentorProfile.YEAR_CHOICES[0][0],
             'user': self.user.id + 12
         }
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)

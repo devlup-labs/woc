@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from account.api.permissions import IsApprovedMentor, IsStudent
 from project.api.serializers import ProjectSerializer, StudentProposalSerializer, StudentProposalApproveSerializer
 from project.models import StudentProposal, Project
-from account.models import StudentProfile
+# from account.models import StudentProfile
 
 
 class ProjectViewSet(ModelViewSet):
@@ -43,7 +43,6 @@ class StudentProposalViewSet(ModelViewSet):
     #     headers = self.get_success_headers(serializer.data)
     #     return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
-
     def get_permissions(self):
         if self.action in ['retrieve', 'list']:
             self.permission_classes = (IsStudent,)
@@ -55,6 +54,3 @@ class StudentProposalViewSet(ModelViewSet):
     @action(methods=['put'], detail=True)
     def approve(self, request, *args, **kwargs):
         return self.update(request, args, kwargs)
-
-
-
