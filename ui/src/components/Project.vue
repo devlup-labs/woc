@@ -12,7 +12,7 @@
     <v-layout row>
       <h4>Proposals</h4>
     </v-layout>
-    <v-flex v-for="student in students"  pt-2>
+    <v-flex v-for="(student,i) in students" :key="i"  pt-2>
       <span v-if="student.accepted==1">
         <v-icon color="green" style="height:18px;">check_circle</v-icon>
       </span>

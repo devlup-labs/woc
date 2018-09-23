@@ -23,7 +23,7 @@
           <v-divider></v-divider>
 
           <v-card-text>
-            <Project v-for="i in 'xxxxx'"></Project>
+            <Project v-for="(i, index) in 'xxxxx'" :key="index"></Project>
           </v-card-text>
         </v-card>
       </v-flex>
