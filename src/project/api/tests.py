@@ -34,6 +34,7 @@ class ProjectViewTest(TestCase):
             'name': 'Project 2',
             'github_link': 'https://github.com',
             'description': 'Description',
+            'technologies': 'Python,Django,C++',
             'mentors': [self.mentor_profile.id]
         }
         response = self.client.post(reverse('api:project:projects-list'), data=data)
