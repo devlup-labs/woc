@@ -42,6 +42,6 @@ class StudentProposalViewSet(ModelViewSet):
     def get_serializer_class(self):
         return StudentProposalApproveSerializer if self.action == 'approve' else super().get_serializer_class()
 
-    @detail_route(methods=['put'])
+    @action(methods=['put'], detail=True)
     def approve(self, request, *args, **kwargs):
         return self.update(request, args, kwargs)
