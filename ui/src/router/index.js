@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import middlewares from './middlewares'
 import Home from '../components/Home'
+import Login from '../components/Login'
 import Timeline from '../components/Timeline'
 import HowItWorks from '../components/HowItWorks'
 import Dashboard from '../components/Dashboard'
@@ -9,38 +11,19 @@ import ProjectUpdate from '../components/ProjectUpdate'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/timeline',
-      name: 'Timeline',
-      component: Timeline
-    },
-    {
-      path: '/howitworks',
-      name: 'HowItWorks',
-      component: HowItWorks
-    },
-    {
-      path: '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard
-    },
-    {
-      path: '/mentorprofile',
-      name: 'MentorProfile',
-      component: MentorProfile
-    },
-    {
-      path: '/projectupdate',
-      name: 'ProjectUpdate',
-      component: ProjectUpdate
-    }
+    {path: '/', name: 'Home', component: Home},
+    {path: '/login', name: 'Login', component: Login},
+    {path: '/timeline', name: 'Timeline', component: Timeline},
+    {path: '/how-it-works', name: 'HowItWorks', component: HowItWorks},
+    {path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: {requiresAuth: true}},
+    {path: '/mentor-profile', name: 'MentorProfile', component: MentorProfile, meta: {requiresAuth: true}},
+    {path: '/project-update', name: 'ProjectUpdate', component: ProjectUpdate, meta: {requiresAuth: true}}
   ]
 })
+
+middlewares.forEach(guard => router.beforeEach(guard))
+
+export default router
