@@ -8,9 +8,10 @@
     >
       <v-list>
         <v-list-tile
-        v-for="(item,i) in items"
-        :key="i"
-        @click=""
+          v-for="(item,i) in items"
+          :key="i"
+          @click=""
+          :to="item.path"
         >
           <v-list-tile-action>
             <v-icon>{{item.icon}}</v-icon>
