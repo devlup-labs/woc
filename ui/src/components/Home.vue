@@ -100,7 +100,7 @@
               <v-list class="transparent">
                 <v-list-tile>
                   <v-list-tile-action>
-                    <v-icon class="blue--text text--lighten-2">phone</v-icon>
+                    <v-icon class="black--text text--lighten-2">phone</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title>+91 863-029-6147</v-list-tile-title>
@@ -108,15 +108,16 @@
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-action>
-                    <v-icon class="blue--text text--lighten-2">place</v-icon>
+                   <i class="fa fa-github" aria-hidden="true"></i>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>IIT Jodhpur, India</v-list-tile-title>
+                    <v-list-tile-title  prepend-icon="fa-github"><a href="https://github.com/devlup-labs">
+                      https://github.com/devlup-labs</a></v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-action>
-                    <v-icon class="blue--text text--lighten-2">email</v-icon>
+                    <v-icon class="black--text text--lighten-2">email</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title>opensourceiitj@gmail.com</v-list-tile-title>
