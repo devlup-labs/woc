@@ -1,11 +1,11 @@
 const state = {
   items: [
-    {icon: 'contacts', text: 'Homepage', path: '/'},
-    {icon: 'history', text: 'How It Works', path: '/how-it-works'},
-    {icon: 'content_copy', text: 'Projects', path: '/projects'},
-    {icon: 'settings', text: 'Dashboard', path: '/dashboard'},
+    {icon: 'fa-home', text: 'Homepage', path: '/'},
+    {icon: 'fa-calendar', text: 'How It Works', path: '/how-it-works'},
+    {icon: 'fa-code', text: 'Projects', path: '/projects'},
+    {icon: 'fa-tachometer', text: 'Dashboard', path: '/dashboard'},
     {icon: 'help', text: 'Help', path: '/help'},
-    {icon: 'help', text: 'Profile', path: '/profile'}
+    {icon: 'fa-user-circle', text: 'Profile', path: '/profile'}
   ]
 }
 
