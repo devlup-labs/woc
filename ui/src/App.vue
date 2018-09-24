@@ -57,19 +57,19 @@
   </v-app>
 </template>
 <script>
+  import {mapGetters} from 'vuex'
+
   export default {
-    data: () => ({
-      dialog: false,
-      drawer: null,
-      items: [
-        {icon: 'contacts', text: 'Homepage'},
-        {icon: 'history', text: 'How It Works'},
-        {icon: 'content_copy', text: 'Projects'},
-        {icon: 'settings', text: 'Dashboard'},
-        {icon: 'help', text: 'Help'},
-        {icon: 'help', text: 'Profile'}
-      ]
-    }),
+    data () {
+      return {
+        drawer: null
+      }
+    },
+    computed: {
+      ...mapGetters('app', [
+        'items'
+      ])
+    },
     props: {
       source: String
     }
