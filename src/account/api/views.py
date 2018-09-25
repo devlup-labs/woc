@@ -1,5 +1,6 @@
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import mixins
+from rest_framework.permissions import AllowAny
 from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer, UserSerializer
 from account.models import StudentProfile, MentorProfile
 from django.contrib.auth.models import User
@@ -24,6 +25,7 @@ class UserViewSet(mixins.UpdateModelMixin, GenericViewSet):
 
 
 class AuthenticationCheckAPIView(APIView):
+    permission_classes = (AllowAny,)
     """
         get:
         Returns the authentication status code and message for current request.
