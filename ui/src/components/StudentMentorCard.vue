@@ -20,8 +20,12 @@
     name: 'StudentMentorCard',
     data () {
       return {
-        studentText: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.',
-        mentorText: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.'
+        studentText: 'Students contact the mentors they want to work with and write up a project proposal for the' +
+          ' winter. If selected, students spend a month coding under the guidance of their mentors. They\'re also' +
+          ' eligible for prizes and goodies.',
+        mentorText: 'Willing seniors from institute or alumni can choose to mentor a student project.' +
+          ' Mentors and students work together to determine appropriate milestones and requirements for the winter.' +
+          ' Mentor interaction is a vital part of the program.'
       }
     }
   }
