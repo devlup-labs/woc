@@ -13,6 +13,7 @@ class StudentProfileViewSetTest(TestCase):
         cls.user = User.objects.create_user(username='student', password='password')
 
     def test_bad_request(self):
+        self.client.login(username=self.user.username, password='password')
         response = self.client.post(reverse('api:account:student-profile-list'))
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -25,6 +26,7 @@ class StudentProfileViewSetTest(TestCase):
             'year': StudentProfile.YEAR_CHOICES[0][0],
             'user': self.user.id
         }
+        self.client.login(username=self.user.username, password='password')
         response = self.client.post(reverse('api:account:student-profile-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -36,6 +38,7 @@ class StudentProfileViewSetTest(TestCase):
             'branch': StudentProfile.BRANCH_CHOICES[0][0],
             'year': StudentProfile.YEAR_CHOICES[0][0],
         }
+        self.client.login(username=self.user.username, password='password')
         response = self.client.post(reverse('api:account:student-profile-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.content.decode('utf-8'), '{"user":["This field is required."]}')
@@ -49,6 +52,7 @@ class StudentProfileViewSetTest(TestCase):
             'year': StudentProfile.YEAR_CHOICES[0][0],
             'user': self.user.id + 12
         }
+        self.client.login(username=self.user.username, password='password')
         response = self.client.post(reverse('api:account:student-profile-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.content.decode('utf-8'), '{"user":["Invalid pk \\"13\\" - object does not exist."]}')
@@ -61,6 +65,7 @@ class MentorProfileViewSetTest(TestCase):
         cls.user = User.objects.create_user(username='mentor', password='password')
 
     def test_bad_request(self):
+        self.client.login(username=self.user.username, password='password')
         response = self.client.post(reverse('api:account:mentor-profile-list'))
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -71,6 +76,7 @@ class MentorProfileViewSetTest(TestCase):
             'gender': MentorProfile.GENDER_CHOICES[0][0],
             'user': self.user.id
         }
+        self.client.login(username=self.user.username, password='password')
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -80,6 +86,7 @@ class MentorProfileViewSetTest(TestCase):
             'github': 'https://github.com/abc',
             'gender': MentorProfile.GENDER_CHOICES[0][0],
         }
+        self.client.login(username=self.user.username, password='password')
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.content.decode('utf-8'), '{"user":["This field is required."]}')
@@ -91,6 +98,7 @@ class MentorProfileViewSetTest(TestCase):
             'gender': MentorProfile.GENDER_CHOICES[0][0],
             'user': self.user.id + 12
         }
+        self.client.login(username=self.user.username, password='password')
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.content.decode('utf-8'), '{"user":["Invalid pk \\"13\\" - object does not exist."]}')
