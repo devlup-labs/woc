@@ -52,11 +52,6 @@
           {
             question: 'What if I have more questions?',
             answer: 'Check out the Student Guide and the Mentor Guide available on the homepage.'
-          },
-          {
-            question: 'Are mentors required to use the code produced by students?',
-            answer: 'No. While we hope that all the code that comes out of this program is useful, it\'s not ' +
-              'mandatory for the mentor to use students\' code'
           }
         ],
         studentFAQs: [
