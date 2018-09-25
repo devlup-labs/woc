@@ -10,8 +10,8 @@
         column
         justify-center
       >
-        <h1 class="display-3">Winter Of Code</h1>
-        <h2 class="font-weight-thin">Organised By </h2>
+        <h1 class="display-3 text-xs-center">Winter Of Code</h1>
+        <h2 class="font-weight-thin">Organised By</h2>
         <h2 class="display-1">Devlup Labs</h2>
       </v-layout>
     </v-parallax>
