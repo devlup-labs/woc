@@ -2,7 +2,7 @@
   <div>
     <v-parallax
       dark
-      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+      :src="banner"
       fill-height
     >
       <v-layout
@@ -22,15 +22,15 @@
       align-center
     >
       <v-flex xs12 sm4 class="my-3">
-        <div class="text-xs-center">
-          <h2 class="headline">The best way to start open source</h2>
-        </div>
+        <v-card-text class="text-xs-center">
+          <h2 class="headline">The best way to engage open source development</h2>
+        </v-card-text>
       </v-flex>
       <v-flex xs12>
         <v-container grid-list-xl>
           <v-layout row wrap align-center>
             <v-flex xs12 md4>
-              <v-card class="elevation-0 transparent">
+              <v-card class="transparent" flat>
                 <div class="text-xs-center">
                   <v-icon x-large class="blue--text text--lighten-1">supervisor_account</v-icon>
                 </div>
@@ -47,7 +47,7 @@
               </v-card>
             </v-flex>
             <v-flex xs12 md4>
-              <v-card class="elevation-0 transparent">
+              <v-card class="transparent" flat>
                 <div class="text-xs-center">
                   <v-icon x-large class="blue--text text--lighten-2">build</v-icon>
                 </div>
@@ -64,7 +64,7 @@
               </v-card>
             </v-flex>
             <v-flex xs12 md4>
-              <v-card class="elevation-0 transparent">
+              <v-card class="transparent" flat>
                 <div class="text-xs-center">
                   <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
                 </div>
@@ -82,11 +82,13 @@
         </v-container>
       </v-flex>
     </v-layout>
-    <v-parallax src="https://raw.githubusercontent.com/vuetifyjs/parallax-starter/master/template/assets/section.jpg"
-                height="320">
+    <v-parallax :src="codeImage"
+                height="320" fill-height>
       <v-layout column align-center justify-center>
-        <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
-        <em>Luck is important for all endeavors</em>
+        <div class="headline white--text mb-3 text-xs-center">Diving into open source development has never been
+          simpler
+        </div>
+        <em>Now build something!</em>
       </v-layout>
     </v-parallax>
     <v-container grid-list-xl>
@@ -100,19 +102,21 @@
               <v-list class="transparent">
                 <v-list-tile>
                   <v-list-tile-action>
-                    <v-icon class="black--text text--lighten-2">phone</v-icon>
+                    <i class="fa fa-github fa-2x" aria-hidden="true"></i>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>+91 863-029-6147</v-list-tile-title>
+                    <v-list-tile-title><a href="https://github.com/devlup-labs"
+                                          class="text-decoration-none">devlup-labs</a>
+                    </v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-action>
-                   <i class="fa fa-github" aria-hidden="true"></i>
+                    <v-icon class="black--text text--lighten-2">phone</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title  prepend-icon="fa-github"><a href="https://github.com/devlup-labs">
-                      https://github.com/devlup-labs</a></v-list-tile-title>
+                    <v-list-tile-title><a href="tel:+919610771790" class="text-decoration-none">+91 96107-71790</a>
+                    </v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile>
@@ -120,7 +124,11 @@
                     <v-icon class="black--text text--lighten-2">email</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>opensourceiitj@gmail.com</v-list-tile-title>
+                    <v-list-tile-title>
+                      <a href="mailto:opensourceiitj@gmail.com?subject=[WoC]" class="text-decoration-none">
+                        opensourceiitj@gmail.com
+                      </a>
+                    </v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
               </v-list>
@@ -132,7 +140,22 @@
   </div>
 </template>
 <script>
+  import banner from '../assets/snowflake-554635_1920.jpg'
+  import codeImage from '../assets/programming-1873854_1280.png'
+
   export default {
-    name: 'Home'
+    name: 'Home',
+    data () {
+      return {
+        banner,
+        codeImage
+      }
+    }
   }
 </script>
+
+<style scoped>
+  .text-decoration-none {
+    text-decoration: none;
+  }
+</style>
