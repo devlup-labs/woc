@@ -31,7 +31,7 @@
           if (this.$route.query.next) this.$router.push(this.$route.query.next)
           else this.$router.push({name: 'Home'})
         })
-      }).catch(error => console.log(error))
+      }).catch(() => {})
     }
   }
 </script>
