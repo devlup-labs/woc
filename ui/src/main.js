@@ -29,6 +29,8 @@ import {
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
 import httpClient from './plugins/httpClient'
+import axios from 'axios'
+import {BACKEND_API_ADDRESS} from './config'
 
 Vue.use(httpClient)
 
@@ -71,10 +73,19 @@ Vue.use(Vuetify, {
 
 Vue.config.productionTip = false
 
+const checkLogin = (store) => {
+  axios.get(BACKEND_API_ADDRESS + '/api/account/auth-check/').then(response => {
+    store.dispatch('auth/login')
+  }).catch(() => {})
+}
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
+  created () {
+    checkLogin(store)
+  },
   render: h => h(App)
 })

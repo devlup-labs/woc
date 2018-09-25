@@ -13,9 +13,7 @@ export default {
       if (error.response.status === 401 && router.currentRoute.name !== 'Login') {
         store.dispatch('auth/logout').then(() => {
           router.push({name: 'Login'})
-        }).catch((error) => {
-          console.log('Logout Error: ', error)
-        })
+        }).catch(() => {})
       } else {
         return Promise.reject(error)
       }
