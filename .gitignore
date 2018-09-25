@@ -120,6 +120,7 @@ yarn-error.log*
 /test/unit/coverage
 /test/e2e/reports
 selenium-debug.log
+ui/src/config/index.js
 
 # Editor directories and files
 .idea
