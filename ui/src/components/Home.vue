@@ -23,7 +23,7 @@
     >
       <v-flex xs12 sm4 class="my-3">
         <v-card-text class="text-xs-center">
-          <h2 class="headline">The best way to engage open source development</h2>
+          <h2 class="headline">The best way to engage in open source development</h2>
         </v-card-text>
       </v-flex>
       <v-flex xs12>
@@ -39,10 +39,8 @@
                 </v-card-title>
                 <v-card-text style="font-size: medium">
                   WoC is a place where you don’t just get to apply your skills but also get to acquire a bunch of new
-                  ones.
-                  WoC introduces you to a new paradigm about building code collaboratively while working under
-                  experienced
-                  mentors.
+                  ones. WoC introduces you to the open source world and building code collaboratively while working
+                  under experienced mentors.
                 </v-card-text>
               </v-card>
             </v-flex>
@@ -56,10 +54,8 @@
                 </v-card-title>
                 <v-card-text style="font-size: medium">
                   Develop the project codebase. Write up test suites. Add third party integrations and lots of other
-                  cool stuff
-                  depending on your project. After cooking up the perfect recipe, use Git to keep track of the changes
-                  and
-                  create your Pull Requests on GitHub.
+                  cool stuff depending on your project. After cooking up the perfect recipe, use Git to keep track of
+                  the changes and create your Pull Requests on GitHub.
                 </v-card-text>
               </v-card>
             </v-flex>
@@ -72,9 +68,9 @@
                   <div class="headline text-xs-center">Contribute to Open Source</div>
                 </v-card-title>
                 <v-card-text style="font-size: medium">
-                  During the 5 weeks of writing good code, you interact and share ideas with some great people.
-                  At the end of it, you’ve made great interactions with the mentors of your institute , and
-                  finally get ready to compete in GSoC-19.
+                  During the 5 weeks of writing good code, you interact and share ideas with some great people. At the
+                  end of it, you’ve made great interactions with the mentors, and finally get ready to compete in
+                  <a href="https://summerofcode.withgoogle.com" target="_blank" class="text-decoration-none">GSoC'19</a>.
                 </v-card-text>
               </v-card>
             </v-flex>
@@ -86,7 +82,7 @@
                 height="320" fill-height>
       <v-layout column align-center justify-center>
         <div class="headline white--text mb-3 text-xs-center">Diving into open source development has never been
-          simpler
+          simpler.
         </div>
         <em>Now build something!</em>
       </v-layout>
