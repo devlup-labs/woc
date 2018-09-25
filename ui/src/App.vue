@@ -43,7 +43,7 @@
         class="hidden-sm-and-down"
       ></v-text-field>
       <v-spacer></v-spacer>
-      <v-btn icon large>
+      <v-btn v-if="isLoggedIn" icon large @click="logout">
         <v-avatar size="32px" tile>
           <img
             src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
@@ -51,6 +51,7 @@
           >
         </v-avatar>
       </v-btn>
+      <v-btn outline v-else @click="login">Log In</v-btn>
     </v-toolbar>
     <v-content>
       <router-view/>
@@ -58,7 +59,7 @@
   </v-app>
 </template>
 <script>
-  import {mapGetters} from 'vuex'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
     data () {
@@ -69,6 +70,15 @@
     computed: {
       ...mapGetters('app', [
         'items'
+      ]),
+      ...mapGetters('auth', [
+        'isLoggedIn'
+      ])
+    },
+    methods: {
+      ...mapActions('auth', [
+        'login',
+        'logout'
       ])
     },
     props: {
