@@ -6,6 +6,7 @@ addons:
 dist: trusty
 before_script:
   - cp .env.example .env
+  - cp ui/src/config/index.js.example ui/src/config/index.js
   - psql -c "CREATE DATABASE wocdb;" -U postgres
   - psql -c "CREATE USER wocuser WITH LOGIN PASSWORD 'password';" -U postgres
   - psql -c "ALTER ROLE wocuser WITH CREATEDB;" -U postgres
