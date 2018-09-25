@@ -1,11 +1,11 @@
 const state = {
   items: [
-    {icon: 'fa-home', text: 'Homepage', path: '/'},
+    {icon: 'fa-home', text: 'Home', path: '/'},
     {icon: 'fa-calendar', text: 'How It Works', path: '/how-it-works'},
     {icon: 'fa-code', text: 'Projects', path: '/projects'},
     {icon: 'fa-tachometer', text: 'Dashboard', path: '/dashboard'},
-    {icon: 'help', text: 'Help', path: '/help'},
-    {icon: 'fa-user-circle', text: 'Profile', path: '/profile'}
+    {icon: 'fa-user-circle', text: 'Profile', path: '/profile'},
+    {icon: 'help', text: 'Help', path: '/help'}
   ]
 }
 
