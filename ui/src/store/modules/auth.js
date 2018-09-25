@@ -1,4 +1,6 @@
 import router from '../../router'
+import axios from 'axios'
+import {BACKEND_API_ADDRESS} from '../../config'
 
 const state = {
   isLoggedIn: false
@@ -22,8 +24,10 @@ const actions = {
     commit('LOGIN')
   },
   logout ({commit}) {
-    commit('LOGOUT')
-    router.push({name: 'Login'})
+    axios.get(BACKEND_API_ADDRESS + '/logout').then(() => {
+      commit('LOGOUT')
+      router.push({name: 'Login'})
+    }).catch(err => console.log(err))
   }
 }
 
