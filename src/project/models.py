@@ -18,6 +18,9 @@ class Project(models.Model):
             return ['']
         return self.technologies.split('|')
 
+    def __str__(self):
+        return self.name
+
 
 class StudentProposal(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, help_text='Proposal for the project')
@@ -25,3 +28,6 @@ class StudentProposal(models.Model):
     drive_link = models.URLField(help_text='Custom drive link for proposal')
     file = models.FileField(upload_to='proposals', help_text='File link')
     is_accepted = models.BooleanField(default=False, help_text='Accepted/Rejected')
+
+    def __str__(self):
+        return self.student.user.get_full_name() + " | " + self.project.name

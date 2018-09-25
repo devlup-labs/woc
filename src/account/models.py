@@ -36,6 +36,11 @@ class StudentProfile(BaseProfile):
     branch = models.CharField(max_length=3, choices=BRANCH_CHOICES, help_text='Department of the user')
     year = models.CharField(max_length=1, choices=YEAR_CHOICES, help_text='Year of studying')
 
+    def __str__(self):
+        return self.user.get_full_name()
 
 class MentorProfile(BaseProfile):
     is_approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.get_full_name()
