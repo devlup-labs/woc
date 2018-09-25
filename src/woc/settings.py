@@ -145,19 +145,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, config('MEDIA_PATH', default='../media', cas
 
 MEDIA_URL = '/media/'
 
-if not DEBUG:
-    REST_FRAMEWORK = {
-        # Use Django's standard `django.contrib.auth` permissions.
-        'DEFAULT_PERMISSION_CLASSES': (
-            'rest_framework.permissions.IsAuthenticated',
-        ),
-        'DEFAULT_RENDERER_CLASSES': (
-            'rest_framework.renderers.JSONRenderer',
-        ),
-        'DEFAULT_AUTHENTICATION_CLASSES': (
-            'rest_framework.authentication.SessionAuthentication',
-        )
-    }
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions.
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
 
 LOGIN_URL = '/login'
 

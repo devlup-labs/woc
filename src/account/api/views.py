@@ -1,4 +1,4 @@
-from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework.viewsets import GenericViewSet
 from rest_framework import mixins
 from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer, UserSerializer
 from account.models import StudentProfile, MentorProfile
@@ -8,12 +8,12 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
-class StudentProfileViewSet(ModelViewSet):
+class StudentProfileViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, GenericViewSet):
     serializer_class = StudentProfileSerializer
     queryset = StudentProfile.objects.all()
 
 
-class MentorProfileViewSet(ModelViewSet):
+class MentorProfileViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.UpdateModelMixin, GenericViewSet):
     serializer_class = MentorProfileSerializer
     queryset = MentorProfile.objects.all()
 
