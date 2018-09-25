@@ -10,7 +10,7 @@
                   <div>Sign in with:</div>
                   <a href="/login/google-oauth2/" class="text-decoration-none">
                     <v-icon medium color="red darken-3">fa-google</v-icon>
-                  <div>Google</div>
+                    <div>Google</div>
                   </a>
                 </v-flex>
               </v-card-title>
@@ -24,7 +24,15 @@
 
 <script>
   export default {
-    name: 'Login'
+    name: 'Login',
+    mounted () {
+      this.$httpClient.get('/api/account/auth-check/').then(response => {
+        this.$store.dispatch('auth/login').then(() => {
+          if (this.$route.query.next) this.$router.push(this.$route.query.next)
+          else this.$router.push({name: 'Home'})
+        })
+      }).catch(error => console.log(error))
+    }
   }
 </script>
 

@@ -1,3 +1,5 @@
+import router from '../../router'
+
 const state = {
   isLoggedIn: false
 }
@@ -21,6 +23,7 @@ const actions = {
   },
   logout ({commit}) {
     commit('LOGOUT')
+    router.push({name: 'Login'})
   }
 }
 

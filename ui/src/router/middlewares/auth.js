@@ -1,6 +1,8 @@
+import store from '../../store'
+
 const AuthGuard = (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (localStorage.getItem('sessionKey') == null) {
+    if (!store.getters['auth/isLoggedIn']) {
       next({
         path: '/login',
         query: {next: to.fullPath}
