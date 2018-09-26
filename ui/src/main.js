@@ -28,11 +28,11 @@ import {
   VTextarea
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
-import httpClient from './plugins/httpClient'
+import httpClientPlugin from './plugins/httpClient'
 import axios from 'axios'
 import {BACKEND_API_ADDRESS} from './config'
 
-Vue.use(httpClient)
+Vue.use(httpClientPlugin)
 
 Vue.use(Vuetify, {
   components: {
