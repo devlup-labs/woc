@@ -2,7 +2,7 @@
   <v-container grid-list-lg>
     <v-layout column>
       <v-flex>
-        <v-card>
+        <v-card flat>
           <v-container
             fluid>
             <v-card-title primary-title>
