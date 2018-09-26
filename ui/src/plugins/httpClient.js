@@ -10,7 +10,7 @@ const httpClient = axios.create({
 })
 
 httpClient.interceptors.response.use(response => response, error => {
-  if (error.response.status === 401 && router.currentRoute.name !== 'Login') {
+  if (error.response.status === 401 && router.currentRoute.name !== 'Login' && router.currentRoute.meta.requiresAuth) {
     store.dispatch('auth/logout').then(() => {
       router.push({name: 'Login'})
     }).catch(() => {

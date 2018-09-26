@@ -44,7 +44,12 @@
         class="hidden-sm-and-down"
       ></v-text-field>
       <v-spacer></v-spacer>
-      <v-btn v-if="isLoggedIn" icon large @click="logout">
+      <v-menu  v-if="isLoggedIn" offset-y open-on-hover>
+        <v-btn
+          slot="activator"
+          icon
+          large
+        >
         <v-avatar size="32px" tile>
           <img
             src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
@@ -52,7 +57,13 @@
           >
         </v-avatar>
       </v-btn>
-      <v-btn outline v-else @click="login">Log In</v-btn>
+      <v-list>
+        <v-list-tile to="/logout">
+          <v-list-tile-title>Logout</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
+      <v-btn outline v-else :to="{name: 'Login'}">Log In</v-btn>
     </v-toolbar>
     <v-content>
       <router-view/>
