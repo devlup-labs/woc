@@ -6,36 +6,44 @@
           <v-container
             fluid>
             <v-card-title primary-title>
-              <span class="display-1 blue--text">Update Profile</span>
+              <span class="display-1 blue--text" @click="fetchMentorProfile">Update Profile</span>
             </v-card-title>
             <v-form>
               <v-layout row wrap>
                 <v-flex sm6 xs12>
-                  <v-text-field prepend-icon="person" name="FirstName" label="First Name"></v-text-field>
-                </v-flex>
-
-                <v-flex sm6 xs12>
-                  <v-text-field prepend-icon="person" name="LastName" label="Last Name"></v-text-field>
+                  <v-text-field prepend-icon="person" :value="user.first_name" @input="setFirstName"
+                                name="first_name"
+                                label="First Name"></v-text-field>
                 </v-flex>
                 <v-flex sm6 xs12>
-                  <v-combobox
-                    :items="selectOptions"
+                  <v-text-field prepend-icon="person" :value="user.last_name" @input="setLastName" name="last_name"
+                                label="Last Name"></v-text-field>
+                </v-flex>
+                <v-flex sm6 xs12>
+                  <v-select
+                    prepend-icon="fa-venus-mars"
+                    :value="mentorProfile.gender"
+                    :items="genderItems"
+                    item-text="label"
+                    item-value="value"
+                    @input="setGender"
                     label="Gender"
-                  ></v-combobox>
+                  ></v-select>
                 </v-flex>
                 <v-flex sm6 xs12>
-                  <v-text-field prepend-icon="fa-phone" name="ContactNumber" label="Contact Number"></v-text-field>
+                  <v-text-field prepend-icon="fa-phone" :value="mentorProfile.phone" @input="setPhone" name="phone"
+                                label="Contact Number"></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field prepend-icon="fa-github" name="GithubLink" label="Github Link"></v-text-field>
+                  <v-text-field prepend-icon="fa-github" :value="mentorProfile.github" @input="setGithub" name="github"
+                                label="Github Link"></v-text-field>
                 </v-flex>
               </v-layout>
-
             </v-form>
             <v-card-actions>
               <v-flex xs4></v-flex>
               <v-flex xs4>
-                <v-btn primary round large block color="info">Submit</v-btn>
+                <v-btn primary round large block color="info" @click="saveMentorProfile">Save</v-btn>
               </v-flex>
               <v-flex xs4></v-flex>
             </v-card-actions>
@@ -47,39 +55,31 @@
 </template>
 
 <script>
-  // import axios from 'axios'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
     name: 'MentorProfile',
-    data: () => ({
-      selectOptions: [
-        'Male',
-        'Female'
-      ],
-      valid: true
-      // name: '',
-      // nameRules: [
-      //   v => !!v || 'Name is required',
-      //   v => (v && v.length <= 10) || 'Name must be less than 10 characters'
-      // ]
-    })
-
-    // methods: {
-    //   // submit() {
-    //     // if (this.$refs.form.validate()) {
-    //     //   // Native form submission is not yet supported
-    //     //   axios.post('/api/submit', {
-    //     //     name: this.name,
-    //     //     email: this.email,
-    //     //     select: this.select,
-    //     //     checkbox: this.checkbox
-    //     //   })
-    //     // }
-    //   // },
-    //   // clear() {
-    //     // this.$refs.form.reset()
-    //   // }
-    // }
+    computed: {
+      ...mapGetters('mentorProfile', [
+        'mentorProfile',
+        'user',
+        'errors'
+      ]),
+      genderItems () {
+        return [{label: 'Male', value: 'M'}, {label: 'Female', value: 'F'}]
+      }
+    },
+    methods: {
+      ...mapActions('mentorProfile', [
+        'fetchMentorProfile',
+        'saveMentorProfile',
+        'setFirstName',
+        'setLastName',
+        'setPhone',
+        'setGithub',
+        'setGender'
+      ])
+    }
   }
 </script>
 

@@ -24,7 +24,7 @@ import {
   VParallax,
   VDivider,
   VStepper,
-  VCombobox,
+  VSelect,
   VTextarea
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
@@ -56,7 +56,7 @@ Vue.use(Vuetify, {
     VParallax,
     VDivider,
     VStepper,
-    VCombobox,
+    VSelect,
     VTextarea
   },
   theme: {
