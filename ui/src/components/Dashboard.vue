@@ -14,10 +14,12 @@
             <v-toolbar-title class="body-2 grey--text">Hi, {{user.first_name}}</v-toolbar-title>
 
             <v-spacer></v-spacer>
-
-            <v-btn icon>
+            <v-tooltip left>
+            <v-btn icon slot="activator">
               <v-icon>add</v-icon>
             </v-btn>
+              <span>Add New Project</span>
+            </v-tooltip>
           </v-toolbar>
 
           <v-divider></v-divider>
