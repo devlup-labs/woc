@@ -35,6 +35,7 @@
         <span class="hidden-sm-and-down">Winter of Code</span>
       </v-toolbar-title>
       <v-text-field
+        v-if="showSearch"
         flat
         solo-inverted
         hide-details
@@ -103,6 +104,9 @@
         set (value) {
           this.$store.commit('messages/SET_SNACKBAR', value)
         }
+      },
+      showSearch () {
+        return !!this.items.find(item => item.search && item.path === this.$route.path)
       }
     },
     methods: {

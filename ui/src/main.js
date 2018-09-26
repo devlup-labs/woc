@@ -29,9 +29,7 @@ import {
   VTextarea
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
-import httpClientPlugin from './plugins/httpClient'
-import axios from 'axios'
-import {BACKEND_API_ADDRESS} from './config'
+import httpClientPlugin, {httpClient} from './plugins/httpClient'
 
 Vue.use(httpClientPlugin)
 
@@ -76,7 +74,7 @@ Vue.use(Vuetify, {
 Vue.config.productionTip = false
 
 const checkLogin = (store) => {
-  axios.get(BACKEND_API_ADDRESS + '/api/account/auth-check/').then(response => {
+  httpClient.get('/api/account/auth-check/').then(response => {
     store.dispatch('auth/login')
   }).catch(() => {})
 }

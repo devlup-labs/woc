@@ -6,7 +6,23 @@
           <v-container
             fluid>
             <v-card-title primary-title>
-              <span class="display-1 blue--text">Update Profile</span>
+              <v-layout align-center justify-space-around row>
+                <span class="display-1 blue--text">Update Profile</span>
+                <v-spacer></v-spacer>
+                <div><v-chip v-if="mentorProfile.is_approved" color="success" text-color="white">
+                  <v-avatar>
+                    <v-icon>check_circle</v-icon>
+                  </v-avatar>
+                  Profile Verified
+                </v-chip>
+                <v-chip v-else color="error" text-color="white">
+                  <v-avatar>
+                    <v-icon>error</v-icon>
+                  </v-avatar>
+                  Profile Unverified
+                </v-chip>
+                  </div>
+              </v-layout>
             </v-card-title>
             <v-form>
               <v-layout row wrap>

@@ -3,12 +3,10 @@ import Router from 'vue-router'
 import middlewares from './middlewares'
 import Home from '../components/Home'
 import Login from '../components/Login'
-import Timeline from '../components/Timeline'
+import ProjectsList from '../components/ProjectsList'
 import HowItWorks from '../components/HowItWorks'
 import Help from '../components/Help'
 import Dashboard from '../components/Dashboard'
-import MentorProfile from '../components/MentorProfile'
-import ProjectUpdate from '../components/ProjectUpdate'
 
 Vue.use(Router)
 
@@ -17,12 +15,10 @@ const router = new Router({
   routes: [
     {path: '/', name: 'Home', component: Home},
     {path: '/login', name: 'Login', component: Login},
-    {path: '/timeline', name: 'Timeline', component: Timeline},
+    {path: '/projects', name: 'Projects', component: ProjectsList},
     {path: '/how-it-works', name: 'HowItWorks', component: HowItWorks},
     {path: '/help', name: 'Help', component: Help},
-    {path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: {requiresAuth: true}},
-    {path: '/mentor-profile', name: 'MentorProfile', component: MentorProfile, meta: {requiresAuth: true}},
-    {path: '/project-update', name: 'ProjectUpdate', component: ProjectUpdate, meta: {requiresAuth: true}}
+    {path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: {requiresAuth: true}}
   ]
 })
 
