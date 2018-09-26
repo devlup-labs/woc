@@ -35,6 +35,24 @@ class UserViewSet(mixins.UpdateModelMixin, mixins.RetrieveModelMixin, GenericVie
     serializer_class = UserSerializer
     queryset = User.objects.filter(is_active=True)
 
+    @action(methods=['get'], detail=False)
+    def profile(self, request, *args, **kwargs):
+        mentor_profile = MentorProfile.objects.filter(user=self.request.user)
+        student_profile = StudentProfile.objects.filter(user=self.request.user)
+        if mentor_profile.exists():
+            data = {
+                'type': 'mentor-profile',
+                'id': mentor_profile.first().id
+            }
+            return Response(data=data, status=status.HTTP_200_OK)
+        if student_profile.exists():
+            data = {
+                'type': 'student-profile',
+                'id': student_profile.first().id
+            }
+            return Response(data=data, status=status.HTTP_200_OK)
+        return Response('', status=status.HTTP_204_NO_CONTENT)
+
 
 class AuthenticationCheckAPIView(APIView):
     permission_classes = (AllowAny,)

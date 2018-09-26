@@ -102,3 +102,30 @@ class MentorProfileViewSetTest(TestCase):
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.content.decode('utf-8'), '{"user":["Invalid pk \\"13\\" - object does not exist."]}')
+
+
+class UserViewSetTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.user = User.objects.create_user(username='mentor', password='password')
+
+    def test_user_with_no_profile_type(self):
+        self.client.login(username=self.user.username, password='password')
+        response = self.client.get(reverse('api:account:user-profile'))
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_user_with_mentor_profile(self):
+        self.client.login(username=self.user.username, password='password')
+        self.mentor_profile = MentorProfile.objects.create(user=self.user)
+        response = self.client.get(reverse('api:account:user-profile'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.content.decode('utf-8'), '{"type":"mentor-profile","id":%s}' % self.mentor_profile.id)
+
+    def test_user_with_student_profile(self):
+        self.client.login(username=self.user.username, password='password')
+        self.student_profile = StudentProfile.objects.create(user=self.user)
+        response = self.client.get(reverse('api:account:user-profile'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.content.decode('utf-8'),
+                         '{"type":"student-profile","id":%s}' % self.student_profile.id)
