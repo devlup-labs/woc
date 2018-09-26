@@ -109,12 +109,6 @@
       ...mapActions('auth', [
         'login',
         'logout'
-      ]),
-      ...mapActions('messages', [
-        'setMessage',
-        'setColor',
-        'setSnackbarTimeout',
-        'setMode'
       ])
     },
     props: {
