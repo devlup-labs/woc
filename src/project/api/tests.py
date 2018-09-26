@@ -36,7 +36,7 @@ class ProjectViewTest(TestCase):
             'mentors': [self.mentor_profile.id]
         }
         response = self.client.post(reverse('api:project:projects-list'), data=data)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.client.login(username=self.mentor.username, password='password')
         response = self.client.post(reverse('api:project:projects-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
