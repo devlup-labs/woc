@@ -62,13 +62,22 @@ const actions = {
         .catch(err => commit('ADD_ERROR', err))
     }).catch(err => commit('ADD_ERROR', err))
   },
-  saveMentorProfile ({commit, state}) {
+  saveMentorProfile ({commit, state, dispatch}) {
     httpClient.patch(`/api/account/user/${state.mentorProfile.user}/`, {
       first_name: state.user.first_name,
       last_name: state.user.last_name
     })
-      .then(response => commit('SET_USER', response.data)).catch(err => console.log(err.response))
-    console.log(state.mentorProfile, state.user)
+      .then(response => {
+        commit('SET_USER', response.data)
+        httpClient.patch(`/api/account/mentor-profile/${state.mentorProfile.id}/`, {
+          phone: state.mentorProfile.phone,
+          github: state.mentorProfile.github,
+          gender: state.mentorProfile.gender
+        }).then(response => {
+          commit('SET_MENTOR_PROFILE', response.data)
+          dispatch('messages/showMessage', {message: 'Profile updated successfully', color: 'success'}, {root: true})
+        })
+      }).catch(err => console.log(err.response))
   },
   setFirstName: ({commit}, firstName) => commit('SET_FIRST_NAME', firstName),
   setLastName: ({commit}, lastName) => commit('SET_LAST_NAME', lastName),
