@@ -4,7 +4,7 @@ const state = {
     {icon: 'fa-calendar', text: 'How It Works', path: '/how-it-works'},
     {icon: 'fa-code', text: 'Projects', path: '/projects'},
     {icon: 'fa-tachometer', text: 'Dashboard', path: '/dashboard', requiresAuth: true},
-    {icon: 'fa-user-circle', text: 'Profile', path: '/profile', requiresAuth: true},
+    {icon: 'fa-user-circle', text: 'Profile', path: '/mentor-profile', requiresAuth: true},
     {icon: 'help', text: 'Help', path: '/help'}
   ]
 }

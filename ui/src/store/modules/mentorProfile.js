@@ -63,7 +63,10 @@ const actions = {
     }).catch(err => commit('ADD_ERROR', err))
   },
   saveMentorProfile ({commit, state}) {
-    httpClient.put(`/api/account/user/${state.mentorProfile.user}/`, {data: state.user})
+    httpClient.patch(`/api/account/user/${state.mentorProfile.user}/`, {
+      first_name: state.user.first_name,
+      last_name: state.user.last_name
+    })
       .then(response => commit('SET_USER', response.data)).catch(err => console.log(err.response))
     console.log(state.mentorProfile, state.user)
   },

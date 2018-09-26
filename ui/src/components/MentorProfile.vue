@@ -6,7 +6,7 @@
           <v-container
             fluid>
             <v-card-title primary-title>
-              <span class="display-1 blue--text" @click="fetchMentorProfile">Update Profile</span>
+              <span class="display-1 blue--text">Update Profile</span>
             </v-card-title>
             <v-form>
               <v-layout row wrap>
@@ -79,6 +79,9 @@
         'setGithub',
         'setGender'
       ])
+    },
+    mounted () {
+      this.fetchMentorProfile()
     }
   }
 </script>
