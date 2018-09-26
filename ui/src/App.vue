@@ -56,6 +56,22 @@
     <v-content>
       <router-view/>
     </v-content>
+    <v-snackbar
+      v-model="snackbar"
+      :color="color"
+      :multi-line="mode === 'multi-line'"
+      :timeout="timeout"
+      :vertical="mode === 'vertical'"
+    >
+      {{ message }}
+      <v-btn
+        dark
+        flat
+        @click="setSnackbar(false)"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 <script>
@@ -73,12 +89,32 @@
       ]),
       ...mapGetters('auth', [
         'isLoggedIn'
-      ])
+      ]),
+      ...mapGetters('messages', [
+        'message',
+        'color',
+        'timeout',
+        'mode'
+      ]),
+      snackbar: {
+        get () {
+          return this.$store.getters['messages/snackbar']
+        },
+        set (value) {
+          this.$store.commit('messages/SET_SNACKBAR', value)
+        }
+      }
     },
     methods: {
       ...mapActions('auth', [
         'login',
         'logout'
+      ]),
+      ...mapActions('messages', [
+        'setMessage',
+        'setColor',
+        'setSnackbarTimeout',
+        'setMode'
       ])
     },
     props: {

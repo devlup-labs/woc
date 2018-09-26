@@ -25,6 +25,7 @@ import {
   VDivider,
   VStepper,
   VSelect,
+  VSnackbar,
   VTextarea
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
@@ -57,6 +58,7 @@ Vue.use(Vuetify, {
     VDivider,
     VStepper,
     VSelect,
+    VSnackbar,
     VTextarea
   },
   theme: {
