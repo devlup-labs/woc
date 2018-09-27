@@ -88,6 +88,20 @@
       </v-layout>
     </v-parallax>
     <v-container grid-list-xl>
+      <v-layout row wrap justify-center class="mt-5">
+        <v-flex xs12 md8 lg6 row justify-center>
+          <v-layout justify-center align column class="px-2">
+            <v-layout justify-center><p class="align-center display-1">Interested to know more?</p>
+          </v-layout>
+          <v-layout justify-center>
+            <v-btn outline large color="secondary" :href="studentManual">Student Manual</v-btn>
+            <v-btn outline large color="secondary" :href="mentorManual">Mentor Manual</v-btn>
+          </v-layout>
+          </v-layout>
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <v-container grid-list-xl>
       <v-layout row wrap justify-center class="my-5">
         <v-flex xs12 sm4>
           <v-layout justify-center align center>
@@ -138,13 +152,17 @@
 <script>
   import banner from '../assets/snowflake-554635_1920.jpg'
   import codeImage from '../assets/programming-1873854_1280.png'
+  import mentorManual from '../assets/manuals/MentorManual.pdf'
+  import studentManual from '../assets/manuals/StudentManual.pdf'
 
   export default {
     name: 'Home',
     data () {
       return {
         banner,
-        codeImage
+        codeImage,
+        mentorManual,
+        studentManual
       }
     }
   }
