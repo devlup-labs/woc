@@ -35,6 +35,13 @@ class UserViewSet(mixins.UpdateModelMixin, mixins.RetrieveModelMixin, GenericVie
     serializer_class = UserSerializer
     queryset = User.objects.filter(is_active=True)
 
+    def get_object(self):
+        return get_object_or_404(User, id=self.request.user.id) if self.action == 'current' else super().get_object()
+
+    @action(methods=['get'], detail=False)
+    def current(self, request, *args, **kwargs):
+        return self.retrieve(request, args, kwargs)
+
     @action(methods=['get'], detail=False)
     def profile(self, request, *args, **kwargs):
         mentor_profile = MentorProfile.objects.filter(user=self.request.user)
