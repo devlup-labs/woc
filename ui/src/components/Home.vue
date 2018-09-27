@@ -93,10 +93,10 @@
           <v-layout justify-center align column class="px-2">
             <v-layout justify-center><p class="align-center display-1">Interested to know more?</p>
           </v-layout>
-          <v-layout justify-center>
+          <v-flex align-center justify-center>
             <v-btn outline large color="secondary" :href="studentManual">Student Manual</v-btn>
             <v-btn outline large color="secondary" :href="mentorManual">Mentor Manual</v-btn>
-          </v-layout>
+          </v-flex>
           </v-layout>
         </v-flex>
       </v-layout>

@@ -50,10 +50,9 @@
           icon
           large
         >
-        <v-avatar size="32px" tile>
+        <v-avatar size="48px">
           <img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
+            :src="thumbnailUrl"
           >
         </v-avatar>
       </v-btn>
@@ -100,7 +99,8 @@
         'items'
       ]),
       ...mapGetters('auth', [
-        'isLoggedIn'
+        'isLoggedIn',
+        'thumbnailUrl'
       ]),
       ...mapGetters('messages', [
         'message',
@@ -125,6 +125,9 @@
         'login',
         'logout'
       ])
+    },
+    mounted () {
+      this.$store.dispatch('auth/loadThumbnail')
     },
     props: {
       source: String
