@@ -110,6 +110,13 @@ class UserViewSetTest(TestCase):
         super().setUpClass()
         cls.user = User.objects.create_user(username='mentor', password='password')
 
+    def test_get_current_user(self):
+        response = self.client.get(reverse('api:account:user-current'))
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.client.login(username=self.user.username, password='password')
+        response = self.client.get(reverse('api:account:user-current'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     def test_user_with_no_profile_type(self):
         self.client.login(username=self.user.username, password='password')
         response = self.client.get(reverse('api:account:user-profile'))
