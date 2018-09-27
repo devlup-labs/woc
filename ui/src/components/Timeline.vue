@@ -39,13 +39,13 @@
         e1: 1,
         timeline: [
           {
-            startTime: new Date('2018-09-27T00:00:00'),
-            endTime: new Date('2018-09-27T00:00:00'),
+            startTime: new Date('2018-10-01T00:00:00'),
+            endTime: new Date('2018-10-01T00:00:00'),
             title: 'Program Announced',
             description: 'WoC is declared open and student community is informed about it.'
           },
           {
-            startTime: new Date('2018-09-27T00:00:00'),
+            startTime: new Date('2018-10-01T00:00:00'),
             endTime: new Date('2018-10-13T23:59:59'),
             title: 'Mentor Registrations Open',
             description: 'Potential mentors start registering on the platform and add their projects as well.'
