@@ -77,7 +77,7 @@ const actions = {
           commit('SET_MENTOR_PROFILE', response.data)
           dispatch('messages/showMessage', {message: 'Profile updated successfully', color: 'success'}, {root: true})
         })
-      }).catch(err => console.log(err.response))
+      }).catch(err => console.log(err))
   },
   setFirstName: ({commit}, firstName) => commit('SET_FIRST_NAME', firstName),
   setLastName: ({commit}, lastName) => commit('SET_LAST_NAME', lastName),

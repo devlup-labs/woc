@@ -13,23 +13,23 @@
         <v-form>
           <v-layout row wrap>
             <v-flex xs12>
-              <v-text-field prepend-icon="person" name="ProjectName" label="Project Name" v-model="project.name"/>
+              <v-text-field prepend-icon="person" name="ProjectName" label="Project Name" :rules="[rules.required]" v-model="project.name"/>
             </v-flex>
             <v-flex xs12>
-              <v-text-field counter=64 prepend-icon="fa-info-circle" name="ProjectShortDescription"
-                            v-model="project.short_description" label="Project Short Description"/>
+              <v-text-field maxlength="64" counter=64 prepend-icon="fa-info-circle" name="ProjectShortDescription"
+                            :rules="[rules.required]" v-model="project.short_description" label="Project Short Description"/>
             </v-flex>
             <v-flex xs12>
               <v-textarea prepend-icon="fa-info-circle" name="ProjectDescription"
-                          label="Project Description" v-model="project.description"/>
+                          :rules="[rules.required]" label="Project Description" v-model="project.description"/>
             </v-flex>
             <v-flex xs12 md6>
               <v-text-field prepend-icon="fa-github" name="GithubLink" label="Github Link"
-                            v-model="project.github_link"/>
+                            :rules="[rules.url]" v-model="project.github_link"/>
             </v-flex>
             <v-flex xs12 md6 pl-1>
               <v-combobox hint="Press enter after each technology" v-model="project.technologies"
-                          label="Add technologies to be used" multiple small-chips deletable-chips/>
+                          :rules="[rules.required]" label="Add technologies to be used" multiple small-chips deletable-chips/>
             </v-flex>
           </v-layout>
         </v-form>
@@ -62,6 +62,10 @@
           github_link: '',
           technologies: [],
           mentors: []
+        },
+        rules: {
+          required: value => !!value || 'Required.',
+          url: value => /(http(s)?:\/\/.)(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g.test(value) || 'Invalid URL (include https://)'
         }
       }
     },
@@ -97,7 +101,7 @@
             message: 'Project created successfully',
             color: 'success'
           }, {root: true})
-        }).catch(err => console.log(err))
+        }).catch(this.$store.dispatch('messages/showMessage', {message: 'Fill details correctly', color: 'error'}, {root: true}))
       },
       updateProject () {
         this.$httpClient.patch(`/api/project/projects/${this.project.id}/`, {
@@ -114,7 +118,7 @@
             message: 'Project updated successfully',
             color: 'success'
           }, {root: true})
-        }).catch(err => console.log(err))
+        }).catch(this.$store.dispatch('messages/showMessage', {message: 'Fill details correctly', color: 'error'}, {root: true}))
       },
       setProject () {
         if (this.updateId) {
