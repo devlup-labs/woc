@@ -19,7 +19,7 @@
         </v-card>
         </v-dialog>
         <v-dialog v-model="editDialog">
-          <ProjectCreateUpdate :mode="'update'" :updateId="project.id" :key="project.id"/>
+          <ProjectCreateUpdate :mode="'update'" :updateId="project.id" :key="project.id" @close_dialog="editDialog = false"/>
         </v-dialog>
       </div>
     </v-layout>

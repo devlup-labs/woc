@@ -20,7 +20,7 @@
                 </v-btn>
                 <span>Add New Project</span>
               </v-tooltip>
-              <ProjectCreateUpdate mode="create"/>
+              <ProjectCreateUpdate mode="create" @close_dialog="dialog = false"/>
             </v-dialog>
           </v-toolbar>
           <v-divider></v-divider>

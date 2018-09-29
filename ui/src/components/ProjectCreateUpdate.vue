@@ -3,9 +3,13 @@
     <v-card flat>
       <v-container
         fluid>
+        <v-layout row wrap>
         <v-card-title primary-title>
           <span class="display-1 blue--text">{{this.mode|capitalize}} Project</span>
         </v-card-title>
+        <v-spacer></v-spacer>
+        <v-icon @click="$emit('close_dialog')">fa-times-circle</v-icon>
+        </v-layout>
         <v-form>
           <v-layout row wrap>
             <v-flex xs12>
