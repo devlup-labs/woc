@@ -11,14 +11,16 @@
         </a>
         <v-dialog v-model="dialog" max-width="320">
           <v-card>
-          <v-card-text>Are you sure you want to delete?</v-card-text>
-          <v-card-actions>
+          <v-layout row wrap>
+          <v-flex><v-card-text><v-layout justify-center>Are you sure you want to delete?</v-layout></v-card-text></v-flex>
+          <v-flex><v-layout justify-center><v-card-actions>
             <v-btn @click="remove">Yes</v-btn>
             <v-btn @click="dialog = false">No</v-btn>
-          </v-card-actions>
+          </v-card-actions></v-layout></v-flex>
+          </v-layout>
         </v-card>
         </v-dialog>
-        <v-dialog v-model="editDialog">
+        <v-dialog v-model="editDialog" max-width="900">
           <ProjectCreateUpdate :mode="'update'" :updateId="project.id" :key="project.id" @close_dialog="editDialog = false"/>
         </v-dialog>
       </div>
