@@ -7,7 +7,7 @@
       flat
     >
     </v-toolbar>
-    <v-layout row justify-center pb-2>
+    <v-layout v-if="this.profile.id && !showCreateMentorProfileDialogue" row justify-center pb-2>
       <v-flex xs11 sm10 md8>
         <v-card class="card--flex-toolbar">
           <v-toolbar card prominent>
@@ -45,28 +45,43 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-layout v-if="showCreateMentorProfileDialogue" row justify-center pb-2>
+      <v-flex xs11 sm10 md8>
+        <v-card class="card--flex-toolbar">
+          <CreateMentorProfile :user="user" @profile_created="refreshDashboard"/>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </v-card>
 </template>
 
 <script>
-  import Project from './Project'
+  import CreateMentorProfile from './CreateMentorProfile'
   import ProjectCreateUpdate from './ProjectCreateUpdate'
+  import Project from './Project'
   import MentorProfile from './MentorProfile'
   import {mapGetters, mapActions} from 'vuex'
 
   export default {
     name: 'Dashboard',
-    components: {Project, MentorProfile, ProjectCreateUpdate},
+    components: {CreateMentorProfile, MentorProfile, ProjectCreateUpdate, Project},
     data () {
       return {
-        dialog: false
+        dialog: false,
+        user: {
+          id: null,
+          first_name: null,
+          last_name: null
+        },
+        profile: {
+          type: null,
+          id: null
+        },
+        showCreateMentorProfileDialogue: false
       }
     },
     props: ['index'],
     computed: {
-      ...mapGetters('mentorProfile', [
-        'user'
-      ]),
       ...mapGetters('projectList', [
         'projectList'
       ])
@@ -74,10 +89,27 @@
     methods: {
       ...mapActions('projectList', [
         'fetchProjectList'
-      ])
+      ]),
+      fetchUserType () {
+        this.$httpClient.get('/api/account/user/current/').then(response => { this.user = response.data })
+        this.$httpClient.get('/api/account/user/profile/')
+          .then(response => {
+            if (response.status === 204) {
+              this.showCreateMentorProfileDialogue = true
+            } else {
+              this.profile = response.data
+            }
+          })
+          .catch(err => console.log(err))
+      },
+      refreshDashboard (profile) {
+        this.showCreateMentorProfileDialogue = false
+        this.profile.id = profile.id
+      }
     },
     mounted () {
-      this.fetchProjectList()
+      this.fetchUserType()
+      // this.fetchProjectList()
     }
   }
 </script>
