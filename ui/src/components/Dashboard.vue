@@ -27,9 +27,10 @@
 
           <v-divider></v-divider>
           <MentorProfile/>
+          <v-card-text><h3 class="display-1">Projects</h3></v-card-text>
           <v-card-text>
-            <div v-for="(project,i) in projectList" :key="i">
-            <Project :index=i></Project>
+            <div v-for="(project, i) in projectList" :key="i">
+              <Project :project="project" :mentor="true"></Project>
             </div>
           </v-card-text>
         </v-card>
@@ -63,13 +64,12 @@
       ])
     },
     methods: {
-      ...mapActions('projectList', 'fetchProjectList'),
-      /* chips () {
-        return this.items.split(',').filter(val => val)
-      }, */
-      mounted () {
-        this.fetchProjectList()
-      }
+      ...mapActions('projectList', [
+        'fetchProjectList'
+      ])
+    },
+    mounted () {
+      this.fetchProjectList()
     }
   }
 </script>
