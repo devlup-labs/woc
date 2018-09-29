@@ -28,18 +28,18 @@
               <v-layout row wrap>
                 <v-flex sm6 xs12>
                   <v-text-field prepend-icon="person" :value="user.first_name" @input="setFirstName"
-                                name="first_name"
-                                label="First Name"></v-text-field>
+                                name="first_name" :rules="[rules.required]" label="First Name"></v-text-field>
                 </v-flex>
                 <v-flex sm6 xs12>
                   <v-text-field prepend-icon="person" :value="user.last_name" @input="setLastName" name="last_name"
-                                label="Last Name"></v-text-field>
+                                :rules="[rules.required]" label="Last Name"></v-text-field>
                 </v-flex>
                 <v-flex sm6 xs12>
                   <v-select
                     prepend-icon="fa-venus-mars"
                     :value="mentorProfile.gender"
                     :items="genderItems"
+                    :rules="[rules.required]"
                     item-text="label"
                     item-value="value"
                     @input="setGender"
@@ -48,10 +48,12 @@
                 </v-flex>
                 <v-flex sm6 xs12>
                   <v-text-field prepend-icon="fa-phone" :value="mentorProfile.phone" @input="setPhone" name="phone"
+                                :rules="[rules.phone]"
                                 label="Contact Number"></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field prepend-icon="fa-github" :value="mentorProfile.github" @input="setGithub" name="github"
+                                :rules="[rules.url]"
                                 label="Github Link"></v-text-field>
                 </v-flex>
               </v-layout>
@@ -75,6 +77,15 @@
 
   export default {
     name: 'MentorProfile',
+    data () {
+      return {
+        rules: {
+          required: value => !!value || 'Required.',
+          phone: value => /^[6-9][0-9]{9}$/.test(value) || 'Invalid phone number.',
+          url: value => /(http(s)?:\/\/.)(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g.test(value) || 'Invalid URL (include https://)'
+        }
+      }
+    },
     computed: {
       ...mapGetters('mentorProfile', [
         'mentorProfile',
