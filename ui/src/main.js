@@ -13,6 +13,7 @@ import {
   VBtn,
   VMenu,
   VImg,
+  VDialog,
   VIcon,
   VGrid,
   VToolbar,
@@ -28,6 +29,7 @@ import {
   VStepper,
   VSelect,
   VSnackbar,
+  VCombobox,
   VTextarea
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
@@ -46,6 +48,7 @@ Vue.use(Vuetify, {
     VMenu,
     VChip,
     VImg,
+    VDialog,
     VIcon,
     VGrid,
     VToolbar,
@@ -61,6 +64,7 @@ Vue.use(Vuetify, {
     VStepper,
     VSelect,
     VSnackbar,
+    VCombobox,
     VTextarea
   },
   theme: {

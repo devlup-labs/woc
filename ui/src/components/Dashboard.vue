@@ -14,18 +14,23 @@
             <v-toolbar-title class="body-2 grey--text">Hi, {{user.first_name}}</v-toolbar-title>
 
             <v-spacer></v-spacer>
-            <v-tooltip left>
-            <v-btn icon slot="activator">
-              <v-icon>add</v-icon>
-            </v-btn>
-              <span>Add New Project</span>
-            </v-tooltip>
+            <v-dialog v-model="dialog" class="dialog">
+              <v-tooltip slot="activator" left>
+                <v-btn icon slot="activator">
+                  <v-icon>add</v-icon>
+                </v-btn>
+                <span>Add New Project</span>
+              </v-tooltip>
+              <ProjectCreate></ProjectCreate>
+            </v-dialog>
           </v-toolbar>
 
           <v-divider></v-divider>
           <MentorProfile/>
           <v-card-text>
-            <Project v-for="(i, index) in 'xxxxx'" :key="index"></Project>
+            <div v-for="(project,i) in projectList" :key="i">
+            <Project :index=i></Project>
+            </div>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -36,16 +41,35 @@
 
 <script>
   import Project from './Project'
+  import ProjectCreate from './ProjectCreate'
   import MentorProfile from './MentorProfile'
-  import {mapGetters} from 'vuex'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
     name: 'Dashboard',
-    components: {Project, MentorProfile},
+    components: {Project, MentorProfile, ProjectCreate},
+    data () {
+      return {
+        dialog: false
+      }
+    },
+    props: ['index'],
     computed: {
       ...mapGetters('mentorProfile', [
         'user'
+      ]),
+      ...mapGetters('projectList', [
+        'projectList'
       ])
+    },
+    methods: {
+      ...mapActions('projectList', 'fetchProjectList'),
+      /* chips () {
+        return this.items.split(',').filter(val => val)
+      }, */
+      mounted () {
+        this.fetchProjectList()
+      }
     }
   }
 </script>

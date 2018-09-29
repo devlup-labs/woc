@@ -1,19 +1,22 @@
 <template>
   <v-card flat>
     <v-layout row>
-      <h2>{{title}}</h2>
+      <h2>{{projectList[index].name}}</h2>
       <v-spacer></v-spacer>
-      <v-icon :href="remove">fa-trash</v-icon>
+      <div><v-icon :href="remove" >fa-trash</v-icon>
       <v-icon :href="edit" style="width: 40px">fa-pencil</v-icon>
-      <v-icon :href="github">fa-github</v-icon>
+      <a :href="projectList[index].github_link" class="dashline"><v-icon >fa-github</v-icon></a></div>
     </v-layout>
     <v-layout row>
-      {{short_description}}
+      {{projectList[index].description}}
+    </v-layout>
+    <v-layout row>
+     <v-chip v-for="(chip,index) in chips" :key="index">{{chip}}</v-chip>
     </v-layout>
     <v-layout row>
       <h4>Proposals</h4>
     </v-layout>
-    <v-flex v-for="(student,i) in students" :key="i"  pt-2>
+    <v-flex v-for="(student,i) in projectList[index].students" :key="i"  pt-2>
       <span v-if="student.accepted==1">
         <v-icon color="green" style="height:18px;">fa-check</v-icon>
       </span>
@@ -29,6 +32,7 @@
 </template>
 
 <script>
+  import {mapGetters, mapActions} from 'vuex'
   export default {
     name: 'Project',
     data () {
@@ -56,6 +60,27 @@
           }
         ]
       }
+    },
+    props: ['index'],
+    computed: {
+      ...mapGetters('projectList', ['projectList']),
+      chips () {
+        return this.projectList[this.index].technologies.split(',').filter(val => val)
+      }
+    },
+    methods: {
+      ...mapActions('projectList', ['fetchProjectList'])
+    },
+    mounted () {
+      this.fetchProjectList()
     }
-  }
+}
 </script>
+
+<style scoped>
+  a.dashline:link
+  {
+    text-decoration: none;
+  }
+</style>
+
