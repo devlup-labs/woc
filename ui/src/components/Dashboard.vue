@@ -109,7 +109,11 @@
     },
     mounted () {
       this.fetchUserType()
-      // this.fetchProjectList()
+    },
+    watch: {
+      profile (value) {
+        if (value.id) this.fetchProjectList()
+      }
     }
   }
 </script>
