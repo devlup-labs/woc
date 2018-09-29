@@ -13,7 +13,7 @@ const state = {
 }
 
 const getters = {
-  projectList: (state, getters) => state.projectList[0].id ? state.projectList.sort((a, b) => a.id - b.id) : []
+  projectList: (state, getters) => state.projectList[0] ? [...state.projectList].sort((a, b) => a.id - b.id) : []
 }
 
 const mutations = {
@@ -27,7 +27,6 @@ const mutations = {
     state.projectList.push(project)
   },
   'UPDATE_PROJECT' (state, updatedProject) {
-    console.log('reached')
     state.projectList = [
       ...state.projectList.filter(project => project.id !== updatedProject.id),
       updatedProject

@@ -104,7 +104,7 @@
           name: this.project.name,
           short_description: this.project.shortDescription,
           description: this.project.description,
-          github_link: this.project.github,
+          github_link: this.project.github_link,
           technologies: this.technologiesAsPipeSeparatedString
         }).then(response => {
           response.data.technologies = response.data.technologies.split('|')
