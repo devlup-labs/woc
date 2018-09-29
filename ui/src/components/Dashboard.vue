@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card class="fill-height" flat>
     <v-toolbar
       color="primary"
       dark
@@ -25,12 +25,22 @@
           </v-toolbar>
           <v-divider></v-divider>
           <MentorProfile/>
-          <v-card-text><h3 class="display-1">Projects</h3></v-card-text>
-          <v-card-text>
-            <div v-for="(project, i) in projectList" :key="i">
-              <Project :project="project" :mentor="true"></Project>
-            </div>
-          </v-card-text>
+          <div v-if="projectList.length > 0">
+            <v-container grid-list-lg>
+              <v-layout column>
+                <v-flex>
+                  <v-card flat>
+                    <v-card-text><h3 class="display-1">Projects</h3></v-card-text>
+                    <v-card-text>
+                      <div v-for="(project, i) in projectList" :key="i">
+                        <Project :project="project" :mentor="true"></Project>
+                      </div>
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </div>
         </v-card>
       </v-flex>
     </v-layout>
