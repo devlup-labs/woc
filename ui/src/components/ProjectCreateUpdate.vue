@@ -47,6 +47,8 @@
   </v-layout>
 </template>
 <script>
+  import {mapActions} from 'vuex'
+  import _ from 'lodash'
   export default {
     name: 'ProjectCreateUpdate',
     props: ['mode', 'updateId'],
@@ -69,6 +71,7 @@
       }
     },
     methods: {
+      ...mapActions('projectList', ['addProject', 'update']),
       createProject () {
         this.$httpClient.post('/api/project/projects/', {
           name: this.project.name,
@@ -79,12 +82,22 @@
           mentors: [this.$store.getters['mentorProfile/mentorProfile'].id]
         }).then(response => {
           response.data.technologies = response.data.technologies.split('|')
-          this.project = response.data
+          this.addProject(_.cloneDeep(response.data))
+          this.$emit('close_dialog')
+          this.project = {
+            id: '',
+            name: '',
+            short_description: '',
+            description: '',
+            github_link: '',
+            technologies: [],
+            mentors: []
+          }
           this.$store.dispatch('messages/showMessage', {
             message: 'Project created successfully',
             color: 'success'
           }, {root: true})
-        }).catch(err => console.log(err.response))
+        }).catch(err => console.log(err))
       },
       updateProject () {
         this.$httpClient.patch(`/api/project/projects/${this.project.id}/`, {
@@ -95,12 +108,13 @@
           technologies: this.technologiesAsPipeSeparatedString
         }).then(response => {
           response.data.technologies = response.data.technologies.split('|')
-          this.project = response.data
+          this.update(_.cloneDeep(response.data))
+          this.$emit('close_dialog')
           this.$store.dispatch('messages/showMessage', {
             message: 'Project updated successfully',
             color: 'success'
           }, {root: true})
-        }).catch(err => console.log(err.response))
+        }).catch(err => console.log(err))
       },
       setProject () {
         if (this.updateId) {

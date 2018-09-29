@@ -22,6 +22,16 @@ const mutations = {
   },
   'REMOVE_PROJECT' (state, projectId) {
     state.projectList = state.projectList.filter(project => project.id !== projectId)
+  },
+  'ADD_PROJECT' (state, project) {
+    state.projectList.push(project)
+  },
+  'UPDATE_PROJECT' (state, updatedProject) {
+    console.log('reached')
+    state.projectList = [
+      ...state.projectList.filter(project => project.id !== updatedProject.id),
+      updatedProject
+    ]
   }
 }
 
@@ -33,6 +43,12 @@ const actions = {
   },
   removeProjectById ({commit}, projectId) {
     commit('REMOVE_PROJECT', projectId)
+  },
+  addProject ({commit}, project) {
+    commit('ADD_PROJECT', project)
+  },
+  update ({commit}, project) {
+    commit('UPDATE_PROJECT', project)
   }
 }
 
