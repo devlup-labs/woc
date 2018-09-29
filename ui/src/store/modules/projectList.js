@@ -13,7 +13,7 @@ const state = {
 }
 
 const getters = {
-  projectList: (state, getters) => state.projectList[0].id ? state.projectList : []
+  projectList: (state, getters) => state.projectList[0].id ? state.projectList.sort((a, b) => a.id - b.id) : []
 }
 
 const mutations = {
