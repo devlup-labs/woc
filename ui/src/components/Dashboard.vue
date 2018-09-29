@@ -12,19 +12,17 @@
         <v-card class="card--flex-toolbar">
           <v-toolbar card prominent>
             <v-toolbar-title class="body-2 grey--text">Hi, {{user.first_name}}</v-toolbar-title>
-
             <v-spacer></v-spacer>
-            <v-dialog v-model="dialog" class="dialog">
+            <v-dialog v-model="dialog" class="dialog" max-width="900">
               <v-tooltip slot="activator" left>
                 <v-btn icon slot="activator">
                   <v-icon>add</v-icon>
                 </v-btn>
                 <span>Add New Project</span>
               </v-tooltip>
-              <ProjectCreate></ProjectCreate>
+              <ProjectCreate/>
             </v-dialog>
           </v-toolbar>
-
           <v-divider></v-divider>
           <MentorProfile/>
           <v-card-text><h3 class="display-1">Projects</h3></v-card-text>
@@ -38,7 +36,6 @@
     </v-layout>
   </v-card>
 </template>
-
 
 <script>
   import Project from './Project'
@@ -73,6 +70,7 @@
     }
   }
 </script>
+
 <style>
   .card--flex-toolbar {
     margin-top: -64px;
