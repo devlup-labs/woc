@@ -50,7 +50,7 @@
           icon
           large
         >
-        <v-avatar size="48px">
+        <v-avatar size="38px">
           <img
             :src="thumbnailUrl"
           >
