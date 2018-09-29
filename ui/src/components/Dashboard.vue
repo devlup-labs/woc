@@ -32,8 +32,9 @@
                   <v-card flat>
                     <v-card-text><h3 class="display-1">Projects</h3></v-card-text>
                     <v-card-text>
-                      <div v-for="(project, i) in projectList" :key="i">
-                        <Project :project="project" :mentor="true"></Project>
+                      <div class="mb-4" v-for="(project, i) in projectList" :key="i">
+                        <Project :project="project" :mentor="true"/>
+                        <v-divider v-if="projectList.length !== i + 1"/>
                       </div>
                     </v-card-text>
                   </v-card>

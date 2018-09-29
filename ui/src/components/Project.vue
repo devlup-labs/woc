@@ -23,12 +23,8 @@
         </v-dialog>
       </div>
     </v-layout>
-    <v-layout row>
-      {{project.description}}
-    </v-layout>
-    <v-layout row>
-      <v-chip v-for="(chip, index) in chips" :key="index">{{chip}}</v-chip>
-    </v-layout>
+    <p>{{project.description}}</p>
+    <p><v-chip v-for="(chip, index) in chips" :key="index">{{chip}}</v-chip></p>
     <v-flex v-for="(student, i) in project.students" :key="i" pt-2>
       <span v-if="student.accepted===1">
         <v-icon color="green" style="height:18px;">fa-check</v-icon>
@@ -38,8 +34,6 @@
       </span>
       {{student.first_name}} {{student.last_name}}
     </v-flex>
-    <v-divider></v-divider>
-    <br>
   </v-card>
 </template>
 
