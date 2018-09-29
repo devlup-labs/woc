@@ -57,7 +57,7 @@
         </v-avatar>
       </v-btn>
       <v-list>
-        <v-list-tile to="/logout">
+        <v-list-tile href="/logout/">
           <v-list-tile-title>Logout</v-list-tile-title>
         </v-list-tile>
       </v-list>

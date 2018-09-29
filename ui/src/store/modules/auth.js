@@ -30,7 +30,7 @@ const actions = {
     commit('LOGIN')
   },
   logout ({commit}) {
-    axios.get(BACKEND_API_ADDRESS + '/logout').then(() => {
+    axios.get(BACKEND_API_ADDRESS + '/logout/').then(() => {
       commit('LOGOUT')
       router.push({name: 'Login'})
     }).catch(err => console.log(err))

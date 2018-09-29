@@ -158,13 +158,13 @@ REST_FRAMEWORK = {
     )
 }
 
-LOGIN_URL = '/login'
+LOGIN_URL = '/sign-in'
 
-LOGIN_REDIRECT_URL = '/login'
+LOGIN_REDIRECT_URL = '/sign-in'
 
-LOGIN_ERROR_URL = '/login'
+LOGIN_ERROR_URL = '/sign-in'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_LOGIN_ERROR_URL = '/login/'
+SOCIAL_AUTH_GOOGLE_OAUTH2_LOGIN_ERROR_URL = '/sign-in'
 
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
