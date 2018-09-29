@@ -13,7 +13,7 @@
           <v-toolbar card prominent>
             <v-toolbar-title class="body-2 grey--text">Hi, {{user.first_name}}</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-dialog v-model="dialog" class="dialog" max-width="900">
+            <v-dialog v-if="mentorProfile.is_approved" v-model="dialog" class="dialog" max-width="900">
               <v-tooltip slot="activator" left>
                 <v-btn icon slot="activator">
                   <v-icon>add</v-icon>
@@ -25,7 +25,7 @@
           </v-toolbar>
           <v-divider></v-divider>
           <MentorProfile/>
-          <div v-if="projectList.length > 0">
+          <div v-if="projectList.length > 0 && mentorProfile.is_approved">
             <v-container grid-list-lg>
               <v-layout column>
                 <v-flex>
@@ -84,6 +84,9 @@
     computed: {
       ...mapGetters('projectList', [
         'projectList'
+      ]),
+      ...mapGetters('mentorProfile', [
+        'mentorProfile'
       ])
     },
     methods: {
