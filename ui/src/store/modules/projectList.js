@@ -19,6 +19,9 @@ const getters = {
 const mutations = {
   'SET_PROJECT_LIST' (state, projectList) {
     state.projectList = projectList.map(project => ({...project, technologies: project.technologies.split('|')}))
+  },
+  'REMOVE_PROJECT' (state, projectId) {
+    state.projectList = state.projectList.filter(project => project.id !== projectId)
   }
 }
 
@@ -27,6 +30,9 @@ const actions = {
     httpClient.get('/api/project/projects/').then(response => {
       commit('SET_PROJECT_LIST', response.data)
     }).catch(err => console.log(err))
+  },
+  removeProjectById ({commit}, projectId) {
+    commit('REMOVE_PROJECT', projectId)
   }
 }
 

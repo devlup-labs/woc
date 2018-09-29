@@ -4,7 +4,7 @@
       <h2>{{project.name}}</h2>
       <v-spacer></v-spacer>
       <div>
-        <v-icon class="mx-2" v-if="mentor">fa-trash</v-icon>
+        <v-icon class="mx-2" v-if="mentor" @click="remove">fa-trash</v-icon>
         <v-icon class="mx-2" v-if="mentor">fa-pencil</v-icon>
         <a :href="project.github_link" target="_blank" class="dashline">
           <v-icon class="mx-2">fa-github</v-icon>
@@ -38,6 +38,14 @@
     computed: {
       chips () {
         return this.project.technologies
+      }
+    },
+    methods: {
+      remove () {
+        this.$httpClient.delete(`/api/project/projects/${this.project.id}/`).then(response => {
+          this.$store.dispatch('projectList/removeProjectById', this.project.id)
+          this.$store.dispatch('messages/showMessage', {message: `Project ${this.project.name} was deleted!`, color: 'success'}, {root: true})
+        }).catch(() => this.$store.dispatch('messages/showMessage', {message: 'Error deleting project!', color: 'error'}, {root: true}))
       }
     }
   }
