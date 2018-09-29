@@ -31,6 +31,7 @@ class ProjectViewTest(TestCase):
         data = {
             'name': 'Project 2',
             'github_link': 'https://github.com',
+            'short_description': 'Short description',
             'description': 'Description',
             'technologies': 'Python,Django,C++',
             'mentors': [self.mentor_profile.id]

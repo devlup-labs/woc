@@ -4,6 +4,7 @@ from account.models import StudentProfile, MentorProfile
 
 class Project(models.Model):
     name = models.CharField(max_length=64, help_text='Name of project')
+    short_description = models.CharField(max_length=64, help_text='Short description of project')
     description = models.TextField(help_text='Description of project')
     github_link = models.URLField(help_text='Github link of the project')
     technologies = models.CharField(help_text='Technologies to be used in the project', max_length=2048)
