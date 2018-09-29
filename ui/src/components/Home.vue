@@ -87,16 +87,15 @@
         <em>Now build something!</em>
       </v-layout>
     </v-parallax>
-    <v-container grid-list-xl>
-      <v-layout row wrap justify-center class="mt-5">
-        <v-flex xs12 md8 lg6 row justify-center>
-          <v-layout justify-center align column class="px-2">
-            <v-layout justify-center><p class="align-center display-1">Interested to know more?</p>
-          </v-layout>
-          <v-flex align-center justify-center>
+    <v-container grid-list-xl justify-center>
+      <v-layout row wrap class="mt-5 "justify-center>
+        <p class="display-1 justify-center text-xs-center">Interested to know more?</p>
+      </v-layout>
+      <v-layout row wrap class="mt-5 justify-center">
+        <v-flex xs8 sm6>
+          <v-layout column>
             <v-btn outline large color="secondary" :href="studentManual">Student Manual</v-btn>
             <v-btn outline large color="secondary" :href="mentorManual">Mentor Manual</v-btn>
-          </v-flex>
           </v-layout>
         </v-flex>
       </v-layout>
@@ -157,7 +156,7 @@
 
   export default {
     name: 'Home',
-    data () {
+    data() {
       return {
         banner,
         codeImage,
