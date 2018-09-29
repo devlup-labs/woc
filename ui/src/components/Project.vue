@@ -5,7 +5,7 @@
       <v-spacer></v-spacer>
       <div>
         <v-icon class="mx-2" v-if="mentor" @click="dialog = true">fa-trash</v-icon>
-        <v-icon class="mx-2" v-if="mentor">fa-pencil</v-icon>
+        <v-icon class="mx-2" v-if="mentor" @click="editDialog = true">fa-pencil</v-icon>
         <a :href="project.github_link" target="_blank" class="dashline">
           <v-icon class="mx-2">fa-github</v-icon>
         </a>
@@ -17,6 +17,9 @@
             <v-btn @click="dialog = false">No</v-btn>
           </v-card-actions>
         </v-card>
+        </v-dialog>
+        <v-dialog v-model="editDialog">
+          <ProjectCreateUpdate :mode="'update'" :updateId="project.id" :key="project.id"/>
         </v-dialog>
       </div>
     </v-layout>
@@ -41,12 +44,15 @@
 </template>
 
 <script>
+  import ProjectCreateUpdate from './ProjectCreateUpdate'
   export default {
     name: 'Project',
-    props: ['project', 'mentor'],
+    components: {ProjectCreateUpdate},
+    props: ['project', 'mentor', 'mode'],
     data () {
       return {
-        dialog: false
+        dialog: false,
+        editDialog: false
       }
     },
     computed: {

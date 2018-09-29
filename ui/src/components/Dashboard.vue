@@ -20,7 +20,7 @@
                 </v-btn>
                 <span>Add New Project</span>
               </v-tooltip>
-              <ProjectCreate/>
+              <ProjectCreateUpdate mode="create"/>
             </v-dialog>
           </v-toolbar>
           <v-divider></v-divider>
@@ -39,13 +39,13 @@
 
 <script>
   import Project from './Project'
-  import ProjectCreate from './ProjectCreate'
+  import ProjectCreateUpdate from './ProjectCreateUpdate'
   import MentorProfile from './MentorProfile'
   import {mapGetters, mapActions} from 'vuex'
 
   export default {
     name: 'Dashboard',
-    components: {Project, MentorProfile, ProjectCreate},
+    components: {Project, MentorProfile, ProjectCreateUpdate},
     data () {
       return {
         dialog: false
