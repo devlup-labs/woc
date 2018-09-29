@@ -4,6 +4,7 @@ const state = {
   projectList: [{
     id: '',
     name: '',
+    short_description: '',
     description: '',
     github_link: '',
     technologies: [],

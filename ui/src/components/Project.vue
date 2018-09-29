@@ -25,6 +25,7 @@
         </v-dialog>
       </div>
     </v-layout>
+    <p>{{project.short_description}}</p>
     <p>{{project.description}}</p>
     <p><v-chip v-for="(chip, index) in chips" :key="index">{{chip}}</v-chip></p>
     <v-flex v-for="(student, i) in project.students" :key="i" pt-2>
