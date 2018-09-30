@@ -65,7 +65,8 @@
         },
         rules: {
           required: value => !!value || 'Required.',
-          url: value => /(http(s)?:\/\/.)(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g.test(value) || 'Invalid URL (include https://)'
+          url: value => /(http(s)?:\/\/.)(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g
+            .test(value) || 'Invalid URL (include https://)'
         }
       }
     },
@@ -101,7 +102,8 @@
             message: 'Project created successfully',
             color: 'success'
           }, {root: true})
-        }).catch(this.$store.dispatch('messages/showMessage', {message: 'Fill details correctly', color: 'error'}, {root: true}))
+        }).catch(() => this.$store.dispatch('messages/showMessage',
+          {message: 'Fill details correctly', color: 'error'}, {root: true}))
       },
       updateProject () {
         this.$httpClient.patch(`/api/project/projects/${this.project.id}/`, {
@@ -118,7 +120,8 @@
             message: 'Project updated successfully',
             color: 'success'
           }, {root: true})
-        }).catch(this.$store.dispatch('messages/showMessage', {message: 'Fill details correctly', color: 'error'}, {root: true}))
+        }).catch(() => this.$store.dispatch('messages/showMessage',
+          {message: 'Fill details correctly', color: 'error'}, {root: true}))
       },
       setProject () {
         if (this.updateId) {
