@@ -33,11 +33,19 @@ import {
   VCombobox,
   VTextarea
 } from 'vuetify'
+import VueAnalytics from 'vue-analytics'
 import '../node_modules/vuetify/src/stylus/app.styl'
 import colors from 'vuetify/es5/util/colors'
 import httpClientPlugin, {httpClient} from './plugins/httpClient'
 
 Vue.use(httpClientPlugin)
+
+if (process.env.NODE_ENV === 'production') {
+  Vue.use(VueAnalytics, {
+    id: 'UA-116710752-2',
+    router
+  })
+}
 
 Vue.use(Vuetify, {
   components: {
