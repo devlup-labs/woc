@@ -7,7 +7,8 @@ const state = {
     github: '',
     gender: '',
     is_approved: '',
-    user: ''
+    user: '',
+    about_me: ''
   },
   user: {
     first_name: '',
@@ -50,6 +51,9 @@ const mutations = {
   },
   'SET_GENDER' (state, gender) {
     state.mentorProfile.gender = gender
+  },
+  'SET_ABOUT_ME' (state, about_me) {
+    state.mentorProfile.about_me = about_me
   }
 }
 
@@ -72,7 +76,8 @@ const actions = {
         httpClient.patch(`/api/account/mentor-profile/${state.mentorProfile.id}/`, {
           phone: state.mentorProfile.phone,
           github: state.mentorProfile.github,
-          gender: state.mentorProfile.gender
+          gender: state.mentorProfile.gender,
+          about_me: state.mentorProfile.about_me
         }).then(response => {
           commit('SET_MENTOR_PROFILE', response.data)
           dispatch('messages/showMessage', {message: 'Profile updated successfully', color: 'success'}, {root: true})
@@ -83,7 +88,8 @@ const actions = {
   setLastName: ({commit}, lastName) => commit('SET_LAST_NAME', lastName),
   setPhone: ({commit}, phone) => commit('SET_PHONE', phone),
   setGithub: ({commit}, github) => commit('SET_GITHUB', github),
-  setGender: ({commit}, gender) => commit('SET_GENDER', gender)
+  setGender: ({commit}, gender) => commit('SET_GENDER', gender),
+  setAboutMe: ({commit}, gender) => commit('SET_ABOUT_ME', about_me)
 }
 
 export {

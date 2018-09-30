@@ -9,19 +9,20 @@
               <v-layout align-center justify-space-around row>
                 <span class="display-1 blue--text">Update Profile</span>
                 <v-spacer></v-spacer>
-                <div><v-chip v-if="mentorProfile.is_approved" color="success" text-color="white">
-                  <v-avatar>
-                    <v-icon>check_circle</v-icon>
-                  </v-avatar>
-                  Profile Verified
-                </v-chip>
-                <v-chip v-else color="error" text-color="white">
-                  <v-avatar>
-                    <v-icon>error</v-icon>
-                  </v-avatar>
-                  Profile Unverified
-                </v-chip>
-                  </div>
+                <div>
+                  <v-chip v-if="mentorProfile.is_approved" color="success" text-color="white">
+                    <v-avatar>
+                      <v-icon>check_circle</v-icon>
+                    </v-avatar>
+                    Profile Verified
+                  </v-chip>
+                  <v-chip v-else color="error" text-color="white">
+                    <v-avatar>
+                      <v-icon>error</v-icon>
+                    </v-avatar>
+                    Profile Unverified
+                  </v-chip>
+                </div>
               </v-layout>
             </v-card-title>
             <v-form>
@@ -52,6 +53,10 @@
                                 label="Contact Number"></v-text-field>
                 </v-flex>
                 <v-flex xs12>
+                  <v-text-area prepend-icon="fa-info-circle" v-model="mentorProfile.about_me" name="aboutme"
+                               :rules="[rules.required]" label="About me"></v-text-area>
+                </v-flex>
+                <v-flex xs12>
                   <v-text-field prepend-icon="fa-github" :value="mentorProfile.github" @input="setGithub" name="github"
                                 :rules="[rules.url]"
                                 label="Github Link"></v-text-field>
@@ -77,7 +82,7 @@
 
   export default {
     name: 'MentorProfile',
-    data () {
+    data() {
       return {
         rules: {
           required: value => !!value || 'Required.',
@@ -92,7 +97,7 @@
         'user',
         'errors'
       ]),
-      genderItems () {
+      genderItems() {
         return [{label: 'Male', value: 'M'}, {label: 'Female', value: 'F'}]
       }
     },
@@ -104,10 +109,11 @@
         'setLastName',
         'setPhone',
         'setGithub',
-        'setGender'
+        'setGender',
+        'setAboutMe'
       ])
     },
-    mounted () {
+    mounted() {
       this.fetchMentorProfile()
     }
   }
