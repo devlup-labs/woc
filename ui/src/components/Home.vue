@@ -94,6 +94,7 @@
       <v-layout row wrap class="mt-5 justify-center">
         <v-flex xs8 sm6>
           <v-layout column>
+            <v-btn outline large color="secondary" :to="{name: 'HowItWorks'}">See Program Timeline</v-btn>
             <v-btn outline large color="secondary" :href="studentManual">Student Manual</v-btn>
             <v-btn outline large color="secondary" :href="mentorManual">Mentor Manual</v-btn>
           </v-layout>
