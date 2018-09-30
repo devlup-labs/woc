@@ -8,7 +8,7 @@
               <v-card-title primary-title>
                 <v-flex row justify-center>
                   <div>Sign in with:</div>
-                  <a href="/login/google-oauth2/" class="text-decoration-none">
+                  <a href="/login/google-oauth2/?next=/dashboard" class="text-decoration-none">
                     <v-icon medium color="red darken-3">fa-google</v-icon>
                     <div>Google</div>
                   </a>

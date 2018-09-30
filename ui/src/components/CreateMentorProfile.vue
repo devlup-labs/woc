@@ -11,11 +11,11 @@
               <v-flex sm6 xs12>
                 <v-text-field prepend-icon="person" v-model="localUser.first_name"
                               :rules="[rules.required]" name="first_name"
-                              label="First Name"></v-text-field>
+                              label="First Name"/>
               </v-flex>
               <v-flex sm6 xs12>
                 <v-text-field prepend-icon="person" v-model="localUser.last_name" name="last_name"
-                              :rules="[rules.required]" label="Last Name"></v-text-field>
+                              :rules="[rules.required]" label="Last Name"/>
               </v-flex>
               <v-flex sm6 xs12>
                 <v-select
@@ -25,23 +25,23 @@
                   item-text="label"
                   item-value="value"
                   :rules="[rules.required]" label="Gender"
-                ></v-select>
+                />
               </v-flex>
               <v-flex sm6 xs12>
                 <v-text-field prepend-icon="fa-phone" v-model="profile.phone" name="phone"
-                              :rules="[rules.required, rules.phone]" label="Contact Number"></v-text-field>
+                              :rules="[rules.required, rules.phone]" label="Contact Number"/>
               </v-flex>
               <v-flex xs12>
                 <v-textarea prepend-icon="fa-info-circle" v-model="profile.about_me" name="aboutme"
-                              :rules="[rules.required]" label="About me"></v-textarea>
+                              :rules="[rules.required]" label="About me"/>
               </v-flex>
               <v-flex xs12>
                 <v-textarea prepend-icon="fa-clock" v-model="profile.past_experience" name="pastexperiences"
-                              :rules="[rules.required]" label="Past Experiences"></v-textarea>
+                              :rules="[rules.required]" label="Past Experiences" hint="Cannot be changed later!"/>
               </v-flex>
               <v-flex xs12>
                 <v-text-field prepend-icon="fa-github" v-model="profile.github" name="github_link"
-                              :rules="[rules.required, rules.url]" label="Github Link"></v-text-field>
+                              :rules="[rules.required, rules.url]" label="Github Link"/>
               </v-flex>
             </v-layout>
           </v-form>

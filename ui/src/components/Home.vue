@@ -101,6 +101,18 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <v-container grid-list-xl justify-center>
+      <v-layout row wrap class="mt-5 "justify-center>
+        <p class="display-1 justify-center text-xs-center">Login with your GMail account to register as a mentor</p>
+      </v-layout>
+      <v-layout row wrap class="mt-5 justify-center">
+        <v-flex xs8 sm6>
+          <v-layout column>
+            <v-btn outline large color="secondary" :to="{name: 'Login', query: {next: '/dashboard'}}">Register</v-btn>
+          </v-layout>
+        </v-flex>
+      </v-layout>
+    </v-container>
     <v-container grid-list-xl>
       <v-layout row wrap justify-center class="my-5">
         <v-flex xs12 sm4>

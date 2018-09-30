@@ -55,6 +55,13 @@
       <v-flex xs11 sm10 md8>
         <v-card class="card--flex-toolbar">
           <CreateMentorProfile :user="user" @profile_created="refreshDashboard"/>
+          <v-alert
+            :value="showCreateMentorProfileDialogue"
+            type="info"
+            black-text
+          >
+            Do not register as a mentor if you want to participate as a student!
+          </v-alert>
         </v-card>
       </v-flex>
     </v-layout>
