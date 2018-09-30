@@ -4,7 +4,7 @@
       <v-card flat>
         <v-container fluid>
           <v-card-title primary-title>
-            <p class="display-1 blue--text">Create Mentor Profile</p>
+            <p class="display-1 primary--text">Create Mentor Profile</p>
           </v-card-title>
           <v-form>
             <v-layout row wrap>
@@ -48,7 +48,7 @@
           <v-card-actions>
             <v-flex xs4></v-flex>
             <v-flex xs4>
-              <v-btn primary round large block color="info" @click="createMentorProfile">Create</v-btn>
+              <v-btn primary round large block color="primary" @click="createMentorProfile">Create</v-btn>
             </v-flex>
             <v-flex xs4></v-flex>
           </v-card-actions>

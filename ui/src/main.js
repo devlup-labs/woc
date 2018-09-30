@@ -34,6 +34,7 @@ import {
   VTextarea
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
+import colors from 'vuetify/es5/util/colors'
 import httpClientPlugin, {httpClient} from './plugins/httpClient'
 
 Vue.use(httpClientPlugin)
@@ -70,9 +71,9 @@ Vue.use(Vuetify, {
     VTextarea
   },
   theme: {
-    primary: '#607D8B',
-    secondary: '#009688',
-    accent: '#455A64',
+    primary: colors.blue.darken2,
+    secondary: colors.blueGrey.darken2,
+    accent: colors.amber.darken1,
     error: '#FF5252',
     info: '#2196F3',
     success: '#4CAF50',

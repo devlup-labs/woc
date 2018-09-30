@@ -5,7 +5,7 @@
         fluid>
         <v-layout row wrap>
         <v-card-title primary-title>
-          <span class="display-1 blue--text">{{this.mode|capitalize}} Project</span>
+          <span class="display-1 primary--text">{{this.mode|capitalize}} Project</span>
         </v-card-title>
         <v-spacer></v-spacer>
         <v-icon @click="$emit('close_dialog')">fa-times-circle</v-icon>
@@ -36,7 +36,7 @@
         <v-card-actions>
           <v-flex xs4></v-flex>
           <v-flex xs4>
-            <v-btn primary round large block color="info" @click="performCreateUpdate">
+            <v-btn primary round large block color="primary" @click="performCreateUpdate">
               {{mode==='create' ? 'Create':'Update'}}
             </v-btn>
           </v-flex>

@@ -7,7 +7,7 @@
             fluid>
             <v-card-title primary-title>
               <v-layout align-center justify-space-around row>
-                <span class="display-1 blue--text">Update Profile</span>
+                <span class="display-1 primary--text">Update Profile</span>
                 <v-spacer></v-spacer>
                 <div>
                   <v-chip v-if="mentorProfile.is_approved" color="success" text-color="white">
@@ -66,7 +66,7 @@
             <v-card-actions>
               <v-flex xs4></v-flex>
               <v-flex xs4>
-                <v-btn primary round large block color="info" @click="saveMentorProfile">Save</v-btn>
+                <v-btn primary round large block color="primary" @click="saveMentorProfile">Save</v-btn>
               </v-flex>
               <v-flex xs4></v-flex>
             </v-card-actions>

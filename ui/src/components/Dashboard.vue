@@ -1,7 +1,7 @@
 <template>
   <v-card class="fill-height" flat>
     <v-toolbar
-      color="primary"
+      color="secondary"
       dark
       extended
       flat

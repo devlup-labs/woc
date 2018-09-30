@@ -32,7 +32,7 @@
             <v-flex xs12 md4>
               <v-card class="transparent" flat>
                 <div class="text-xs-center">
-                  <v-icon x-large class="blue--text text--lighten-1">supervisor_account</v-icon>
+                  <v-icon x-large class="primary--text text--lighten-1">supervisor_account</v-icon>
                 </div>
                 <v-card-title primary-title class="layout justify-center">
                   <div class="headline text-xs-center">Working with experienced mentors</div>
@@ -47,7 +47,7 @@
             <v-flex xs12 md4>
               <v-card class="transparent" flat>
                 <div class="text-xs-center">
-                  <v-icon x-large class="blue--text text--lighten-2">build</v-icon>
+                  <v-icon x-large class="primary--text text--lighten-2">build</v-icon>
                 </div>
                 <v-card-title primary-title class="layout justify-center">
                   <div class="headline">Learn development</div>
@@ -62,7 +62,7 @@
             <v-flex xs12 md4>
               <v-card class="transparent" flat>
                 <div class="text-xs-center">
-                  <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
+                  <v-icon x-large class="primary--text text--lighten-2">flash_on</v-icon>
                 </div>
                 <v-card-title primary-title class="layout justify-center">
                   <div class="headline text-xs-center">Contribute to Open Source</div>
