@@ -53,8 +53,8 @@
                                 label="Contact Number"></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-area prepend-icon="fa-info-circle" v-model="mentorProfile.about_me" name="aboutme"
-                               :rules="[rules.required]" label="About me"></v-text-area>
+                  <v-textarea prepend-icon="fa-info-circle" :value="mentorProfile.about_me" @input="setAboutMe" name="aboutMe"
+                               :rules="[rules.required]" label="About me"></v-textarea>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field prepend-icon="fa-github" :value="mentorProfile.github" @input="setGithub" name="github"
@@ -82,7 +82,7 @@
 
   export default {
     name: 'MentorProfile',
-    data() {
+    data () {
       return {
         rules: {
           required: value => !!value || 'Required.',
@@ -97,7 +97,7 @@
         'user',
         'errors'
       ]),
-      genderItems() {
+      genderItems () {
         return [{label: 'Male', value: 'M'}, {label: 'Female', value: 'F'}]
       }
     },
@@ -113,7 +113,7 @@
         'setAboutMe'
       ])
     },
-    mounted() {
+    mounted () {
       this.fetchMentorProfile()
     }
   }

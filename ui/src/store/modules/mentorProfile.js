@@ -52,8 +52,8 @@ const mutations = {
   'SET_GENDER' (state, gender) {
     state.mentorProfile.gender = gender
   },
-  'SET_ABOUT_ME' (state, about_me) {
-    state.mentorProfile.about_me = about_me
+  'SET_ABOUT_ME' (state, aboutMe) {
+    state.mentorProfile.about_me = aboutMe
   }
 }
 
@@ -89,7 +89,7 @@ const actions = {
   setPhone: ({commit}, phone) => commit('SET_PHONE', phone),
   setGithub: ({commit}, github) => commit('SET_GITHUB', github),
   setGender: ({commit}, gender) => commit('SET_GENDER', gender),
-  setAboutMe: ({commit}, gender) => commit('SET_ABOUT_ME', about_me)
+  setAboutMe: ({commit}, aboutMe) => commit('SET_ABOUT_ME', aboutMe)
 }
 
 export {
