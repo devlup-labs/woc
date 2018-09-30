@@ -13,9 +13,10 @@
           <v-toolbar card prominent>
             <v-toolbar-title class="body-2 grey--text">Hi, {{user.first_name}}</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-dialog v-if="mentorProfile.is_approved" v-model="dialog" class="dialog" max-width="900">
+            <v-dialog v-if="mentorProfile.is_approved" v-model="dialog" class="dialog v-dialog--flex-toolbar"
+                      max-width="900">
               <v-tooltip slot="activator" left>
-                <v-btn icon slot="activator">
+                <v-btn fab color="primary" class="fab-action" slot="activator">
                   <v-icon>add</v-icon>
                 </v-btn>
                 <span>Add New Project</span>
@@ -23,7 +24,7 @@
               <ProjectCreateUpdate mode="create" @close_dialog="dialog = false"/>
             </v-dialog>
           </v-toolbar>
-          <v-divider></v-divider>
+          <v-divider class="mb-4"></v-divider>
           <MentorProfile/>
           <v-alert
             :value="!mentorProfile.is_approved"
@@ -139,5 +140,9 @@
 <style>
   .card--flex-toolbar {
     margin-top: -64px;
+  }
+
+  .v-dialog--flex-toolbar {
+    margin-top: 64px;
   }
 </style>
