@@ -74,7 +74,9 @@ class MentorProfileViewSetTest(TestCase):
             'phone': 9999999999,
             'github': 'https://github.com/abc',
             'gender': MentorProfile.GENDER_CHOICES[0][0],
-            'user': self.user.id
+            'user': self.user.id,
+            'past_experience': 'None',
+            'about_me': 'Expert'
         }
         self.client.login(username=self.user.username, password='password')
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
@@ -85,6 +87,8 @@ class MentorProfileViewSetTest(TestCase):
             'phone': 9999999999,
             'github': 'https://github.com/abc',
             'gender': MentorProfile.GENDER_CHOICES[0][0],
+            'past_experience': 'None',
+            'about_me': 'Expert'
         }
         self.client.login(username=self.user.username, password='password')
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
@@ -96,7 +100,9 @@ class MentorProfileViewSetTest(TestCase):
             'phone': 9999999999,
             'github': 'https://github.com/abc',
             'gender': MentorProfile.GENDER_CHOICES[0][0],
-            'user': self.user.id + 12
+            'user': self.user.id + 12,
+            'past_experience': 'None',
+            'about_me': 'Expert'
         }
         self.client.login(username=self.user.username, password='password')
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
