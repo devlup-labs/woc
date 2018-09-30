@@ -32,11 +32,11 @@
                               :rules="[rules.required, rules.phone]" label="Contact Number"></v-text-field>
               </v-flex>
               <v-flex xs12>
-                <v-text-area prepend-icon="fa-info-circle" v-model="profile.aboutme" name="aboutme"
+                <v-text-area prepend-icon="fa-info-circle" v-model="profile.about_me" name="aboutme"
                               :rules="[rules.required]" label="About me"></v-text-area>
               </v-flex>
               <v-flex xs12>
-                <v-text-area prepend-icon="fa-clock" v-model="profile.pastexperiences" name="pastexperiences"
+                <v-text-area prepend-icon="fa-clock" v-model="profile.past_experience" name="pastexperiences"
                               :rules="[rules.required]" label="Past Experiences"></v-text-area>
               </v-flex>
               <v-flex xs12>
@@ -73,8 +73,8 @@
           gender: null,
           phone: null,
           github: null,
-          aboutme: null,
-          pastexperiences: null
+          about_me: null,
+          past_experience: null
         },
         rules: {
           required: value => !!value || 'Required.',
@@ -100,8 +100,8 @@
             phone: this.profile.phone,
             github: this.profile.github,
             gender: this.profile.gender,
-            aboutme: this.profile.aboutme,
-            pastexperiences: this.profile.pastexperiences,
+            about_me: this.profile.about_me,
+            past_experience: this.profile.past_experience,
           }).then(response => {
             this.profile = response.data
             this.$store.dispatch('messages/showMessage', {
