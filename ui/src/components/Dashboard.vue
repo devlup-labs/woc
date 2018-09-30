@@ -31,16 +31,16 @@
           >
             Please give us at least 24 hours to verify your profile. Thanks!
           </v-alert>
-          <div v-if="projectList.length > 0 && mentorProfile.is_approved">
+          <div v-if="mentorProjectList.length > 0 && mentorProfile.is_approved">
             <v-container grid-list-lg>
               <v-layout column>
                 <v-flex>
                   <v-card flat>
                     <v-card-text><h3 class="display-1">Projects</h3></v-card-text>
                     <v-card-text>
-                      <div class="mb-4" v-for="(project, i) in projectList" :key="i">
+                      <div class="mb-4" v-for="(project, i) in mentorProjectList" :key="i">
                         <Project :project="project" :mentor="true"/>
-                        <v-divider v-if="projectList.length !== i + 1"/>
+                        <v-divider v-if="mentorProjectList.length !== i + 1"/>
                       </div>
                     </v-card-text>
                   </v-card>
@@ -96,7 +96,7 @@
     props: ['index'],
     computed: {
       ...mapGetters('projectList', [
-        'projectList'
+        'mentorProjectList'
       ]),
       ...mapGetters('mentorProfile', [
         'mentorProfile'

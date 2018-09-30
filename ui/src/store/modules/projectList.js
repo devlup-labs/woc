@@ -14,7 +14,9 @@ const state = {
 }
 
 const getters = {
-  projectList: (state, getters) => state.projectList[0] ? [...state.projectList].sort((a, b) => a.id - b.id) : []
+  projectList: (state, getters) => state.projectList[0] ? state.projectList : [],
+  mentorProjectList: (state, getters, rootState, rootGetters) => state.projectList
+    .filter(project => project.mentors.indexOf(rootGetters['mentorProfile/mentorProfile'].id) >= 0)
 }
 
 const mutations = {
@@ -31,7 +33,7 @@ const mutations = {
     state.projectList = [
       ...state.projectList.filter(project => project.id !== updatedProject.id),
       updatedProject
-    ]
+    ].sort((a, b) => a.id - b.id)
   }
 }
 
