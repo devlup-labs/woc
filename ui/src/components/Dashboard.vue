@@ -25,6 +25,12 @@
           </v-toolbar>
           <v-divider></v-divider>
           <MentorProfile/>
+          <v-alert
+            :value="!mentorProfile.is_approved"
+            type="info"
+          >
+            Please give us at least 24 hours to verify your profile. Thanks!
+          </v-alert>
           <div v-if="projectList.length > 0 && mentorProfile.is_approved">
             <v-container grid-list-lg>
               <v-layout column>
@@ -94,7 +100,9 @@
         'fetchProjectList'
       ]),
       fetchUserType () {
-        this.$httpClient.get('/api/account/user/current/').then(response => { this.user = response.data })
+        this.$httpClient.get('/api/account/user/current/').then(response => {
+          this.user = response.data
+        })
         this.$httpClient.get('/api/account/user/profile/')
           .then(response => {
             if (response.status === 204) {

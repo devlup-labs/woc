@@ -5,6 +5,7 @@ import store from './store'
 import {
   Vuetify,
   VApp,
+  VAlert,
   VNavigationDrawer,
   VFooter,
   VTooltip,
@@ -40,6 +41,7 @@ Vue.use(httpClientPlugin)
 Vue.use(Vuetify, {
   components: {
     VApp,
+    VAlert,
     VNavigationDrawer,
     VFooter,
     VTooltip,
