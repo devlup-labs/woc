@@ -10,12 +10,12 @@
             <v-layout row wrap>
               <v-flex sm6 xs12>
                 <v-text-field prepend-icon="person" v-model="localUser.first_name"
-                              name="first_name"
+                              :rules="[rules.required]" name="first_name"
                               label="First Name"></v-text-field>
               </v-flex>
               <v-flex sm6 xs12>
                 <v-text-field prepend-icon="person" v-model="localUser.last_name" name="last_name"
-                              label="Last Name"></v-text-field>
+                              :rules="[rules.required]" label="Last Name"></v-text-field>
               </v-flex>
               <v-flex sm6 xs12>
                 <v-select
@@ -24,16 +24,24 @@
                   :items="genderItems"
                   item-text="label"
                   item-value="value"
-                  label="Gender"
+                  :rules="[rules.required]" label="Gender"
                 ></v-select>
               </v-flex>
               <v-flex sm6 xs12>
                 <v-text-field prepend-icon="fa-phone" v-model="profile.phone" name="phone"
-                              label="Contact Number"></v-text-field>
+                              :rules="[rules.required, rules.phone]" label="Contact Number"></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-area prepend-icon="fa-info-circle" v-model="profile.aboutme" name="aboutme"
+                              :rules="[rules.required]" label="About me"></v-text-area>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-area prepend-icon="fa-clock" v-model="profile.pastexperiences" name="pastexperiences"
+                              :rules="[rules.required]" label="Past Experiences"></v-text-area>
               </v-flex>
               <v-flex xs12>
                 <v-text-field prepend-icon="fa-github" v-model="profile.github" name="github_link"
-                              label="Github Link"></v-text-field>
+                              :rules="[rules.required, rules.url]" label="Github Link"></v-text-field>
               </v-flex>
             </v-layout>
           </v-form>
@@ -64,7 +72,14 @@
           id: null,
           gender: null,
           phone: null,
-          github: null
+          github: null,
+          aboutme: null,
+          pastexperiences: null
+        },
+        rules: {
+          required: value => !!value || 'Required.',
+          phone: value => /^[6-9][0-9]{9}$/.test(value) || 'Invalid phone number.',
+          url: value => /(http(s)?:\/\/.)(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g.test(value) || 'Invalid URL (include https://)'
         }
       }
     },
@@ -84,7 +99,9 @@
             user: this.localUser.id,
             phone: this.profile.phone,
             github: this.profile.github,
-            gender: this.profile.gender
+            gender: this.profile.gender,
+            aboutme: this.profile.aboutme,
+            pastexperiences: this.profile.pastexperiences,
           }).then(response => {
             this.profile = response.data
             this.$store.dispatch('messages/showMessage', {
