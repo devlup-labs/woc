@@ -5,14 +5,16 @@ from django.core.validators import RegexValidator
 
 class BaseProfile(models.Model):
     # Validators
-    phone_validator = RegexValidator(r'^[6-9][0-9]{9}', message='Not a Valid Phone Number')
+    phone_validator = RegexValidator(r'\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})?'
+                                     r' ?(\w{1,10}\s?\d{1,6})?|([6-9][0-9]{9})',
+                                     message='Not a Valid Phone Number')
     # Choices
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female')
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=10, validators=[phone_validator], help_text='10 digit mobile number')
+    phone = models.CharField(max_length=20, validators=[phone_validator], help_text='A valid mobile number')
     github = models.URLField(help_text='Github link of user')
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, help_text='Gender')
 
