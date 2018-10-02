@@ -1,8 +1,8 @@
-from rest_framework.viewsets import GenericViewSet
+from rest_framework.viewsets import GenericViewSet, ModelViewSet
 from rest_framework import mixins
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import action
-from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer, UserSerializer
+from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer, UserSerializer, MentorsListSerializer
 from account.models import StudentProfile, MentorProfile
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -75,3 +75,9 @@ class AuthenticationCheckAPIView(APIView):
         }
         status_code = status.HTTP_200_OK if authenticated else status.HTTP_401_UNAUTHORIZED
         return Response(data, status=status_code)
+
+
+class MentorsListViewSet(ModelViewSet):
+    serializer_class = MentorsListSerializer
+    queryset = MentorProfile.objects.all()
+    permission_classes = [AllowAny, ]
