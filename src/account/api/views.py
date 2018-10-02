@@ -2,7 +2,8 @@ from rest_framework.viewsets import GenericViewSet, ModelViewSet
 from rest_framework import mixins
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import action
-from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer, UserSerializer, MentorsListSerializer
+from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer
+from account.api.serializers import UserSerializer, MentorsListSerializer
 from account.models import StudentProfile, MentorProfile
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
