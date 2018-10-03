@@ -1,6 +1,6 @@
-from rest_framework.viewsets import GenericViewSet, ModelViewSet
+from rest_framework.viewsets import GenericViewSet
 from rest_framework import mixins
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import action
 from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer
 from account.api.serializers import UserSerializer, MentorsListSerializer
@@ -30,6 +30,28 @@ class MentorProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, m
     @action(methods=['get'], detail=False)
     def current(self, request, *args, **kwargs):
         return self.retrieve(request, args, kwargs)
+
+    # For listing all mentors that are verified
+
+    def get_queryset(self, queryset=None):
+        return self.queryset.filter(is_approved=True) if self.action == 'all' else super().get_queryset()
+
+    def get_serializer_class(self):
+        return MentorsListSerializer if self.action == 'all' else self.serializer_class
+
+    def get_permissions(self):
+        """
+        Instantiates and returns the list of permissions that this view requires.
+        """
+        if self.action == 'all':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
+
+    @action(methods=['get'], detail=False)
+    def all(self, request, *args, **kwargs):
+        return self.list(request, args, kwargs)
 
 
 class UserViewSet(mixins.UpdateModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
@@ -76,9 +98,3 @@ class AuthenticationCheckAPIView(APIView):
         }
         status_code = status.HTTP_200_OK if authenticated else status.HTTP_401_UNAUTHORIZED
         return Response(data, status=status_code)
-
-
-class MentorsListViewSet(ModelViewSet):
-    serializer_class = MentorsListSerializer
-    queryset = MentorProfile.objects.all()
-    permission_classes = [AllowAny, ]

@@ -142,11 +142,3 @@ class UserViewSetTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.content.decode('utf-8'),
                          '{"type":"student-profile","id":%s}' % self.student_profile.id)
-
-
-class MentorsListViewSetTest(TestCase):
-
-    def test_status_OK(self):
-        response = self.client.get(reverse('api:account:all-mentors-list'))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.content.decode('utf-8'), '[]')
