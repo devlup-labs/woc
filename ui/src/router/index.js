@@ -8,6 +8,7 @@ import HowItWorks from '../components/HowItWorks'
 import NotFound from '../components/NotFound'
 import Help from '../components/Help'
 import Dashboard from '../components/Dashboard'
+import MentorDetails from '../components/MentorDetails'
 
 Vue.use(Router)
 
@@ -19,9 +20,10 @@ const router = new Router({
     {path: '/projects', name: 'Projects', component: ProjectsList},
     {path: '/how-it-works', name: 'HowItWorks', component: HowItWorks},
     {path: '/help', name: 'Help', component: Help},
+    {path: '/mentors', name: 'MentorDetails', component: MentorDetails},
     {path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: {requiresAuth: true}},
-    { path: '/not-found', component: NotFound },
-    { path: '*', redirect: '/not-found' }
+    {path: '/not-found', component: NotFound},
+    {path: '*', redirect: '/not-found'}
   ]
 })
 
