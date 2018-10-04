@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==2.1"
+django = "==2.1.2"
 django-decouple = "==2.1"
 django-cleanup = "==2.1.0"
 social-auth-app-django = "==2.1.0"
