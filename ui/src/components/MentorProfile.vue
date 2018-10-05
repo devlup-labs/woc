@@ -54,7 +54,7 @@
                 </v-flex>
                 <v-flex xs12>
                   <v-textarea prepend-icon="fa-info-circle" :value="mentorProfile.about_me" @input="setAboutMe" name="aboutMe"
-                               :rules="[rules.required]" label="About me"></v-textarea>
+                               :rules="[rules.required, rules.length]" :counter="1536" label="About me"></v-textarea>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field prepend-icon="fa-github" :value="mentorProfile.github" @input="setGithub" name="github"
@@ -86,6 +86,7 @@
       return {
         rules: {
           required: value => !!value || 'Required.',
+          length: value => (!!value && value.length <= 1536) || 'More than 1536 characters are not allowed.',
           phone: value => /\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})? ?(\w{1,10}\s?\d{1,6})?|([6-9][0-9]{9})/.test(value) || 'Invalid phone number.',
           url: value => /(http(s)?:\/\/.)(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g.test(value) || 'Invalid URL (include https://)'
         }

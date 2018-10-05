@@ -33,11 +33,12 @@
               </v-flex>
               <v-flex xs12>
                 <v-textarea prepend-icon="fa-info-circle" v-model="profile.about_me" name="aboutme"
-                              :rules="[rules.required]" label="About me"/>
+                              :rules="[rules.required, rules.length]" :counter="1536" label="About me"/>
               </v-flex>
               <v-flex xs12>
                 <v-textarea prepend-icon="fa-clock" v-model="profile.past_experience" name="pastexperiences"
-                              :rules="[rules.required]" label="Past Experiences" hint="Cannot be changed later!"/>
+                            :rules="[rules.required, rules.length]" label="Past Experiences" :counter="1536"
+                            hint="Cannot be changed later!"/>
               </v-flex>
               <v-flex xs12>
                 <v-text-field prepend-icon="fa-github" v-model="profile.github" name="github_link"
@@ -78,6 +79,7 @@
         },
         rules: {
           required: value => !!value || 'Required.',
+          length: value => (!!value && value.length <= 1536) || 'More than 1536 characters are not allowed.',
           phone: value => /\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})? ?(\w{1,10}\s?\d{1,6})?|([6-9][0-9]{9})/.test(value) || 'Invalid phone number.',
           url: value => /(http(s)?:\/\/.)(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/g.test(value) || 'Invalid URL (include https://)'
         }
@@ -109,8 +111,16 @@
               color: 'success'
             }, {root: true})
             this.$emit('profile_created', this.profile)
-          }).catch(() => console.log('Failed to create mentor profile'))
-        }).catch(() => console.log('Failed to update user object'))
+          }).catch(() => this.$store.dispatch('messages/showMessage', {
+            message: 'Failed to create mentor profile',
+            color: 'error',
+            timeout: 6000
+          }, {root: true}))
+        }).catch(() => this.$store.dispatch('messages/showMessage', {
+          message: 'Failed to update user',
+          color: 'error',
+          timeout: 6000
+        }, {root: true}))
       }
     },
     mounted () {
