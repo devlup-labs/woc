@@ -44,8 +44,8 @@ class StudentProfile(BaseProfile):
 
 class MentorProfile(BaseProfile):
     is_approved = models.BooleanField(default=False)
-    about_me = models.CharField(max_length=256, help_text='Add something about You.')
-    past_experience = models.CharField(max_length=256, help_text='Add your Past Experience')
+    about_me = models.CharField(max_length=1536, help_text='Add something about You.')
+    past_experience = models.CharField(max_length=1536, help_text='Add your Past Experience')
 
     def __str__(self):
         return self.user.get_full_name()
