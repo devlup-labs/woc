@@ -1,6 +1,6 @@
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import mixins
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework.decorators import action
 from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer
 from account.api.serializers import UserSerializer, MentorsListSerializer
