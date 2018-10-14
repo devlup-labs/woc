@@ -27,12 +27,6 @@ class MentorProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, m
         return get_object_or_404(MentorProfile,
                                  user=self.request.user) if self.action == 'current' else super().get_object()
 
-    @action(methods=['get'], detail=False)
-    def current(self, request, *args, **kwargs):
-        return self.retrieve(request, args, kwargs)
-
-    # For listing all mentors that are verified
-
     def get_queryset(self, queryset=None):
         return self.queryset.filter(is_approved=True) if self.action == 'all' else super().get_queryset()
 
@@ -40,14 +34,12 @@ class MentorProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, m
         return MentorsListSerializer if self.action == 'all' else self.serializer_class
 
     def get_permissions(self):
-        """
-        Instantiates and returns the list of permissions that this view requires.
-        """
-        if self.action == 'all':
-            permission_classes = [AllowAny]
-        else:
-            permission_classes = [IsAuthenticated]
-        return [permission() for permission in permission_classes]
+        self.permission_classes = [AllowAny] if self.action == 'all' else self.permission_classes
+        return super().get_permissions()
+
+    @action(methods=['get'], detail=False)
+    def current(self, request, *args, **kwargs):
+        return self.retrieve(request, args, kwargs)
 
     @action(methods=['get'], detail=False)
     def all(self, request, *args, **kwargs):
