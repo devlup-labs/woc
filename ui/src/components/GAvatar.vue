@@ -8,13 +8,13 @@
 
   export default {
     name: 'GAvatar',
-    props: ['email'],
+    props: ['email', 'size'],
     data: () => ({link: avatarPlaceholder}),
     methods: {
       setLink () {
         if (this.email) {
           axios.get(`https://picasaweb.google.com/data/entry/api/user/${this.email}?alt=json`).then(response => {
-            this.link = response.data.entry.gphoto$thumbnail.$t
+            this.link = response.data.entry.gphoto$thumbnail.$t + (this.size ? `?sz=${this.size}` : '')
           })
         }
       }
