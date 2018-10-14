@@ -46,25 +46,25 @@
           },
           {
             startTime: new Date('2018-10-01T00:00:00'),
-            endTime: new Date('2018-10-13T23:59:59'),
+            endTime: new Date('2018-10-16T23:59:59'),
             title: 'Mentor Registrations Open',
             description: 'Potential mentors start registering on the platform and add their projects as well.'
           },
           {
-            startTime: new Date('2018-10-14T00:00:00'),
-            endTime: new Date('2018-10-14T00:00:00'),
+            startTime: new Date('2018-10-17T00:00:00'),
+            endTime: new Date('2018-10-17T00:00:00'),
             title: 'Mentor Registration Ends and Projects Announced',
             description: 'Students can have a look at the projects which is followed by the student registration.'
           },
           {
-            startTime: new Date('2018-10-14T00:00:00'),
-            endTime: new Date('2018-10-14T00:00:00'),
+            startTime: new Date('2018-10-17T00:00:00'),
+            endTime: new Date('2018-10-17T00:00:00'),
             title: 'Student Registration Begins',
             description: 'Students start applying to the program and start preparing their proposals.'
           },
           {
-            startTime: new Date('2018-10-14T00:00:00'),
-            endTime: new Date('2018-10-22T23:59:59'),
+            startTime: new Date('2018-10-17T00:00:00'),
+            endTime: new Date('2018-10-23T23:59:59'),
             title: 'Proposal Period',
             description: 'During this period students start preparing proposals for the projects and get it verified' +
               ' by the mentors. At the end of this period, student registrations will close.'
