@@ -27,7 +27,8 @@
             </v-flex>
             <v-flex xs12 md6>
               <v-text-field prepend-icon="fa-github" name="GithubLink" label="Github Link"
-                            :rules="[rules.url]" v-model="project.github_link"/>
+                            :rules="[rules.url]" v-model="project.github_link"
+                            :hint="'Add a dummy link if the project doesn\'t have a GitHub repo now.'"/>
             </v-flex>
             <v-flex xs12 md6 pl-1>
               <v-combobox hint="Press enter after each technology" v-model="project.technologies"
