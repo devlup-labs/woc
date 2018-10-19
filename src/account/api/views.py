@@ -17,6 +17,14 @@ class StudentProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, 
     serializer_class = StudentProfileSerializer
     queryset = StudentProfile.objects.all()
 
+    def get_object(self):
+        return get_object_or_404(StudentProfile,
+                                 user=self.request.user) if self.action == 'current' else super().get_object()
+
+    @action(methods=['get'], detail=False)
+    def current(self, request, *args, **kwargs):
+        return self.retrieve(request, args, kwargs)
+
 
 class MentorProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.ListModelMixin,
                            mixins.UpdateModelMixin, GenericViewSet):

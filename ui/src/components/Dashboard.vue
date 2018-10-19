@@ -7,7 +7,7 @@
       flat
     >
     </v-toolbar>
-    <v-layout v-if="this.profile.id && !showCreateMentorProfileDialogue" row justify-center pb-2>
+    <v-layout v-if="this.profile.type === 'mentor-profile' && !showCreateMentorProfileDialogue" row justify-center pb-2>
       <v-flex xs11 sm10 md8>
         <v-card class="card--flex-toolbar">
           <v-toolbar card prominent>
@@ -52,6 +52,26 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-layout v-if="this.profile.type === 'student-profile' && !showCreateStudentProfileDialogue" row justify-center
+              pb-2>
+      <v-flex xs11 sm10 md8>
+        <v-card class="card--flex-toolbar">
+          <v-toolbar card prominent>
+            <v-toolbar-title class="body-2 grey--text">Hi, {{user.first_name}}</v-toolbar-title>
+            <v-spacer></v-spacer>
+          </v-toolbar>
+          <v-divider class="mb-4"></v-divider>
+          <StudentProfile/>
+          <v-alert
+            :value="true"
+            type="info"
+          >
+            All set for now! Now contact <router-link class="white--text" :to="{name: 'MentorList'}">mentors</router-link> regarding a
+            project, ask them to float it and once it is approved, you'll be able to submit a proposal for it.
+          </v-alert>
+        </v-card>
+      </v-flex>
+    </v-layout>
     <v-layout v-if="showCreateMentorProfileDialogue" row justify-center pb-2>
       <v-flex xs11 sm10 md8>
         <v-card class="card--flex-toolbar">
@@ -66,19 +86,42 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-layout v-if="showCreateStudentProfileDialogue" row justify-center pb-2>
+      <v-flex xs11 sm10 md8>
+        <v-card class="card--flex-toolbar">
+          <CreateStudentProfile :user="user" @profile_created="refreshDashboard"/>
+          <v-alert
+            :value="showCreateStudentProfileDialogue"
+            type="info"
+            black-text
+          >
+            Do not register as a student if you want to be a mentor!
+          </v-alert>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </v-card>
 </template>
 
 <script>
   import CreateMentorProfile from './CreateMentorProfile'
+  import CreateStudentProfile from './CreateStudentProfile'
   import ProjectCreateUpdate from './ProjectCreateUpdate'
   import Project from './Project'
   import MentorProfile from './MentorProfile'
+  import StudentProfile from './StudentProfile'
   import {mapGetters, mapActions} from 'vuex'
 
   export default {
     name: 'Dashboard',
-    components: {CreateMentorProfile, MentorProfile, ProjectCreateUpdate, Project},
+    components: {
+      CreateMentorProfile,
+      CreateStudentProfile,
+      MentorProfile,
+      StudentProfile,
+      ProjectCreateUpdate,
+      Project
+    },
     data () {
       return {
         dialog: false,
@@ -91,7 +134,8 @@
           type: null,
           id: null
         },
-        showCreateMentorProfileDialogue: false
+        showCreateMentorProfileDialogue: false,
+        showCreateStudentProfileDialogue: false
       }
     },
     props: ['index'],
@@ -101,6 +145,9 @@
       ]),
       ...mapGetters('mentorProfile', [
         'mentorProfile'
+      ]),
+      ...mapGetters('studentProfile', [
+        'studentProfile'
       ])
     },
     methods: {
@@ -114,7 +161,7 @@
         this.$httpClient.get('/api/account/user/profile/')
           .then(response => {
             if (response.status === 204) {
-              this.showCreateMentorProfileDialogue = true
+              this.showCreateStudentProfileDialogue = true
             } else {
               this.profile = response.data
             }
@@ -123,7 +170,8 @@
       },
       refreshDashboard (profile) {
         this.showCreateMentorProfileDialogue = false
-        this.profile.id = profile.id
+        this.showCreateStudentProfileDialogue = false
+        this.profile = profile
       }
     },
     mounted () {
@@ -131,7 +179,7 @@
     },
     watch: {
       profile (value) {
-        if (value.id) this.fetchProjectList()
+        if (value.id && value.type === 'mentor-profile') this.fetchProjectList()
       }
     }
   }

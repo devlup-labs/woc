@@ -57,6 +57,17 @@ class StudentProfileViewSetTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.content.decode('utf-8'), '{"user":["Invalid pk \\"13\\" - object does not exist."]}')
 
+    def test_current_student_profile_route(self):
+        StudentProfile.objects.create(user=self.user, phone='9999999999', github='https://github.com',
+                                      gender=StudentProfile.GENDER_CHOICES[0][0],
+                                      year=StudentProfile.YEAR_CHOICES[0][0],
+                                      branch=StudentProfile.BRANCH_CHOICES[0][0])
+        self.client.login(username=self.user.username, password='password')
+        response = self.client.get(reverse('api:account:student-profile-current'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.content.decode('utf-8'), '{"id":1,"phone":"9999999999","github":"https://github.com",'
+                                                           '"gender":"M","branch":"CSE","year":"1","user":1}')
+
 
 class MentorProfileViewSetTest(TestCase):
     @classmethod
@@ -108,6 +119,18 @@ class MentorProfileViewSetTest(TestCase):
         response = self.client.post(reverse('api:account:mentor-profile-list'), data=data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.content.decode('utf-8'), '{"user":["Invalid pk \\"13\\" - object does not exist."]}')
+
+    def test_current_mentor_profile_route(self):
+        MentorProfile.objects.create(user=self.user, phone='9999999999', github='https://github.com',
+                                     gender=StudentProfile.GENDER_CHOICES[0][0],
+                                     about_me='random',
+                                     past_experience='random')
+        self.client.login(username=self.user.username, password='password')
+        response = self.client.get(reverse('api:account:mentor-profile-current'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.content.decode('utf-8'), '{"id":1,"is_approved":false,"phone":"9999999999",'
+                                                           '"github":"https://github.com","gender":"M","about_me"'
+                                                           ':"random","past_experience":"random","user":1}')
 
 
 class UserViewSetTest(TestCase):
