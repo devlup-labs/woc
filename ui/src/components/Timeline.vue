@@ -64,7 +64,7 @@
           },
           {
             startTime: new Date('2018-10-17T00:00:00'),
-            endTime: new Date('2018-10-23T23:59:59'),
+            endTime: new Date('2018-10-24T23:59:59'),
             title: 'Proposal Period',
             description: 'During this period students start preparing proposals for the projects and get it verified' +
               ' by the mentors. At the end of this period, student registrations will close.'

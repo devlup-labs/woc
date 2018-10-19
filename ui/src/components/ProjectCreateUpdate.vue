@@ -4,20 +4,22 @@
       <v-container
         fluid>
         <v-layout row wrap>
-        <v-card-title primary-title>
-          <span class="display-1 primary--text">{{this.mode|capitalize}} Project</span>
-        </v-card-title>
-        <v-spacer></v-spacer>
-        <v-icon @click="$emit('close_dialog')">fa-times-circle</v-icon>
+          <v-card-title primary-title>
+            <span class="display-1 primary--text">{{this.mode|capitalize}} Project</span>
+          </v-card-title>
+          <v-spacer></v-spacer>
+          <v-icon @click="$emit('close_dialog')">fa-times-circle</v-icon>
         </v-layout>
         <v-form>
           <v-layout row wrap>
             <v-flex xs12>
-              <v-text-field prepend-icon="person" name="ProjectName" label="Project Name" :rules="[rules.required]" v-model="project.name"/>
+              <v-text-field prepend-icon="person" name="ProjectName" label="Project Name" :rules="[rules.required]"
+                            v-model="project.name"/>
             </v-flex>
             <v-flex xs12>
               <v-text-field maxlength="64" counter=64 prepend-icon="fa-info-circle" name="ProjectShortDescription"
-                            :rules="[rules.required]" v-model="project.short_description" label="Project Short Description"/>
+                            :rules="[rules.required]" v-model="project.short_description"
+                            label="Project Short Description"/>
             </v-flex>
             <v-flex xs12>
               <v-textarea prepend-icon="fa-info-circle" name="ProjectDescription"
@@ -29,7 +31,8 @@
             </v-flex>
             <v-flex xs12 md6 pl-1>
               <v-combobox hint="Press enter after each technology" v-model="project.technologies"
-                          :rules="[rules.required]" label="Add technologies to be used" multiple small-chips deletable-chips/>
+                          :rules="[rules.required]" label="Add technologies to be used" multiple small-chips
+                          deletable-chips/>
             </v-flex>
           </v-layout>
         </v-form>
@@ -47,8 +50,9 @@
   </v-layout>
 </template>
 <script>
-  import {mapActions} from 'vuex'
+  import {mapGetters, mapActions} from 'vuex'
   import _ from 'lodash'
+
   export default {
     name: 'ProjectCreateUpdate',
     props: ['mode', 'updateId'],
@@ -71,6 +75,7 @@
       }
     },
     computed: {
+      ...mapGetters('projectList', ['mentorProjectList']),
       technologiesAsPipeSeparatedString () {
         return this.project.technologies.join('|')
       }
@@ -125,11 +130,14 @@
       },
       setProject () {
         if (this.updateId) {
-          this.$httpClient.get(`/api/project/projects/${this.updateId}/`)
-            .then(response => {
+          const project = this.mentorProjectList.find(project => project.id === this.updateId)
+          if (project) this.project = project
+          else {
+            this.$httpClient.get(`/api/project/projects/${this.updateId}/`).then(response => {
               response.data.technologies = response.data.technologies.split('|')
               this.project = response.data
             })
+          }
         }
       },
       performCreateUpdate () {

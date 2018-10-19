@@ -62,28 +62,16 @@
 
 <script>
   import GAvatar from './GAvatar'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
     name: 'MentorList',
     components: {GAvatar},
-    data () {
-      return {
-        mentorList: []
-        /* {
-          first_name: '',
-          last_name: '',
-          email: '',
-          phone: '',
-          about_me: ''
-        } */
-      }
+    computed: {
+      ...mapGetters('mentorList', ['mentorList'])
     },
     methods: {
-      fetchMentorList () {
-        this.$httpClient.get('/api/account/mentor-profile/all/').then(response => {
-          this.mentorList = response.data
-        })
-      }
+      ...mapActions('mentorList', ['fetchMentorList'])
     },
     mounted () {
       this.fetchMentorList()
