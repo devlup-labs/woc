@@ -42,6 +42,8 @@
         prepend-inner-icon="search"
         label="Search"
         class="hidden-sm-and-down"
+        @input="search"
+        :value="filterString"
       ></v-text-field>
       <v-spacer></v-spacer>
       <v-menu  v-if="isLoggedIn" offset-y open-on-hover>
@@ -95,19 +97,10 @@
       }
     },
     computed: {
-      ...mapGetters('app', [
-        'items'
-      ]),
-      ...mapGetters('auth', [
-        'isLoggedIn',
-        'thumbnailUrl'
-      ]),
-      ...mapGetters('messages', [
-        'message',
-        'color',
-        'timeout',
-        'mode'
-      ]),
+      ...mapGetters('app', ['items']),
+      ...mapGetters('projectList', ['filterString']),
+      ...mapGetters('auth', ['isLoggedIn', 'thumbnailUrl']),
+      ...mapGetters('messages', ['message', 'color', 'timeout', 'mode']),
       snackbar: {
         get () {
           return this.$store.getters['messages/snackbar']
@@ -124,7 +117,8 @@
       ...mapActions('auth', [
         'login',
         'logout'
-      ])
+      ]),
+      ...mapActions('projectList', ['search'])
     },
     mounted () {
       this.$store.dispatch('auth/loadThumbnail')

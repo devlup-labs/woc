@@ -3,7 +3,7 @@ const state = {
     {icon: 'fa-home', text: 'Home', path: '/'},
     {icon: 'fa-calendar', text: 'How It Works', path: '/how-it-works'},
     {icon: 'supervisor_account', text: 'Mentors', path: '/mentors'},
-    {icon: 'fa-code', text: 'Projects', path: '/projects'},
+    {icon: 'fa-code', text: 'Projects', path: '/projects', search: true},
     {icon: 'fa-tachometer', text: 'Dashboard', path: '/dashboard', requiresAuth: true},
     {icon: 'help', text: 'Help', path: '/help'}
   ]
