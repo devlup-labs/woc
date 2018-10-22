@@ -103,7 +103,7 @@
     </v-container>
     <v-container grid-list-xl justify-center>
       <v-layout row wrap class="mt-5 "justify-center>
-        <p class="display-1 justify-center text-xs-center">Login with your GMail account to register as a mentor</p>
+        <p class="display-1 justify-center text-xs-center">Login with your GMail account to register as a student</p>
       </v-layout>
       <v-layout row wrap class="mt-5 justify-center">
         <v-flex xs8 sm6>
