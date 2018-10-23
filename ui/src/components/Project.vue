@@ -93,12 +93,13 @@
       ...mapGetters('mentorList', ['mentorList']),
       ...mapGetters('proposalList', ['studentProposalList']),
       ...mapGetters('studentList', ['studentList']),
+      ...mapGetters('studentProfile', ['studentProfile']),
       ...mapGetters('auth', ['isLoggedIn']),
       chips () {
         return this.project.technologies
       },
       showProposalDialogButton () {
-        return !this.mentor && this.isLoggedIn
+        return !this.mentor && this.isLoggedIn && this.studentProfile.id !== ''
       }
     },
     methods: {
