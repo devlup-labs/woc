@@ -39,7 +39,7 @@
 
   export default {
     name: 'ProposalCreateUpdate',
-    props: ['mode', 'updateId', 'projectId'],
+    props: ['mode', 'baseProposal', 'projectId'],
     data: () => ({
       proposal: {
         id: '',
@@ -100,7 +100,7 @@
         })
       },
       performUpdate () {
-        this.$httpClient.patch(`/api/project/student-proposal/${this.updateId}/`, {
+        this.$httpClient.patch(`/api/project/student-proposal/${this.baseProposal.id}/`, {
           drive_link: this.proposal.drive_link
         }).then(response => {
           this.updateProposal(_.cloneDeep(response.data))
@@ -118,15 +118,14 @@
         })
       },
       setProposal () {
-        if (this.updateId) {
-          const proposal = this.studentProposalList.find(proposal => proposal.id === this.updateId)
-          if (proposal) this.proposal = _.cloneDeep(proposal)
-          else {
-            this.$httpClient.get(`/api/project/student-proposal/${this.updateId}/`).then(response => {
-              this.proposal = response.data
-            })
-          }
+        if (this.baseProposal) {
+          this.proposal = _.cloneDeep(this.baseProposal)
         }
+      }
+    },
+    watch: {
+      baseProposal (value) {
+        if (value !== undefined) this.proposal = _.cloneDeep(value)
       }
     },
     filters: {

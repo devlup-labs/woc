@@ -27,7 +27,7 @@
         <v-dialog v-if="showProposalDialogButton" v-model="proposalDialog" max-width="900">
           <ProposalCreateUpdate
             :mode="$route.name === 'Dashboard' ? 'update':'apply'"
-            :updateId="getProposalUpdateIdByProjectId(project.id)"
+            :baseProposal="getProposalByProjectId(project.id)"
             :projectId="project.id"
             @close_dialog="proposalDialog = false"/>
         </v-dialog>
@@ -95,8 +95,8 @@
         if (mentor) return `${mentor.first_name} ${mentor.last_name}`
         else return ''
       },
-      getProposalUpdateIdByProjectId (projectId) {
-        return this.studentProposalList.find(proposal => proposal.project === projectId).id || null
+      getProposalByProjectId (projectId) {
+        return this.studentProposalList.find(proposal => proposal.project === projectId)
       },
       remove () {
         this.$httpClient.delete(`/api/project/projects/${this.project.id}/`).then(response => {
