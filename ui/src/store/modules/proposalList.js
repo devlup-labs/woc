@@ -1,14 +1,16 @@
 import {httpClient} from '../../plugins/httpClient'
 
 const state = {
-  proposalList: [{
+  proposalList: [
+    /* {
     id: '',
     project: '',
     student: '',
     drive_link: '',
     file: null,
     is_accepted: false
-  }]
+  } */
+  ]
 }
 
 const getters = {

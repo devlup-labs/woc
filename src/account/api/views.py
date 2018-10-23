@@ -3,7 +3,7 @@ from rest_framework import mixins
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import action
 from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer
-from account.api.serializers import UserSerializer, MentorsListSerializer
+from account.api.serializers import UserSerializer, MentorsListSerializer, StudentsListSerializer
 from account.models import StudentProfile, MentorProfile
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -21,9 +21,20 @@ class StudentProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, 
         return get_object_or_404(StudentProfile,
                                  user=self.request.user) if self.action == 'current' else super().get_object()
 
+    def get_serializer_class(self):
+        return StudentsListSerializer if self.action == 'all' else self.serializer_class
+
+    def get_permissions(self):
+        self.permission_classes = [AllowAny] if self.action == 'all' else self.permission_classes
+        return super().get_permissions()
+
     @action(methods=['get'], detail=False)
     def current(self, request, *args, **kwargs):
         return self.retrieve(request, args, kwargs)
+
+    @action(methods=['get'], detail=False)
+    def all(self, request, *args, **kwargs):
+        return self.list(request, args, kwargs)
 
 
 class MentorProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.ListModelMixin,

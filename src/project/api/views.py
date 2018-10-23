@@ -32,11 +32,10 @@ class ProjectViewSet(ModelViewSet):
 class StudentProposalViewSet(ModelViewSet):
     serializer_class = StudentProposalSerializer
     queryset = StudentProposal.objects.all()
-    permission_classes = (IsStudent,)
 
     def get_permissions(self):
         if self.action in ['retrieve', 'list']:
-            self.permission_classes = (IsStudent,)
+            self.permission_classes = (AllowAny,)
         return super().get_permissions()
 
     def get_serializer_class(self):

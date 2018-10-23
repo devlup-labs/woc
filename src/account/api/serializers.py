@@ -31,3 +31,25 @@ class MentorsListSerializer(serializers.ModelSerializer):
     class Meta:
         model = MentorProfile
         fields = ('id', 'first_name', 'last_name', 'email', 'phone', 'about_me')
+
+
+class StudentsListSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(source='user.first_name')
+    last_name = serializers.CharField(source='user.last_name')
+    email = serializers.EmailField(source='user.email')
+    gender = serializers.SerializerMethodField()
+    branch = serializers.SerializerMethodField()
+    year = serializers.SerializerMethodField()
+
+    def get_gender(self, value):
+        return value.get_gender_display()
+
+    def get_branch(self, value):
+        return value.get_branch_display()
+
+    def get_year(self, value):
+        return value.get_year_display()
+
+    class Meta:
+        model = StudentProfile
+        fields = ('id', 'first_name', 'last_name', 'email', 'phone', 'gender', 'branch', 'year')
