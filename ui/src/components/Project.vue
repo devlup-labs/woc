@@ -56,7 +56,7 @@
       </v-flex>
       <v-flex sm12 md8>
         <h5>Description</h5>
-        <p>{{project.description}}</p>
+        <p v-html="project.description"></p>
       </v-flex>
     </v-layout>
     <v-flex sm12 v-if="mentor" pt-2>
