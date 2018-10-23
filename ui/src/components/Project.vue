@@ -6,6 +6,7 @@
       <div>
         <v-icon class="mx-2" v-if="mentor" @click="dialog = true">fa-trash</v-icon>
         <v-icon class="mx-2" v-if="mentor" @click="editDialog = true">fa-pencil</v-icon>
+        <v-btn v-if="showProposalDialogButton" @click="proposalDialog = true">Add Proposal</v-btn>
         <a :href="project.github_link" target="_blank" class="dashline">
           <v-icon class="mx-2">fa-github</v-icon>
         </a>
@@ -22,6 +23,9 @@
         </v-dialog>
         <v-dialog v-if="mentor" v-model="editDialog" max-width="900">
           <ProjectCreateUpdate :mode="'update'" :updateId="project.id" :key="project.id" @close_dialog="editDialog = false"/>
+        </v-dialog>
+        <v-dialog v-if="showProposalDialogButton" v-model="proposalDialog" max-width="900">
+          <ProposalCreateUpdate :mode="'apply'" :projectId="project.id" @close_dialog="proposalDialog = false"/>
         </v-dialog>
       </div>
     </v-layout>
@@ -55,21 +59,27 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import ProjectCreateUpdate from './ProjectCreateUpdate'
+  import ProposalCreateUpdate from './ProposalCreateUpdate'
 
   export default {
     name: 'Project',
-    components: {ProjectCreateUpdate},
+    components: {ProjectCreateUpdate, ProposalCreateUpdate},
     props: ['project', 'mentor', 'mode'],
     data () {
       return {
         dialog: false,
-        editDialog: false
+        editDialog: false,
+        proposalDialog: false
       }
     },
     computed: {
       ...mapGetters('mentorList', ['mentorList']),
+      ...mapGetters('auth', ['isLoggedIn']),
       chips () {
         return this.project.technologies
+      },
+      showProposalDialogButton () {
+        return !this.mentor && this.isLoggedIn
       }
     },
     methods: {
@@ -98,4 +108,3 @@
     text-decoration: none;
   }
 </style>
-

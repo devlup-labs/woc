@@ -74,7 +74,7 @@
       ...mapActions('mentorList', ['fetchMentorList'])
     },
     mounted () {
-      this.fetchMentorList()
+      if (!this.mentorList.length) this.fetchMentorList()
     }
   }
 </script>
