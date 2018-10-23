@@ -63,12 +63,30 @@
           <v-divider class="mb-4"></v-divider>
           <StudentProfile/>
           <v-alert
-            :value="true"
+            :value="studentProjectList.length <= 0"
             type="info"
           >
             All set for now! Now contact <router-link class="white--text" :to="{name: 'MentorList'}">mentors</router-link> regarding a
-            project, ask them to float it and once it is approved, you'll be able to submit a proposal for it.
+            project, ask them to float it and once it is approved, you'll be able to submit a proposal for it and
+            they'll appear down here.
           </v-alert>
+          <div v-if="studentProjectList.length > 0">
+            <v-container grid-list-lg>
+              <v-layout column>
+                <v-flex>
+                  <v-card flat>
+                    <v-card-text><h3 class="display-1">Projects</h3></v-card-text>
+                    <v-card-text>
+                      <div class="mb-4" v-for="(project, i) in studentProjectList" :key="i">
+                        <Project :project="project" :mentor="false"/>
+                        <v-divider v-if="studentProjectList.length !== i + 1"/>
+                      </div>
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </div>
         </v-card>
       </v-flex>
     </v-layout>
@@ -141,13 +159,17 @@
     props: ['index'],
     computed: {
       ...mapGetters('projectList', [
-        'mentorProjectList'
+        'mentorProjectList',
+        'studentProjectList'
       ]),
       ...mapGetters('mentorProfile', [
         'mentorProfile'
       ]),
       ...mapGetters('studentProfile', [
         'studentProfile'
+      ]),
+      ...mapGetters('proposalList', [
+        'studentProposalList'
       ])
     },
     methods: {
@@ -179,7 +201,8 @@
     },
     watch: {
       profile (value) {
-        if (value.id && value.type === 'mentor-profile') this.fetchProjectList()
+        this.fetchProjectList()
+        // if (value.id && value.type === 'mentor-profile') this.fetchProjectList()
       }
     }
   }

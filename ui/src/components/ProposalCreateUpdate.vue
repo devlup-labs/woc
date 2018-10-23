@@ -72,9 +72,6 @@
         if (this.mode === 'apply') this.performApply()
         else this.performUpdate()
       },
-      setFile (file) {
-        this.proposal.file = file
-      },
       performApply () {
         this.$httpClient.post('/api/project/student-proposal/', {
           project: this.projectId,
@@ -109,6 +106,10 @@
           this.updateProposal(_.cloneDeep(response.data))
           this.proposal = response.data
           this.$emit('close_dialog')
+          this.$store.dispatch('messages/showMessage', {
+            message: 'Proposal updated successfully!',
+            color: 'success'
+          }, {root: true})
         }).catch(() => {
           this.$store.dispatch('messages/showMessage', {
             message: 'Something went wrong!',
@@ -119,10 +120,10 @@
       setProposal () {
         if (this.updateId) {
           const proposal = this.studentProposalList.find(proposal => proposal.id === this.updateId)
-          if (proposal) this.proposal = proposal
+          if (proposal) this.proposal = _.cloneDeep(proposal)
           else {
             this.$httpClient.get(`/api/project/student-proposal/${this.updateId}/`).then(response => {
-              this.project = response.data
+              this.proposal = response.data
             })
           }
         }

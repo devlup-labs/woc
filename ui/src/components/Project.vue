@@ -6,7 +6,7 @@
       <div>
         <v-icon class="mx-2" v-if="mentor" @click="dialog = true">fa-trash</v-icon>
         <v-icon class="mx-2" v-if="mentor" @click="editDialog = true">fa-pencil</v-icon>
-        <v-btn v-if="showProposalDialogButton" @click="proposalDialog = true">Add Proposal</v-btn>
+        <v-btn v-if="showProposalDialogButton" @click="proposalDialog = true">{{$route.name === 'Dashboard'?'Update':'Add'}} Proposal</v-btn>
         <a :href="project.github_link" target="_blank" class="dashline">
           <v-icon class="mx-2">fa-github</v-icon>
         </a>
@@ -25,7 +25,11 @@
           <ProjectCreateUpdate :mode="'update'" :updateId="project.id" :key="project.id" @close_dialog="editDialog = false"/>
         </v-dialog>
         <v-dialog v-if="showProposalDialogButton" v-model="proposalDialog" max-width="900">
-          <ProposalCreateUpdate :mode="'apply'" :projectId="project.id" @close_dialog="proposalDialog = false"/>
+          <ProposalCreateUpdate
+            :mode="$route.name === 'Dashboard' ? 'update':'apply'"
+            :updateId="getProposalUpdateIdByProjectId(project.id)"
+            :projectId="project.id"
+            @close_dialog="proposalDialog = false"/>
         </v-dialog>
       </div>
     </v-layout>
@@ -74,6 +78,7 @@
     },
     computed: {
       ...mapGetters('mentorList', ['mentorList']),
+      ...mapGetters('proposalList', ['studentProposalList']),
       ...mapGetters('auth', ['isLoggedIn']),
       chips () {
         return this.project.technologies
@@ -84,10 +89,14 @@
     },
     methods: {
       ...mapActions('mentorList', ['fetchMentorList']),
+      ...mapActions('proposalList', ['fetchProposalList']),
       getMentorNameById (mentorId) {
         const mentor = this.mentorList.find(mentor => mentor.id === mentorId)
         if (mentor) return `${mentor.first_name} ${mentor.last_name}`
         else return ''
+      },
+      getProposalUpdateIdByProjectId (projectId) {
+        return this.studentProposalList.find(proposal => proposal.project === projectId).id || null
       },
       remove () {
         this.$httpClient.delete(`/api/project/projects/${this.project.id}/`).then(response => {
@@ -98,6 +107,7 @@
       }
     },
     mounted () {
+      if (!this.studentProposalList.length) this.fetchProposalList()
       if (!this.mentorList.length) this.fetchMentorList()
     }
   }

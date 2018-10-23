@@ -27,6 +27,8 @@ const getters = {
   projectList: (state, getters) => state.projectList[0] ? state.projectList : [],
   mentorProjectList: (state, getters, rootState, rootGetters) => state.projectList
     .filter(project => project.mentors.indexOf(rootGetters['mentorProfile/mentorProfile'].id) >= 0),
+  studentProjectList: (state, getters, rootState, rootGetters) => state.projectList
+    .filter(project => project.students.indexOf(rootGetters['studentProfile/studentProfile'].id) >= 0),
   filteredProjectList: (state, getters) => {
     if (state.filterString.length > 2 && state.filterString.replace(/\s/g, '').length) {
       return state.filterString
