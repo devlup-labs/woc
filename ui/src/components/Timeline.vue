@@ -64,20 +64,20 @@
           },
           {
             startTime: new Date('2018-10-17T00:00:00'),
-            endTime: new Date('2018-10-24T23:59:59'),
+            endTime: new Date('2018-10-25T23:59:59'),
             title: 'Proposal Period',
             description: 'During this period students start preparing proposals for the projects and get it verified' +
               ' by the mentors. At the end of this period, student registrations will close.'
           },
           {
-            startTime: new Date('2018-10-25T00:00:00'),
-            endTime: new Date('2018-10-25T00:00:00'),
+            startTime: new Date('2018-10-26T00:00:00'),
+            endTime: new Date('2018-10-26T00:00:00'),
             title: 'Student Projects Announced',
             description: 'Students selected for the program are announced along with their projects.'
           },
           {
-            startTime: new Date('2018-10-26T00:00:00'),
-            endTime: new Date('2018-10-26T00:00:00'),
+            startTime: new Date('2018-10-27T00:00:00'),
+            endTime: new Date('2018-10-27T00:00:00'),
             title: 'Coding Begins',
             description: 'Students start coding their projects under the guidance of their mentors.'
           },
