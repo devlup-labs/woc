@@ -106,6 +106,7 @@
       ...mapActions('mentorList', ['fetchMentorList']),
       ...mapActions('studentList', ['fetchStudentList']),
       ...mapActions('proposalList', ['fetchProposalList']),
+      ...mapActions('studentProfile', ['fetchStudentProfile']),
       getMentorNameById (mentorId) {
         const mentor = this.mentorList.find(mentor => mentor.id === mentorId)
         if (mentor) return `${mentor.first_name} ${mentor.last_name}`
@@ -135,6 +136,7 @@
       if (!this.fetchStudentList.length) this.fetchStudentList()
       if (!this.studentProposalList.length) this.fetchProposalList()
       if (!this.mentorList.length) this.fetchMentorList()
+      if (!this.studentProfile.id) this.fetchStudentProfile()
     }
   }
 </script>
