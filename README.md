@@ -1,7 +1,7 @@
 # WoC ![Status active](https://img.shields.io/badge/Status-active%20development-2eb3c1.svg) ![Django 2.1.2](https://img.shields.io/badge/Django-2.1.2-green.svg) ![Python 3.6](https://img.shields.io/badge/Python-3.6-blue.svg)
-[![Build Status](https://travis-ci.org/devlup-labs/woc.svg?branch=master)](https://travis-ci.org/devlup-labs/woc) [![Coverage Status](https://coveralls.io/repos/github/devlup-labs/woc/badge.svg?branch=master)](https://coveralls.io/github/devlup-labs/woc?branch=master)
+[![Build Status](https://travis-ci.org/devlup-labs/woc.svg?branch=master)](https://travis-ci.org/devlup-labs/woc) [![Coverage Status](https://coveralls.io/repos/github/devlup-labs/woc/badge.svg?branch=master)](https://coveralls.io/github/devlup-labs/woc?branch=master) 
 ## Main website for Winter Of Code Projects
-
+![Dashboard](ui/dashboard.png)
 ### Installation:
 Requirements:
 - Python 3.6 runtime
