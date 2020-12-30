@@ -1,0 +1,8 @@
+**/node_modules/
+.travis.yml
+.env
+.env.example
+.git/
+.gitignore
+.idea/
+.gitmodules

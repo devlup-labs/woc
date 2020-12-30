@@ -13,7 +13,7 @@ psycopg2 = "==2.7.5"
 
 [dev-packages]
 flake8 = "==3.5.0"
-drf-yasg = "*"
+drf-yasg = "==1.10.0"
 flex = "*"
 coveralls = "*"
 swagger-spec-validator = "*"

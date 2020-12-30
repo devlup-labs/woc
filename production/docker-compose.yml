@@ -1,0 +1,84 @@
+version: '3'
+services:
+  django:
+    build:
+      context: ../src
+      dockerfile: Dockerfile.prod
+    image: 'woc-src-1:latest'
+    container_name: django
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - DB_HOST=postgresql
+      - MODE=Production
+      - PORT=8000
+      - REDIS_HOST=redis
+    ports:
+      - 8000:8000
+    volumes:
+      - django_static_files:/app/staticfiles
+      - django_media_files:/app/media
+      - ../src:/app
+    depends_on:
+      - postgresql
+      - redis
+    networks:
+      - app-network
+    command: gunicorn -b :8000 woc.wsgi
+
+  vue:
+    build:
+      context: ../ui
+      dockerfile: Dockerfile.prod
+    image: 'woc-ui-1:latest'
+    container_name: vue
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - BACKEND_HOST=django
+    ports:
+    - 80:80
+    volumes:
+    - django_static_files:/usr/share/nginx/html/static
+    - django_media_files:/usr/share/nginx/html/media
+    depends_on:
+      - django
+    networks:
+      - app-network
+  
+  postgresql:
+    image: 'bitnami/postgresql:latest'
+    container_name: postgresql
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - POSTGRESQL_USERNAME=$DB_USER
+      - POSTGRESQL_PASSWORD=$DB_PASSWORD
+      - POSTGRESQL_DATABASE=$DB_NAME
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $DB_USER"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - dbdata:/bitnami/postgresql
+    networks:
+      - app-network
+  
+  redis:
+    image: redis:alpine
+    container_name: redis01
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
+  django_static_files:
+  django_media_files:
+    driver: local
