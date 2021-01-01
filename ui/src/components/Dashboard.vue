@@ -100,6 +100,8 @@
             black-text
           >
             Do not register as a mentor if you want to participate as a student!
+
+            <a href="#" style="color: white;" @click="showMentor()"> Register as a student</a>
           </v-alert>
         </v-card>
       </v-flex>
@@ -114,7 +116,9 @@
             black-text
           >
             Do not register as a student if you want to be a mentor!
-          </v-alert>
+
+            <a href="#" style="color: white;" @click="showMentor()"> Register as a mentor</a>          
+	 </v-alert>
         </v-card>
       </v-flex>
     </v-layout>
@@ -176,6 +180,10 @@
       ...mapActions('projectList', [
         'fetchProjectList'
       ]),
+      showMentor () {
+        this.showCreateStudentProfileDialogue = !this.showCreateStudentProfileDialogue
+        this.showCreateMentorProfileDialogue = !this.showCreateMentorProfileDialogue
+      },
       fetchUserType () {
         this.$httpClient.get('/api/account/user/current/').then(response => {
           this.user = response.data

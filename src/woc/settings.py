@@ -167,7 +167,6 @@ LOGIN_ERROR_URL = '/sign-in'
 SOCIAL_AUTH_GOOGLE_OAUTH2_LOGIN_ERROR_URL = '/sign-in'
 
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
 

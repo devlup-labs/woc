@@ -7,7 +7,7 @@
             <v-card>
               <v-card-title primary-title>
                 <v-flex row justify-center>
-                  <a href="/login/google-oauth2/?next=/dashboard" class="text-decoration-none">
+                  <a href="/login/?next=/dashboard" class="text-decoration-none">
                     <div class="google-sign-in"><img :src="signInImage" alt="sign-in-image"></div>
                   </a>
                 </v-flex>

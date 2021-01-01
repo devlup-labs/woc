@@ -10,6 +10,7 @@ django-cleanup = "==2.1.0"
 social-auth-app-django = "==2.1.0"
 djangorestframework = "==3.8.2"
 psycopg2 = "==2.7.5"
+requests = "*"
 
 [dev-packages]
 flake8 = "==3.5.0"
