@@ -2,15 +2,16 @@
   <div>
     <v-parallax
       dark
-      :src="banner"
       fill-height
+      style = "background: #222"
     >
+      <div id="snow"><canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;" width="1907" height="942"></canvas></div>
       <v-layout
         align-center
         column
         justify-center
       >
-        <h1 class="display-3 text-xs-center">Winter Of Code</h1>
+        <h1 class="text-xs-center">Winter Of Code</h1>
         <h2 class="font-weight-thin">Organised By</h2>
         <h2 class="display-1">Devlup Labs</h2>
       </v-layout>
@@ -185,4 +186,19 @@
   .text-decoration-none {
     text-decoration: none;
   }
+
+  #snow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+h1 {
+    font-family: "Righteous", cursive;
+    display: block;
+    font-size: 5.5rem;
+    align-self: center;
+    text-align: center;
+    padding-bottom: 15px;
+}
 </style>
