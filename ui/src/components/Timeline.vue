@@ -504,7 +504,7 @@ h4 {
 		-webkit-animation: cd-bounce-2-inverse .6s;
 		-moz-animation: cd-bounce-2-inverse .6s;
 		animation: cd-bounce-2-inverse .6s;
-    width:50%
+    width:43%
 	}
 }
 
