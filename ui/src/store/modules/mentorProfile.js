@@ -5,6 +5,7 @@ const state = {
     id: '',
     phone: '',
     github: '',
+    linked_in:'',
     gender: '',
     is_approved: '',
     user: '',
@@ -49,6 +50,9 @@ const mutations = {
   'SET_GITHUB' (state, github) {
     state.mentorProfile.github = github
   },
+   'SET_LINKED_IN' (state, linked_in) {
+    state.studentProfile.linked_in = linked_in
+  },
   'SET_GENDER' (state, gender) {
     state.mentorProfile.gender = gender
   },
@@ -75,6 +79,7 @@ const actions = {
       httpClient.patch(`/api/account/mentor-profile/${state.mentorProfile.id}/`, {
         phone: state.mentorProfile.phone,
         github: state.mentorProfile.github,
+        linked_in:state.studentProfile.linked_in,
         gender: state.mentorProfile.gender,
         about_me: state.mentorProfile.about_me
       }).then(response => {
@@ -95,6 +100,7 @@ const actions = {
   setLastName: ({commit}, lastName) => commit('SET_LAST_NAME', lastName),
   setPhone: ({commit}, phone) => commit('SET_PHONE', phone),
   setGithub: ({commit}, github) => commit('SET_GITHUB', github),
+  setLinkedIn: ({commit}, linked_in) => commit('SET_LINKED_IN', linked_in),
   setGender: ({commit}, gender) => commit('SET_GENDER', gender),
   setAboutMe: ({commit}, aboutMe) => commit('SET_ABOUT_ME', aboutMe)
 }
