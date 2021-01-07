@@ -30,7 +30,7 @@ class MentorsListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MentorProfile
-        fields = ('id', 'first_name', 'last_name', 'email', 'phone', 'about_me')
+        fields = ('id', 'first_name', 'last_name', 'email', 'phone', 'about_me','github')
 
 
 class StudentsListSerializer(serializers.ModelSerializer):
