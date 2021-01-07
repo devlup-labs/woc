@@ -46,6 +46,12 @@
                             </v-list-tile-content>
                           </v-list-tile>
                         </v-list>
+                        <v-flex>
+                        <a :href="{{mentor.github}}">
+                         <v-icon class="mx-2">fa-github</v-icon></a>
+                         <a :href="{{mentor.linked_in}}">
+                         <v-icon class="mx-2"> fa-linkedin</v-icon></a>
+                        </v-flex>
                         <v-flex><p>{{mentor.about_me}}</p></v-flex>
                       </v-layout>
                     </v-card-text>
