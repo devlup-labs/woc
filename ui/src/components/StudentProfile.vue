@@ -68,7 +68,7 @@
                                 label="Github Link"></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field prepend-icon="fa-linkedin" :value="mentorProfile.linked_in" @input="setLinkedIn" name="Linked In"
+                  <v-text-field prepend-icon="fa-linkedin" :value="studentProfile.linked_in" @input="setLinkedIn" name="Linked In"
                                 :rules="[rules.url]"
                                 label="LinkedIn Link"></v-text-field>
                 </v-flex>
