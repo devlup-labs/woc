@@ -79,7 +79,7 @@ const actions = {
       httpClient.patch(`/api/account/mentor-profile/${state.mentorProfile.id}/`, {
         phone: state.mentorProfile.phone,
         github: state.mentorProfile.github,
-        linked_in:state.studentProfile.linked_in,
+        linked_in:state.mentorProfile.linked_in,
         gender: state.mentorProfile.gender,
         about_me: state.mentorProfile.about_me
       }).then(response => {
