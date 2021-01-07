@@ -61,6 +61,11 @@
                                 :rules="[rules.url]"
                                 label="Github Link"></v-text-field>
                 </v-flex>
+                <v-flex xs12>
+                  <v-text-field prepend-icon="fa-linkedin" :value="mentorProfile.linke_in" @input="setLinkedIn" name="Linked In"
+                                :rules="[rules.url]"
+                                label="LinkedIn Link"></v-text-field>
+                </v-flex>
               </v-layout>
             </v-form>
             <v-card-actions>
@@ -110,6 +115,7 @@
         'setLastName',
         'setPhone',
         'setGithub',
+        'setLinkedIn',
         'setGender',
         'setAboutMe'
       ])
