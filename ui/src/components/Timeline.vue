@@ -14,7 +14,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="#fff" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.834 9.686l-4.166.575 3.032 2.914-.74 4.139 3.708-1.982 3.708 1.983-.74-4.139 3.032-2.915-4.166-.575-1.834-3.784-1.834 3.784z"></path></svg>
         </span>
         <div class="vertical-timeline-element-content is-hidden" style="background: rgb(25 118 210); color: rgb(255, 255, 255);">
-          <div class="vertical-timeline-element-content-arrow" style="border-right: 7px solid rgb(46, 204, 113);"></div>
+          <div class="vertical-timeline-element-content-arrow" style="border-right: 7px solid rgb(25 118 210);"></div>
           <h3 class="vertical-timeline-element-title">{{t.title}}</h3>
           <p id="vertical-timeline-element-description">{{t.description}}</p>
           <span class="vertical-timeline-element-date">{{getEventTimestamp(t)}}</span>
