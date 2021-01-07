@@ -89,8 +89,7 @@
   .card--flex-toolbar {
     margin-top: -64px;
   }
-
-  .v-list__tile__content > a {
+  a {
     text-decoration: none;
   }
 </style>
