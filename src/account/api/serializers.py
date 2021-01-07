@@ -6,7 +6,7 @@ from account.models import StudentProfile, MentorProfile
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'first_name', 'last_name', 'email', 'github', 'linked_in')
+        fields = ('id', 'first_name', 'last_name', 'email')
 
 
 class StudentProfileSerializer(serializers.ModelSerializer):
