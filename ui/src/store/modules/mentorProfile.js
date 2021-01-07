@@ -51,7 +51,7 @@ const mutations = {
     state.mentorProfile.github = github
   },
    'SET_LINKED_IN' (state, linked_in) {
-    state.studentProfile.linked_in = linked_in
+    state.mentorProfile.linked_in = linked_in
   },
   'SET_GENDER' (state, gender) {
     state.mentorProfile.gender = gender
