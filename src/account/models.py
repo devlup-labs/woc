@@ -16,6 +16,7 @@ class BaseProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, validators=[phone_validator], help_text='A valid mobile number')
     github = models.URLField(help_text='Github link of user')
+    linked_in = models.URLField(help_text='LinkedIn link of user', null=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, help_text='Gender')
 
     class Meta:
