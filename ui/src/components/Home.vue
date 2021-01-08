@@ -100,8 +100,8 @@
         <v-flex xs8 sm6>
           <v-layout column>
             <v-btn outline large color="secondary" :to="{name: 'HowItWorks'}">See Program Timeline</v-btn>
-            <v-btn outline large color="secondary" :href="studentManual">Student Manual</v-btn>
-            <v-btn outline large color="secondary" :href="mentorManual">Mentor Manual</v-btn>
+            <v-btn outline large color="secondary" href="https://docs.google.com/document/d/1gEqAEqHeZ3yEttyf7tLSk4G5Vpsnw1KoQG6bGnt05g8/edit?usp=sharing" target="_blank">Student Manual</v-btn>
+            <v-btn outline large color="secondary" href="https://docs.google.com/document/d/1pIufOhgP-RHsxR1KMJdJLtziSQetC33b980FAzD6fTA/edit?usp=sharing" target="_blank">Mentor Manual</v-btn>
           </v-layout>
         </v-flex>
       </v-layout>
@@ -159,7 +159,15 @@
                     </v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
-              </v-list>
+               <v-list-tile>
+			<v-list-tile-content>
+				<v-list-tile-title>
+<a href="https://www.hitwebcounter.com" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7735505&style=0024&nbdigits=5&type=page&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a>    
+				</v-list-tile-title>
+			</v-list-tile-content>
+		</v-list-tile> 
+             </v-list>
             </v-card>
           </v-layout>
         </v-flex>
