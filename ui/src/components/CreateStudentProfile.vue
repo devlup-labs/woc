@@ -107,7 +107,10 @@
       branchItems () {
         return [
           {label: 'Computer Science and Engineering', value: 'CSE'},
-          {label: 'Artificial Intelligence and Data Science ', value: 'CSE'},
+          {label: 'Artificial Intelligence and Data Science ', value: 'AI'},
+          {label: 'Chemical Engineering ', value: 'CH'},
+          {label: 'Civil and Infrastructure Engineering ', value: 'CI'},
+          {label: 'Materials Engineering ', value: 'MT'},
           {label: 'Electrical Engineering', value: 'EE'},
           {label: 'Mechanical Engineering', value: 'ME'},
           {label: 'BioScience and BioTechnology', value: 'BB'}
