@@ -28,7 +28,11 @@ class StudentProfile(BaseProfile):
         ('CSE', 'Computer Science and Engineering'),
         ('EE', 'Electrical Engineering'),
         ('ME', 'Mechanical Engineering'),
-        ('BB', 'BioScience and BioTechnology')
+        ('BB', 'BioScience and BioTechnology'),
+        ('CI', 'Civil and Infrastructure Engineering'),
+        ('CH', 'Chemical Engineering'),
+        ('AI', 'Artificial Intelligence and Data Science'),
+        ('MT', 'Materials Engineering'),
     )
     YEAR_CHOICES = (
         ('1', '1st Year'),
