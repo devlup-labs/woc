@@ -37,7 +37,7 @@ services:
     environment:
       - BACKEND_HOST=django
     ports:
-    - 80:80
+    - 8088:80
     volumes:
     - django_static_files:/usr/share/nginx/html/static
     - django_media_files:/usr/share/nginx/html/media
