@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': config('DB_HOST'),
         'PORT': '',
     }
 }
@@ -167,7 +167,6 @@ LOGIN_ERROR_URL = '/sign-in'
 SOCIAL_AUTH_GOOGLE_OAUTH2_LOGIN_ERROR_URL = '/sign-in'
 
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
 

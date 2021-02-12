@@ -1,0 +1,80 @@
+version: '3'
+services:
+  django:
+    build:
+      context: src
+      dockerfile: Dockerfile
+    image: 'dl-woc-django:latest'
+    container_name: django
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - DB_HOST=postgresql
+      - MODE=Development-docker
+      - REDIS_HOST=redis
+    ports:
+      - 8000:8000
+    volumes:
+      - ./src:/app
+    depends_on:
+      - postgresql
+      - redis
+    networks:
+      - app-network
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python manage.py flush --no-input
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8000
+  vue:
+    build:
+      context: ui
+      dockerfile: Dockerfile
+    image: 'dl-woc-vue:latest'
+    container_name: vue
+    restart: unless-stopped
+    ports:
+    - 8080:8080
+    volumes:
+    - ./ui:/app
+    - /app/node_modules
+    depends_on:
+      - django
+    networks:
+      - app-network
+    command: npm run dev
+  postgresql:
+    image: 'bitnami/postgresql:latest'
+    container_name: postgresql
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - POSTGRESQL_USERNAME=$DB_USER
+      - POSTGRESQL_PASSWORD=$DB_PASSWORD
+      - POSTGRESQL_DATABASE=$DB_NAME
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $DB_USER"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - dbdata:/bitnami/postgresql
+    networks:
+      - app-network
+  redis:
+    image: redis:alpine
+    container_name: redis01
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:

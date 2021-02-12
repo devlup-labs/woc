@@ -16,6 +16,7 @@ class BaseProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, validators=[phone_validator], help_text='A valid mobile number')
     github = models.URLField(help_text='Github link of user')
+    linked_in = models.URLField(help_text='LinkedIn link of user', null=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, help_text='Gender')
 
     class Meta:
@@ -27,7 +28,11 @@ class StudentProfile(BaseProfile):
         ('CSE', 'Computer Science and Engineering'),
         ('EE', 'Electrical Engineering'),
         ('ME', 'Mechanical Engineering'),
-        ('BB', 'BioScience and BioTechnology')
+        ('BB', 'BioScience and BioTechnology'),
+        ('CI', 'Civil and Infrastructure Engineering'),
+        ('CH', 'Chemical Engineering'),
+        ('AI', 'Artificial Intelligence and Data Science'),
+        ('MT', 'Materials Engineering'),
     )
     YEAR_CHOICES = (
         ('1', '1st Year'),

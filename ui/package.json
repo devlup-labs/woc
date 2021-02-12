@@ -5,7 +5,7 @@
   "author": "ajatprabha <ajat.prabha.leo@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --host 0.0.0.0 --inline --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
@@ -19,6 +19,7 @@
     "jquery": "^3.3.1",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
+    "particles.js": "^2.0.0",
     "popper.js": "^1.14.4",
     "vue": "^2.5.2",
     "vue-analytics": "^5.16.0",

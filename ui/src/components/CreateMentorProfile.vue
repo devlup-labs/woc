@@ -44,6 +44,10 @@
                 <v-text-field prepend-icon="fa-github" v-model="profile.github" name="github_link"
                               :rules="[rules.required, rules.url]" label="Github Link"/>
               </v-flex>
+               <v-flex xs12>
+                <v-text-field prepend-icon="fa-linkedin" v-model="profile.linked_in" name="linked_in_link"
+                              :rules="[rules.required, rules.url]" label="LinkedIn Link"/>
+              </v-flex>
             </v-layout>
           </v-form>
           <v-card-actions>
@@ -74,6 +78,7 @@
           gender: null,
           phone: null,
           github: null,
+          linked_in:null,
           about_me: null,
           past_experience: null
         },
@@ -101,6 +106,7 @@
             user: this.localUser.id,
             phone: this.profile.phone,
             github: this.profile.github,
+            linked_in: this.profile.linked_in,
             gender: this.profile.gender,
             about_me: this.profile.about_me,
             past_experience: this.profile.past_experience

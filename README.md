@@ -7,7 +7,7 @@ Requirements:
 - Python 3.6 runtime
 - Django 2.1.2
 - Other dependencies in `Pipfile`
-
+why are you bad
 > For Vuetify UI build steps, follow [this](ui/README.md)
 
 Procedure:

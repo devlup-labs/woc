@@ -2,10 +2,11 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.contrib.auth.views import LogoutView
-from .views import VueView
+from .views import VueView, LoginView
 
 urlpatterns = [
-    path('', include('social_django.urls', namespace='social')),
+    # path('', include('social_django.urls', namespace='social')),
+    path('login/', LoginView.as_view(),name='login'),
     path('logout/', LogoutView.as_view(next_page='/sign-in'), name='logout'),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls'))

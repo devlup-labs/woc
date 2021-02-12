@@ -67,6 +67,11 @@
                                 :rules="[rules.url]"
                                 label="Github Link"></v-text-field>
                 </v-flex>
+                <v-flex xs12>
+                  <v-text-field prepend-icon="fa-linkedin" :value="studentProfile.linked_in" @input="setLinkedIn" name="Linked In"
+                                :rules="[rules.url]"
+                                label="LinkedIn Link"></v-text-field>
+                </v-flex>
               </v-layout>
             </v-form>
             <v-card-actions>
@@ -109,6 +114,10 @@
       branchItems () {
         return [
           {label: 'Computer Science and Engineering', value: 'CSE'},
+          {label: 'Artificial Intelligence and Data Science ', value: 'AI'},
+          {label: 'Chemical Engineering ', value: 'CH'},
+          {label: 'Civil and Infrastructure Engineering ', value: 'CI'},
+          {label: 'Materials Engineering ', value: 'MT'},
           {label: 'Electrical Engineering', value: 'EE'},
           {label: 'Mechanical Engineering', value: 'ME'},
           {label: 'BioScience and BioTechnology', value: 'BB'}
@@ -131,6 +140,7 @@
         'setLastName',
         'setPhone',
         'setGithub',
+        'setLinkedIn',
         'setGender',
         'setYear',
         'setBranch'

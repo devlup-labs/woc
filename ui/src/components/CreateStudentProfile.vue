@@ -55,6 +55,10 @@
                 <v-text-field prepend-icon="fa-github" v-model="profile.github" name="github_link"
                               :rules="[rules.required, rules.url]" label="Github Link"/>
               </v-flex>
+               <v-flex xs12>
+                <v-text-field prepend-icon="fa-linkedin" v-model="profile.linked_in" name="linked_in_link"
+                              :rules="[rules.required, rules.url]" label="LinkedIn Link"/>
+              </v-flex>
             </v-layout>
           </v-form>
           <v-card-actions>
@@ -85,6 +89,7 @@
           gender: null,
           phone: null,
           github: null,
+          linked_in: null,
           about_me: null,
           past_experience: null
         },
@@ -102,6 +107,10 @@
       branchItems () {
         return [
           {label: 'Computer Science and Engineering', value: 'CSE'},
+          {label: 'Artificial Intelligence and Data Science ', value: 'AI'},
+          {label: 'Chemical Engineering ', value: 'CH'},
+          {label: 'Civil and Infrastructure Engineering ', value: 'CI'},
+          {label: 'Materials Engineering ', value: 'MT'},
           {label: 'Electrical Engineering', value: 'EE'},
           {label: 'Mechanical Engineering', value: 'ME'},
           {label: 'BioScience and BioTechnology', value: 'BB'}
@@ -127,6 +136,7 @@
             user: this.localUser.id,
             phone: this.profile.phone,
             github: this.profile.github,
+            linked_in: this.profile.linked_in,
             gender: this.profile.gender,
             branch: this.profile.branch,
             year: this.profile.year

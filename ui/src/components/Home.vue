@@ -1,20 +1,25 @@
 <template>
   <div>
-    <v-parallax
-      dark
-      :src="banner"
-      fill-height
+    <div id="particles-js">
+
+
+    </div>
+    <v-layout
+      align-center
+      column
+      justify-center
+
+      style="
+  color: #ffffff;
+  position: absolute;
+  text-align: center;
+  top: 10%;
+  width: 100%;"
     >
-      <v-layout
-        align-center
-        column
-        justify-center
-      >
-        <h1 class="display-3 text-xs-center">Winter Of Code</h1>
-        <h2 class="font-weight-thin">Organised By</h2>
-        <h2 class="display-1">Devlup Labs</h2>
-      </v-layout>
-    </v-parallax>
+      <h1 class="display-4  text-xs-center" style="font-weight: bold">Winter Of Code</h1>
+      <h2 class="font-weight-thin">Organised By</h2>
+      <h2 class="display-1">Devlup Labs</h2>
+    </v-layout>
     <v-layout
       column
       wrap
@@ -95,8 +100,8 @@
         <v-flex xs8 sm6>
           <v-layout column>
             <v-btn outline large color="secondary" :to="{name: 'HowItWorks'}">See Program Timeline</v-btn>
-            <v-btn outline large color="secondary" :href="studentManual">Student Manual</v-btn>
-            <v-btn outline large color="secondary" :href="mentorManual">Mentor Manual</v-btn>
+            <v-btn outline large color="secondary" href="https://docs.google.com/document/d/1gEqAEqHeZ3yEttyf7tLSk4G5Vpsnw1KoQG6bGnt05g8/edit?usp=sharing" target="_blank">Student Manual</v-btn>
+            <v-btn outline large color="secondary" href="https://docs.google.com/document/d/1pIufOhgP-RHsxR1KMJdJLtziSQetC33b980FAzD6fTA/edit?usp=sharing" target="_blank">Mentor Manual</v-btn>
           </v-layout>
         </v-flex>
       </v-layout>
@@ -154,7 +159,15 @@
                     </v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
-              </v-list>
+               <v-list-tile>
+			<v-list-tile-content>
+				<v-list-tile-title>
+<a href="https://www.hitwebcounter.com" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7735505&style=0024&nbdigits=5&type=page&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a>    
+				</v-list-tile-title>
+			</v-list-tile-content>
+		</v-list-tile> 
+             </v-list>
             </v-card>
           </v-layout>
         </v-flex>
@@ -167,6 +180,7 @@
   import codeImage from '../assets/programming-1873854_1280.png'
   import mentorManual from '../assets/manuals/MentorManual.pdf'
   import studentManual from '../assets/manuals/StudentManual.pdf'
+  import 'particles.js'
 
   export default {
     name: 'Home',
@@ -177,7 +191,124 @@
         mentorManual,
         studentManual
       }
+    },
+  methods: {
+    initParticles () {
+      window.particlesJS('particles-js', {
+        'particles': {
+          'number': {
+            'value': 400,
+            'density': {
+              'enable': true,
+              'value_area': 800
+            }
+          },
+          'color': {
+            'value': '#fff'
+          },
+          'shape': {
+            'type': 'circle',
+            'stroke': {
+              'width': 0,
+              'color': '#000000'
+            },
+            'polygon': {
+              'nb_sides': 5
+            },
+            'image': {
+              'src': 'img/github.svg',
+              'width': 100,
+              'height': 100
+            }
+          },
+          'opacity': {
+            'value': 0.7417987831343363,
+            'random': true,
+            'anim': {
+              'enable': false,
+              'speed': 1,
+              'opacity_min': 0.1,
+              'sync': false
+            }
+          },
+          'size': {
+            'value': 6,
+            'random': true,
+            'anim': {
+              'enable': false,
+              'speed': 40,
+              'size_min': 0.1,
+              'sync': false
+            }
+          },
+          'line_linked': {
+            'enable': false,
+            'distance': 500,
+            'color': '#ffffff',
+            'opacity': 0.4,
+            'width': 2
+          },
+          'move': {
+            'enable': true,
+            'speed': 6,
+            'direction': 'bottom',
+            'random': false,
+            'straight': false,
+            'out_mode': 'out',
+            'bounce': false,
+            'attract': {
+              'enable': false,
+              'rotateX': 600,
+              'rotateY': 1200
+            }
+          }
+        },
+        'interactivity': {
+          'detect_on': 'canvas',
+          'events': {
+            'onhover': {
+              'enable': true,
+              'mode': 'bubble'
+            },
+            'onclick': {
+              'enable': true,
+              'mode': 'repulse'
+            },
+            'resize': true
+          },
+          'modes': {
+            'grab': {
+              'distance': 400,
+              'line_linked': {
+                'opacity': 0.5
+              }
+            },
+            'bubble': {
+              'distance': 400,
+              'size': 4,
+              'duration': 0.3,
+              'opacity': 1,
+              'speed': 3
+            },
+            'repulse': {
+              'distance': 200,
+              'duration': 0.4
+            },
+            'push': {
+              'particles_nb': 4
+            },
+            'remove': {
+              'particles_nb': 2
+            }
+          }
+        },
+        'retina_detect': true
+      })
     }
+  },
+  mounted () {
+    this.initParticles()
+  }
   }
 </script>
 
@@ -185,4 +316,19 @@
   .text-decoration-none {
     text-decoration: none;
   }
+
+#particles-js {
+  /*position: absolute;*/
+  width: 100%;
+  height: 100vh;
+  background: #085bb3;
+}
+h1 {
+    font-family: "Righteous", cursive;
+    display: block;
+    font-size: 5.5rem;
+    align-self: center;
+    text-align: center;
+    padding-bottom: 15px;
+}
 </style>
