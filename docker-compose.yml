@@ -1,0 +1,74 @@
+version: '3'
+services:
+  django:
+    build:
+      context: src
+      dockerfile: Dockerfile
+    image: 'soc-backend:latest'
+    container_name: django_soc
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - DB_HOST=postgresql
+      - MODE=Development-docker
+    ports:
+      - 8000:8000
+    volumes:
+      - ./src:/app
+    depends_on:
+      - postgresql
+    networks:
+      - app-network
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8000
+  vue:
+    build:
+      context: ui
+      dockerfile: Dockerfile
+    image: 'soc-frontend:latest'
+    container_name: vue_soc
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - BACKEND_HOST=django
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+    - 8080:8080
+    volumes:
+    - ./ui:/app
+    - /app/node_modules
+    depends_on:
+      - django
+    networks:
+      - app-network
+    command: npm run dev
+  postgresql:
+    image: 'bitnami/postgresql:latest'
+    container_name: postgresql_soc
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - POSTGRESQL_USERNAME=$DB_USER
+      - POSTGRESQL_PASSWORD=$DB_PASSWORD
+      - POSTGRESQL_DATABASE=$DB_NAME
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $DB_USER"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - dbdata:/bitnami/postgresql
+    networks:
+      - app-network
+  
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:

@@ -6,8 +6,8 @@ from django.urls import path
 app_name = 'account'
 
 router = DefaultRouter()
-router.register(r'student-profile', StudentProfileViewSet, base_name='student-profile')
-router.register(r'mentor-profile', MentorProfileViewSet, base_name='mentor-profile')
-router.register(r'user', UserViewSet, base_name='user')
+router.register(r'student-profile', StudentProfileViewSet, basename='student-profile')
+router.register(r'mentor-profile', MentorProfileViewSet, basename='mentor-profile')
+router.register(r'user', UserViewSet, basename='user')
 
 urlpatterns = router.urls + [path('auth-check/', AuthenticationCheckAPIView.as_view(), name='auth-check')]
