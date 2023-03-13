@@ -12,6 +12,7 @@ djangorestframework = "*"
 psycopg2 = "*"
 drf-yasg = "*"
 django-cors-headers = "*"
+config = "*"
 
 [dev-packages]
 flake8 = "*"
