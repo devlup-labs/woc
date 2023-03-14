@@ -1,7 +1,7 @@
 <template>
-  <v-card class="transparent" flat>
+  <v-card class="transparent" flat style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
     <v-card-title>
-      <p class="display-1">Frequently Asked Questions</p>
+      <p class="display-1" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">Frequently Asked Questions</p>
     </v-card-title>
     <v-card-text>Student FAQs</v-card-text>
     <v-expansion-panel popout>
@@ -42,11 +42,11 @@
               'mandatory for the mentor to use students\' code'
           },
           {
-            question: 'Where will WoC happen?',
-            answer: 'WoC occurs entirely online; you don\'t need to leave your room.'
+            question: 'Where will SoC happen?',
+            answer: 'SoC occurs entirely online; you don\'t need to leave your room.'
           },
           {
-            question: 'Can I participate in WoC as both a mentor and a student?',
+            question: 'Can I participate in SoC as both a mentor and a student?',
             answer: 'No. It\'ll not be feasible to work as both and it can hamper the chances of project\'s completion.'
           },
           {
@@ -56,11 +56,11 @@
         ],
         studentFAQs: [
           {
-            question: 'When can students apply for WoC?',
+            question: 'When can students apply for SoC?',
             answer: 'Please see the program timeline in How It Works section for more detailed information.'
           },
           {
-            question: 'What programming language(s) should I know to participate in WoC?',
+            question: 'What programming language(s) should I know to participate in SoC?',
             answer: 'The programming language you need to know depends with which mentor you are interested in' +
               ' working with. You should be familiar with the programming language(s) used in that project.'
           },

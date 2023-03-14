@@ -3,16 +3,15 @@
     <v-parallax
       dark
       :src="banner"
-      fill-height
     >
       <v-layout
         align-center
         column
         justify-center
       >
-        <h1 class="display-3 text-xs-center">Winter Of Code</h1>
-        <h2 class="font-weight-thin">Organised By</h2>
-        <h2 class="display-1">Devlup Labs</h2>
+        <h1 class="display-3 text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important; color: black;">Spring Of Code</h1>
+        <h2 class="font-weight-thin" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important; color: black;">Organised By</h2>
+        <h2 class="display-1" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important; color: black;">Devlup Labs</h2>
       </v-layout>
     </v-parallax>
     <v-layout
@@ -21,12 +20,13 @@
       class="my-5"
       align-center
     >
-      <v-flex xs12 sm4 class="my-3">
+      <v-flex xs12 sm4 class="my-3" >
         <v-card-text class="text-xs-center">
-          <h2 class="headline">The best way to engage in open source development</h2>
+          <h2 class="headline" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
+            The best way to engage in open source development</h2>
         </v-card-text>
       </v-flex>
-      <v-flex xs12>
+      <v-flex xs12 style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
         <v-container grid-list-xl>
           <v-layout row wrap align-center>
             <v-flex xs12 md4>
@@ -35,11 +35,13 @@
                   <v-icon x-large class="primary--text text--lighten-1">supervisor_account</v-icon>
                 </div>
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline text-xs-center">Working with experienced mentors</div>
+                  <div class="headline text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
+                    Working with experienced mentors
+                  </div>
                 </v-card-title>
                 <v-card-text style="font-size: medium">
-                  WoC is a place where you don’t just get to apply your skills but also get to acquire a bunch of new
-                  ones. WoC introduces you to the open source world and building code collaboratively while working
+                  SoC is a place where you don’t just get to apply your skills but also get to acquire a bunch of new
+                  ones. SoC introduces you to the open source world and building code collaboratively while working
                   under experienced mentors.
                 </v-card-text>
               </v-card>
@@ -50,7 +52,9 @@
                   <v-icon x-large class="primary--text text--lighten-1">build</v-icon>
                 </div>
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">Learn development</div>
+                  <div class="headline" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
+                    Learn development
+                  </div>
                 </v-card-title>
                 <v-card-text style="font-size: medium">
                   Develop the project codebase. Write up test suites. Add third party integrations and lots of other
@@ -65,12 +69,14 @@
                   <v-icon x-large class="primary--text text--lighten-1">flash_on</v-icon>
                 </div>
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline text-xs-center">Contribute to Open Source</div>
+                  <div class="headline text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
+                    Contribute to Open Source
+                  </div>
                 </v-card-title>
                 <v-card-text style="font-size: medium">
                   During the 5 weeks of writing good code, you interact and share ideas with some great people. At the
                   end of it, you’ve made great interactions with the mentors, and finally get ready to compete in
-                  <a href="https://summerofcode.withgoogle.com" target="_blank" class="text-decoration-none">GSoC'19</a>.
+                  <a href="https://summerofcode.withgoogle.com" target="_blank" class="text-decoration-none">GSoC'23</a>.
                 </v-card-text>
               </v-card>
             </v-flex>
@@ -81,17 +87,17 @@
     <v-parallax :src="codeImage"
                 height="320" fill-height>
       <v-layout column align-center justify-center>
-        <div class="headline white--text mb-3 text-xs-center">Diving into open source development has never been
-          simpler.
+        <div class="headline white--text mb-3 text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
+          Diving into open source development has never been simpler.
         </div>
         <em>Now build something!</em>
       </v-layout>
     </v-parallax>
     <v-container grid-list-xl justify-center>
       <v-layout row wrap class="mt-5 "justify-center>
-        <p class="display-1 justify-center text-xs-center">Interested to know more?</p>
+        <p class="display-1 justify-center text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">Interested to know more?</p>
       </v-layout>
-      <v-layout row wrap class="mt-5 justify-center">
+      <v-layout row wrap class="mt-5 justify-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
         <v-flex xs8 sm6>
           <v-layout column>
             <v-btn outline large color="secondary" :to="{name: 'HowItWorks'}">See Program Timeline</v-btn>
@@ -101,9 +107,9 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-container grid-list-xl justify-center>
-      <v-layout row wrap class="mt-5 "justify-center>
-        <p class="display-1 justify-center text-xs-center">Login with your GMail account to register as a student</p>
+    <v-container grid-list-xl justify-center >
+      <v-layout row wrap class="mt-5 "justify-center >
+        <p class="display-1 justify-center text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">Login with your Gmail account to register as a student</p>
       </v-layout>
       <v-layout row wrap class="mt-5 justify-center">
         <v-flex xs8 sm6>
@@ -113,13 +119,13 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-container grid-list-xl>
+    <v-container grid-list-xl style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
       <v-layout row wrap justify-center class="my-5">
         <v-flex xs12 sm4>
           <v-layout justify-center align center>
             <v-card class="elevation-0 transparent">
               <v-card-title>
-                <div class="align-center display-2">Contact us</div>
+                <div class="align-center display-2" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">Contact us</div>
               </v-card-title>
               <v-list class="transparent">
                 <v-list-tile>
@@ -137,8 +143,8 @@
                     <i class="fa fa-slack fa-2x" aria-hidden="true"></i>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title><a href="https://iitjdg.slack.com"
-                                          class="text-decoration-none">Slack Group</a>
+                    <v-list-tile-title><a href="https://discord.gg/5kKqzGdhPP"
+                                          class="text-decoration-none">Discord</a>
                     </v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
@@ -148,8 +154,8 @@
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title>
-                      <a href="mailto:opensourceiitj@gmail.com?subject=[WoC]" class="text-decoration-none">
-                        opensourceiitj@gmail.com
+                      <a href="mailto:devluplabs@iitj.ac.in?subject=[SoC]" class="text-decoration-none">
+                        devluplabs@iitj.ac.in
                       </a>
                     </v-list-tile-title>
                   </v-list-tile-content>
@@ -163,7 +169,7 @@
   </div>
 </template>
 <script>
-  import banner from '../assets/snowflake-554635_1920.jpg'
+  import banner from '../assets/bg.png'
   import codeImage from '../assets/programming-1873854_1280.png'
   import mentorManual from '../assets/manuals/MentorManual.pdf'
   import studentManual from '../assets/manuals/StudentManual.pdf'

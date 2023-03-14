@@ -1,5 +1,5 @@
 <template>
-  <v-card class="fill-height" flat>
+  <v-card class="fill-height" flat style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
     <v-toolbar
       color="primary"
       dark
@@ -7,12 +7,12 @@
       flat
     >
     </v-toolbar>
-    <v-layout row justify-center pb-2>
+    <v-layout row justify-center pb-2 style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
       <v-flex xs11 sm10 md8>
         <v-card class="card--flex-toolbar">
           <v-card>
             <v-container grid-list-lg fluid>
-              <h2 class="headline primary--text mb-3">Projects</h2>
+              <h2 class="headline primary--text mb-3" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">Projects</h2>
               <v-layout v-if="filteredProjectList.length > 0">
                 <v-flex>
                   <v-card flat>
