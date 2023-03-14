@@ -22,7 +22,7 @@ services:
       - postgresql
     networks:
       - app-network
-    command: gunicorn -b :8000 config.wsgi
+    command: gunicorn -b :8000 woc.wsgi
 
   vue:
     build:

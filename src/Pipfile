@@ -13,6 +13,9 @@ psycopg2 = "*"
 drf-yasg = "*"
 django-cors-headers = "*"
 config = "*"
+dj-rest-auth = "*"
+djangorestframework-simplejwt = "*"
+django-filter = "*"
 
 [dev-packages]
 flake8 = "*"
