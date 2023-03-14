@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card flat style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
     <v-layout row>
       <h2>{{project.name}}</h2>
       <v-spacer></v-spacer>

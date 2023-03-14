@@ -12,6 +12,7 @@
           :key="i"
           @click=""
           :to="item.path"
+          style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;"
         >
           <v-list-tile-action>
             <v-icon>{{item.icon}}</v-icon>
@@ -30,9 +31,9 @@
       app
       fixed
     >
-      <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <span class="hidden-sm-and-down">Winter of Code</span>
+      <v-toolbar-title style="width: 300px" class="ml-0 pl-3" >
+        <v-toolbar-side-icon @click.stop="drawer = !drawer" ></v-toolbar-side-icon>
+        <span class="hidden-sm-and-down" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">Spring of Code</span>
       </v-toolbar-title>
       <v-text-field
         v-if="showSearch"

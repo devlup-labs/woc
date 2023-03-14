@@ -1,6 +1,6 @@
 <template>
-  <v-container align-center justify-center fill-height>
-      <v-flex column sm6 md9 lg12 text-xs-center>
+  <v-container align-center justify-center fill-height style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
+      <v-flex column sm6 md9 lg12 text-xs-center >
         <FAQ/>
       </v-flex>
   </v-container>

@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
     <v-flex xs12 >
       <v-card>
-          <v-img
-            :src="require('../assets/index.jpg')"
-            aspect-ratio="2.75">
-          </v-img>
+        <v-img
+          :src="require('../assets/index.jpg')"
+          aspect-ratio="2.75">
+        </v-img>
       </v-card>
     </v-flex>
   <v-container>
@@ -35,3 +35,9 @@
     components: {StudentMentorCard, Timeline}
   }
 </script>
+
+<style scoped>
+  .display-1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  }
+</style>
