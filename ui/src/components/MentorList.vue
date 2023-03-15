@@ -7,12 +7,12 @@
       flat
     >
     </v-toolbar>
-    <v-layout row justify-center pb-2>
+    <v-layout row justify-center pb-2 style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
       <v-flex xs11 sm10 md8>
-        <v-card class="card--flex-toolbar">
+        <v-card class="card--flex-toolbar" >
           <v-card>
             <v-container grid-list-lg fluid>
-              <h2 class="headline primary--text mb-3">Mentors</h2>
+              <h2 class="headline primary--text mb-3" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">Mentors</h2>
               <p class="font-italic">You can also pitch your own project idea to these mentors. Feel free to contact any
                 mentor via email/phone and talk to them about the project idea, ask the mentor to float the project if
                 she/he agrees to mentor you with your proposed project. A mentor has to create the project for it to be

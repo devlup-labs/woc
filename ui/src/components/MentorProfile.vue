@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-lg>
+  <v-container grid-list-lg style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
     <v-layout column>
       <v-flex>
         <v-card flat>
