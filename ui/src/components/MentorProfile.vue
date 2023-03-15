@@ -116,6 +116,9 @@
     },
     mounted () {
       this.fetchMentorProfile()
+      if (!localStorage.getItem('loginStatus')){
+        this.$router.push({ name: 'Login' })
+        }
     }
   }
 </script>

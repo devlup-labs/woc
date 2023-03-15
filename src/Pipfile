@@ -16,6 +16,8 @@ config = "*"
 dj-rest-auth = "*"
 djangorestframework-simplejwt = "*"
 django-filter = "*"
+django-allauth = "*"
+
 
 [dev-packages]
 flake8 = "*"

@@ -170,7 +170,7 @@
       ]),
       ...mapGetters('proposalList', [
         'studentProposalList'
-      ])
+      ])      
     },
     methods: {
       ...mapActions('projectList', [
@@ -194,10 +194,13 @@
         this.showCreateMentorProfileDialogue = false
         this.showCreateStudentProfileDialogue = false
         this.profile = profile
-      }
+      }     
     },
     mounted () {
       this.fetchUserType()
+      if (!localStorage.getItem('loginStatus')){
+        this.$router.push({ name: 'Login' })
+     }  
     },
     watch: {
       profile (value) {

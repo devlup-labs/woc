@@ -47,7 +47,7 @@
         :value="filterString"
       ></v-text-field>
       <v-spacer></v-spacer>
-      <v-menu  v-if="isLoggedIn" offset-y open-on-hover>
+      <v-menu  v-if="loginStatus" offset-y open-on-hover>
         <v-btn
           slot="activator"
           icon
@@ -65,7 +65,7 @@
         </v-list-tile>
       </v-list>
     </v-menu>
-      <!-- <v-btn outline v-else :to="{name: 'Login'}">Log In</v-btn> -->
+      <v-btn outline v-else :to="{name: 'Login'}">Log In</v-btn>
     </v-toolbar>
     <v-content>
       <router-view/>
@@ -94,7 +94,8 @@
   export default {
     data () {
       return {
-        drawer: null
+        drawer: null,
+        loginStatus: localStorage.getItem('loginStatus')
       }
     },
     computed: {

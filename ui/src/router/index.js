@@ -10,19 +10,28 @@ import Help from '../components/Help'
 import Dashboard from '../components/Dashboard'
 import MentorList from '../components/MentorList'
 
+import MentorProfile from '../components/MentorProfile'
+import StudentProfile from '../components/StudentProfile'
+import CreateStudentProfile from '../components/CreateStudentProfile'
+import CreateMentorProfile from '../components/CreateMentorProfile'
+
 Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
   routes: [
     {path: '/', name: 'Home', component: Home},
-    // {path: '/sign-in', name: 'Login', component: Login},
+    {path: '/sign-in', name: 'Login', component: Login},
     {path: '/projects', name: 'Projects', component: ProjectsList},
     {path: '/how-it-works', name: 'HowItWorks', component: HowItWorks},
     {path: '/help', name: 'Help', component: Help},
     {path: '/mentors', name: 'MentorList', component: MentorList},
-    {path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: {requiresAuth: true}},
-    {path: '/not-found', component: NotFound},
+    {path: '/dashboard', name: 'Dashboard', component: Dashboard},
+    { path: '/not-found', component: NotFound },
+    { path: '/mentor-profile', name: 'MentorProfile', component: MentorProfile },
+    { path: '/student-profile', name: 'StudentProfile', component: StudentProfile},
+    { path: '/create-student-profile', name: 'CreateStudentProfile', component: CreateStudentProfile},
+    
     {path: '*', redirect: '/not-found'}
   ]
 })

@@ -22,53 +22,54 @@
 
 <script>
 import signInImage from "../assets/btn_google_signin_dark_normal_web.png";
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Login",
   data: () => ({ signInImage, googleCode: null }),
-
+  computed: {
+    ...mapGetters("auth", ["isLoggedIn"])
+  },
   methods: {
-    googleSignIn() {
+    ...mapActions("auth", ["login"]),
+    ...mapActions("auth", ["updateToken"]),
+    async googleSignIn() {
       if (this.googleCode) {
-        this.$httpClient
-          .post("/api/google-login/", { code: this.googleCode })
-          .then(response => {
-            response_data = response.data;
-            localStorage.setItem("access_token", response_data.access_token);
-            localStorage.setItem("refresh_token", response_data.refresh_token);
-            this.$store.dispatch("auth/login").then(() => {
-              // this.$store.commit("LOGIN");
-              // console.log(this.$store.state.isLoggedIn);
-              console.log("yes")
-              this.$router.push({ name: "Dashboard" });
-            });
-          })
-          .catch(() => {});
+          const response = await this.$httpClient.post("/api/google-login/", { code: this.googleCode })
+          const response_data = await response.data
+          console.log(response_data)
+          await localStorage.setItem("loginStatus", True)
+          console.log(localStorage.getItem("loginStatus")) 
+          await this.login()
+          this.$router.push({ name: 'Dashboard'})
+
+         
       } else {
-        window.location.href = "http://localhost:8000/api/google-login/";
+        window.location.href = "http://localhost:8000/api/google-login/"
       }
     }
   },
 
-  mounted() {
-    this.googleCode = this.$route.query.code;
+  mounted () {
+    console.log(localStorage.getItem("loginStatus"))
+    this.googleCode = this.$route.query.code
     if (this.googleCode) {
-      console.log(this.googleCode);
-      this.googleSignIn();
+      console.log(this.googleCode)
+      // this.login();
+      console.log(this.isLoggedIn)
+      this.googleSignIn()
     }
-    console.log(this.googleCode);
-    if (localStorage.getItem("access_token")) {
-      this.$store.dispatch("auth/login").then(() => {
-        this.$store.commit("LOGIN");
-        console.log(this.$store.state.isLoggedIn);
-        console.log("yes")
-        this.$router.push({ name: "Dashboard" });
-      
-        if (this.$route.query.next) this.$router.push(this.$route.query.next);
-        else this.$router.push({ name: "Home" });
-      });
+    console.log(this.$store.state)
+    console.log(this.$store)
+    console.log(this.googleCode)
+    if (localStorage.getItem('access_token')) {
+      this.$store.dispatch('auth/login').then(() => {
+        this.$store.commit('LOGIN')
+        this.$router.push({ name: 'Dashboard' })
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
