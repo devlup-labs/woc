@@ -1,0 +1,76 @@
+version: '3'
+services:
+  django:
+    build:
+      context: ../src
+      dockerfile: Dockerfile.prod
+    image: 'soc-backend-1:latest'
+    container_name: soc-django
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - DB_HOST=postgresql
+      - MODE=Production
+      - PORT=8000
+    ports:
+      - 8000:8000
+    volumes:
+      - django_static_files:/app/assets/staticfiles
+      - django_media_files:/app/assets/media
+      - ../src:/app
+    depends_on:
+      - postgresql
+    networks:
+      - app-network
+    command: gunicorn -b :8000 woc.wsgi
+
+  vue:
+    build:
+      context: ../ui
+      dockerfile: Dockerfile.prod
+    image: 'soc-frontend-1:latest'
+    container_name: soc_vue
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - BACKEND_HOST=django
+    ports:
+    - 8088:80
+    volumes:
+    - django_static_files:/app/django_static_files
+    - django_media_files:/app/django_media_files
+    depends_on:
+      - django
+    networks:
+      - app-network
+  
+  postgresql:
+    image: 'bitnami/postgresql:latest'
+    container_name: soc_postgresql
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - POSTGRESQL_USERNAME=$DB_USER
+      - POSTGRESQL_PASSWORD=$DB_PASSWORD
+      - POSTGRESQL_DATABASE=$DB_NAME
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $DB_USER"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - dbdata:/bitnami/postgresql
+    networks:
+      - app-network
+  
+  
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
+  django_static_files:
+  django_media_files:
+    driver: local

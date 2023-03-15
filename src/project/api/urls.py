@@ -4,6 +4,6 @@ from project.api.views import ProjectViewSet, StudentProposalViewSet
 app_name = 'project'
 
 router = DefaultRouter()
-router.register(r'projects', ProjectViewSet, base_name='projects')
-router.register(r'student-proposal', StudentProposalViewSet, base_name='student-proposal')
+router.register(r'projects', ProjectViewSet, basename='projects')
+router.register(r'student-proposal', StudentProposalViewSet, basename='student-proposal')
 urlpatterns = router.urls

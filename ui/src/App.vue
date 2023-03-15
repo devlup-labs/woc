@@ -65,7 +65,7 @@
         </v-list-tile>
       </v-list>
     </v-menu>
-      <v-btn outline v-else :to="{name: 'Login'}">Log In</v-btn>
+      <!-- <v-btn outline v-else :to="{name: 'Login'}">Log In</v-btn> -->
     </v-toolbar>
     <v-content>
       <router-view/>

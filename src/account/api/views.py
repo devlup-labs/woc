@@ -103,7 +103,9 @@ class AuthenticationCheckAPIView(APIView):
     """
 
     def get(self, request, *args, **kwargs):
+        print(request.user)
         authenticated = request.user.is_authenticated
+        print(authenticated)
         data = {
             'message': 'Authorized' if authenticated else 'Unauthorized'
         }
