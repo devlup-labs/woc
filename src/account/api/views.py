@@ -3,7 +3,7 @@ from rest_framework import mixins
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import action
 from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer
-from account.api.serializers import UserSerializer, MentorsListSerializer, StudentsListSerializer, UserDetailSerializer, StudentDetailSerializer, MentorDetailSerializer
+from account.api.serializers import UserSerializer, MentorsListSerializer, StudentsListSerializer, UserDetailSerializer, StudentDetailSerializer
 from account.models import StudentProfile as StudentDetail , MentorProfile as MentorDetail
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404

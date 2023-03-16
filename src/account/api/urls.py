@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-from account.api.views import StudentProfileViewSet, MentorProfileViewSet, UserViewSet, UserDetail, UserProfile, MentorProfileDetail, StudentProfile
+from account.api.views import StudentProfileViewSet, MentorProfileViewSet, UserViewSet, UserDetail, UserProfile, StudentProfile
 from .views import AuthenticationCheckAPIView
 from django.urls import path
 from api.views import MyObtainTokenPairView
