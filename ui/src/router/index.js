@@ -28,10 +28,10 @@ const router = new Router({
     {path: '/mentors', name: 'MentorList', component: MentorList},
     {path: '/dashboard', name: 'Dashboard', component: Dashboard},
     { path: '/not-found', component: NotFound },
-    { path: '/mentor-profile', name: 'MentorProfile', component: MentorProfile },
-    { path: '/student-profile', name: 'StudentProfile', component: StudentProfile},
-    { path: '/create-student-profile', name: 'CreateStudentProfile', component: CreateStudentProfile},
-    
+    // { path: '/mentor-profile', name: 'MentorProfile', component: MentorProfile },
+    // { path: '/student-profile', name: 'StudentProfile', component: StudentProfile},
+    // { path: '/create-student-profile', name: 'CreateStudentProfile', component: CreateStudentProfile},
+    // { path: '/create-mentor-profile', name: 'CreateMentorProfile', component: CreateMentorProfile},
     {path: '*', redirect: '/not-found'}
   ]
 })

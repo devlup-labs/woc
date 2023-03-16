@@ -138,9 +138,6 @@
     },
     mounted () {
       this.fetchStudentProfile()
-      if (!localStorage.getItem('loginStatus')) {
-        this.$router.push({ name: 'Login' })
-     }
     }
   }
 </script>

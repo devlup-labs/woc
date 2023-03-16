@@ -31,15 +31,24 @@ export default {
     ...mapGetters("auth", ["isLoggedIn"])
   },
   methods: {
+    ...mapActions('app',['loginButton']),
     ...mapActions("auth", ["login"]),
     ...mapActions("auth", ["updateToken"]),
     async googleSignIn() {
       if (this.googleCode) {
           const response = await this.$httpClient.post("/api/google-login/", { code: this.googleCode })
           const response_data = await response.data
+          localStorage.setItem("authTokens", JSON.stringify({access : response_data.access_token, refresh : response_data.refresh_token}));
+          localStorage.setItem("access", response_data.access_token)
+          localStorage.setItem("refresh", response_data.refresh_token)
+          const isLogin = await localStorage.setItem("loginStatus", true)
+          console.log(isLogin)
           console.log(response_data)
-          await localStorage.setItem("loginStatus", True)
-          console.log(localStorage.getItem("loginStatus")) 
+          await localStorage.setItem("id",response_data.id)
+           localStorage.setItem("isStudent",false)
+           localStorage.setItem("isMentor",false)
+           this.loginButton()
+          console.log(localStorage) 
           await this.login()
           this.$router.push({ name: 'Dashboard'})
 
@@ -51,7 +60,7 @@ export default {
   },
 
   mounted () {
-    console.log(localStorage.getItem("loginStatus"))
+    console.log(localStorage)
     this.googleCode = this.$route.query.code
     if (this.googleCode) {
       console.log(this.googleCode)
