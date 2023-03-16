@@ -83,10 +83,11 @@ export default {
 
 <style lang="stylus" scoped>
   .google-sign-in > img
+    cursor pointer
     width 280px
     @media screen and (max-width: 375px)
       width 220px
 
   .text-decoration-none
-    text-decoration: none
+    text-decoration: none 
 </style>
