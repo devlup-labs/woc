@@ -7,6 +7,9 @@ from django.shortcuts import get_object_or_404
 from account.api.permissions import IsApprovedMentor
 from project.api.serializers import ProjectSerializer, StudentProposalSerializer, StudentProposalApproveSerializer
 from project.models import StudentProposal, Project
+from django.contrib.auth.models import User
+from account.models import MentorProfile
+
 
 
 class ProjectViewSet(ModelViewSet):
@@ -20,6 +23,14 @@ class ProjectViewSet(ModelViewSet):
         """
         if self.action in ['retrieve', 'list', 'proposals']:
             self.permission_classes = [AllowAny]
+        else :
+            id = self.request.data['id']
+            user = User.objects.filter(id=id).first()
+            mentor = MentorProfile.objects.filter(user=user).first()
+            if mentor.is_approved == False:
+                self.permission_classes = [IsApprovedMentor]
+            else:
+                self.permission_classes = [AllowAny]    
         return super().get_permissions()
 
     @action(methods=['get'], detail=True)
