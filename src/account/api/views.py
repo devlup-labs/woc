@@ -35,7 +35,7 @@ class StudentProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, 
     def current(self, request, *args, **kwargs):
         return self.retrieve(request, args, kwargs)
 
-    @action(methods=['post'], detail=False)
+    @action(methods=['get'], detail=False)
     def all(self, request, *args, **kwargs):
         return self.list(request, args, kwargs)
     
@@ -103,7 +103,7 @@ class MentorProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, m
     def current(self, request, *args, **kwargs):
         return self.retrieve(request, args, kwargs)
 
-    @action(methods=['post'], detail=False)
+    @action(methods=['get'], detail=False)
     def all(self, request, *args, **kwargs):
         return self.list(request, args, kwargs)
     
