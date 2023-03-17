@@ -17,7 +17,7 @@ const state = {
   accessToken: localStorage.getItem('access_token'),
   refreshToken: localStorage.getItem('refresh_token'),
   endpoints: {
-    refreshJWT: 'http://localhost:8000/api/auth/token/refresh'
+    refreshJWT: `${BACKEND_API_ADDRESS}/api/auth/token/refresh`
   }
 }
 
