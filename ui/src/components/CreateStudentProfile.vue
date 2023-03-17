@@ -125,13 +125,11 @@
     },
     methods: {
       createStudentProfile () {
-        console.log(this.localUser)
         this.$httpClient.patch(`/api/account/user/${this.id}/`, {
           first_name: this.fname,
           last_name: this.lname
         }).then(response => {
           this.localUser = response.data
-          console.log(this.localUser.id)
           this.$httpClient.post('/api/account/auth/student-profile/', {
             user: this.localUser.id,
             phone: this.profile.phone,

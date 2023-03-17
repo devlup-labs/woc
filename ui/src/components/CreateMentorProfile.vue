@@ -128,7 +128,6 @@
       }
     },
     mounted () {
-      console.log(localStorage)
       this.localUser = this.user
     }
   }

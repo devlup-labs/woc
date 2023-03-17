@@ -124,9 +124,7 @@
       ...mapActions('projectList', ['search']),
       async userLogout (){
         localStorage.clear()
-        // this.loginStatus = false
         await this.loginButton()
-        console.log(this.$store.state.app.loginStatus)
         this.$router.push({name: 'Login'})
       }
     },

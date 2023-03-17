@@ -189,7 +189,6 @@
       fetchUserType () {
         this.$httpClient.post('/api/account/auth/user/',{'id': localStorage.getItem('id')}).then(response => {
           this.user = response.data
-          console.log(response)
         })
         this.$httpClient.post('/api/account/auth/user/profile/', {'id': localStorage.getItem('id')})
           .then(response => {
@@ -210,22 +209,15 @@
         this.showCreateMentorProfileDialogue = false
         this.showCreateStudentProfileDialogue = false
         this.profile = profile
-        console.log(this.profile)
       },  
     },
     mounted () {
-      console.log('allprojectslist',this.$store.state.projectList.projectList)
-      console.log('idma',this.$store.state.mentorProfile.mentorProfile.id) //mentor id
-      console.log('idst',this.$store.state.studentProfile.studentProfile.id) //student id
-      console.log('state',this.$store.state)
       if (localStorage.getItem('loginStatus') === 'true'){
       this.$store.state.app.loginStatus = true
         this.$router.push({ name: 'Dashboard' })
       } else {
         this.$router.push({ name: 'Login' })
       }
-      console.log(this.$store.state)
-      console.log(localStorage)
       this.fetchUserType()
       this.app.loginStatus = true
 

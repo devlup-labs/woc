@@ -42,13 +42,10 @@ export default {
           localStorage.setItem("access", response_data.access_token)
           localStorage.setItem("refresh", response_data.refresh_token)
           const isLogin = await localStorage.setItem("loginStatus", true)
-          console.log(isLogin)
-          console.log(response_data)
           await localStorage.setItem("id",response_data.id)
            localStorage.setItem("isStudent",false)
            localStorage.setItem("isMentor",false)
            this.loginButton()
-          console.log(localStorage) 
           await this.login()
           this.$router.push({ name: 'Dashboard'})
 
@@ -60,17 +57,10 @@ export default {
   },
 
   mounted () {
-    console.log(localStorage)
     this.googleCode = this.$route.query.code
     if (this.googleCode) {
-      console.log(this.googleCode)
-      // this.login();
-      console.log(this.isLoggedIn)
       this.googleSignIn()
     }
-    console.log(this.$store.state)
-    console.log(this.$store)
-    console.log(this.googleCode)
     if (localStorage.getItem('access_token')) {
       this.$store.dispatch('auth/login').then(() => {
         this.$store.commit('LOGIN')

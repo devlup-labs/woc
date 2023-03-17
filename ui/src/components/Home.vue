@@ -189,14 +189,12 @@ export default {
   methods: {
     manualStudent() {
       this.$httpClient.get("/api/project/student-manual/").then(response => {
-        console.log(response.data[0].manual);
         URL = BACKEND_API_ADDRESS + response.data[0].manual;
         window.open(URL);
       });
     },
     manualMentor() {
       this.$httpClient.get("/api/project/mentor-manual/").then(response => {
-        console.log(response.data[0].manual);
         URL = BACKEND_API_ADDRESS + response.data[0].manual;
         window.open(URL, "_blank");
       });

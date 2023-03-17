@@ -60,7 +60,6 @@ const mutations = {
 const actions = {
    fetchMentorProfile({ commit }, state) {
     httpClient.post('/api/account/mentor-profile/current/',{'id': localStorage.getItem('id')}).then(response => {
-      console.log('mentorprodile')
       localStorage.setItem('isMentor', true),
       commit('SET_MENTOR_PROFILE', response.data)
       httpClient.get(`/api/account/user/${localStorage.getItem('id')}/`)

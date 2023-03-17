@@ -10,14 +10,6 @@ const AuthGuard = (to, from, next) => {
         query: { next: to.fullPath }
       })
     }
-    // if (!store.getters['auth/isLoggedIn'] && localStorage.getItem('loginStatus')) {
-    //   next({
-    //     path: '/sign-in',
-    //     query: { next: to.fullPath }
-    //   })
-    // } else {
-    //   next()
-    // }
   } else {
     next()
   }
