@@ -46,7 +46,7 @@ export default {
         {
           startTime: new Date('2023-03-15T00:00:00'),
           endTime: new Date('2023-03-15T23:59:59'),
-          descriptions: ['WOC kickoff session', 'Projects are announced in the session', 'Mentors are announced in the session', 'Potential contributors discuss application ideas with mentors']
+          descriptions: ['SoC kickoff session', 'Projects are announced in the session', 'Mentors are announced in the session', 'Potential contributors discuss application ideas with mentors']
         },
         {
           startTime: new Date('2023-03-16T00:00:00'),
