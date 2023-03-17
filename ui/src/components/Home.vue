@@ -101,8 +101,8 @@
         <v-flex xs8 sm6>
           <v-layout column>
             <v-btn outline large color="secondary" :to="{name: 'HowItWorks'}">See Program Timeline</v-btn>
-            <v-btn outline large color="secondary" :href="studentManual">Student Manual</v-btn>
-            <v-btn outline large color="secondary" :href="mentorManual">Mentor Manual</v-btn>
+            <v-btn outline large color="secondary" @click="manualStudent">Student Manual</v-btn>
+            <v-btn outline large color="secondary" @click="manualMentor">Mentor Manual</v-btn>
           </v-layout>
         </v-flex>
       </v-layout>
@@ -169,26 +169,44 @@
   </div>
 </template>
 <script>
-  import banner from '../assets/bg.png'
-  import codeImage from '../assets/programming-1873854_1280.png'
-  import mentorManual from '../assets/manuals/MentorManual.pdf'
-  import studentManual from '../assets/manuals/StudentManual.pdf'
+import banner from "../assets/bg.png";
+import codeImage from "../assets/programming-1873854_1280.png";
+import mentorManual from "../assets/manuals/MentorManual.pdf";
+import studentManual from "../assets/manuals/StudentManual.pdf";
+import { httpClient } from "../plugins/httpClient";
+import { BACKEND_API_ADDRESS } from "../config/index";
 
-  export default {
-    name: 'Home',
-    data () {
-      return {
-        banner,
-        codeImage,
-        mentorManual,
-        studentManual
-      }
+export default {
+  name: "Home",
+  data() {
+    return {
+      banner,
+      codeImage,
+      mentorManual,
+      studentManual
+    };
+  },
+  methods: {
+    manualStudent() {
+      this.$httpClient.get("/api/project/student-manual/").then(response => {
+        console.log(response.data[0].manual);
+        URL = BACKEND_API_ADDRESS + response.data[0].manual;
+        window.open(URL);
+      });
+    },
+    manualMentor() {
+      this.$httpClient.get("/api/project/mentor-manual/").then(response => {
+        console.log(response.data[0].manual);
+        URL = BACKEND_API_ADDRESS + response.data[0].manual;
+        window.open(URL, "_blank");
+      });
     }
   }
+};
 </script>
 
 <style scoped>
-  .text-decoration-none {
-    text-decoration: none;
-  }
+.text-decoration-none {
+  text-decoration: none;
+}
 </style>
