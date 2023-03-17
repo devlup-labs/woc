@@ -23,6 +23,7 @@
 <script>
 import signInImage from "../assets/btn_google_signin_dark_normal_web.png";
 import { mapGetters, mapActions } from "vuex";
+import { BACKEND_API_URL } from '../config';
 
 export default {
   name: "Login",
@@ -51,7 +52,7 @@ export default {
 
          
       } else {
-        window.location.href = "http://localhost:8000/api/google-login/"
+        window.location.href = `${BACKEND_API_URL}/api/google-login/`
       }
     }
   },
