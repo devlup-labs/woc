@@ -58,21 +58,30 @@ const mutations = {
 }
 
 const actions = {
-  fetchMentorProfile ({commit}, state) {
-    httpClient.get('/api/account/mentor-profile/current/').then(response => {
+   fetchMentorProfile({ commit }, state) {
+    httpClient.post('/api/account/mentor-profile/current/',{'id': localStorage.getItem('id')}).then(response => {
+      localStorage.setItem('isMentor', true),
       commit('SET_MENTOR_PROFILE', response.data)
-      httpClient.get(`/api/account/user/${response.data.user}/`)
-        .then(response => commit('SET_USER', response.data))
+      httpClient.get(`/api/account/user/${localStorage.getItem('id')}/`)
+        .then(response =>
+          commit('SET_USER', response.data))
         .catch(err => commit('ADD_ERROR', err))
+      
     }).catch(err => commit('ADD_ERROR', err))
   },
+  fetchUser({ commit }, state) {
+    httpClient.get(`/api/account/user/${localStorage.getItem('id')}/`)
+      .then(response => commit('SET_USER', response.data))
+      .catch(err => commit('ADD_ERROR', err))
+  },
   saveMentorProfile ({commit, state, dispatch}) {
-    httpClient.patch(`/api/account/user/${state.mentorProfile.user}/`, {
+    httpClient.patch(`/api/account/user/${localStorage.getItem('id')}/`, {
       first_name: state.user.first_name,
       last_name: state.user.last_name
     }).then(response => {
       commit('SET_USER', response.data)
-      httpClient.patch(`/api/account/mentor-profile/${state.mentorProfile.id}/`, {
+      httpClient.patch(`/api/account/mentor-profile/${state.mentorProfile.id}/update_profile/`, {
+        id : localStorage.getItem('id'),
         phone: state.mentorProfile.phone,
         github: state.mentorProfile.github,
         gender: state.mentorProfile.gender,

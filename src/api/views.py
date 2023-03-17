@@ -68,6 +68,7 @@ class LoginAPIView(APIView):
         response['username'] = user.username
         response['access_token'] = str(token.access_token)
         response['refresh_token'] = str(token)
+        response['id'] = user.id
         return Response(response, status=status.HTTP_200_OK)
 
 

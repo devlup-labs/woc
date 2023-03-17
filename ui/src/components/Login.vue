@@ -22,61 +22,62 @@
 
 <script>
 import signInImage from "../assets/btn_google_signin_dark_normal_web.png";
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Login",
   data: () => ({ signInImage, googleCode: null }),
-
+  computed: {
+    ...mapGetters("auth", ["isLoggedIn"])
+  },
   methods: {
-    googleSignIn() {
+    ...mapActions('app',['loginButton']),
+    ...mapActions("auth", ["login"]),
+    ...mapActions("auth", ["updateToken"]),
+    async googleSignIn() {
       if (this.googleCode) {
-        this.$httpClient
-          .post("/api/google-login/", { code: this.googleCode })
-          .then(response => {
-            response_data = response.data;
-            localStorage.setItem("access_token", response_data.access_token);
-            localStorage.setItem("refresh_token", response_data.refresh_token);
-            this.$store.dispatch("auth/login").then(() => {
-              // this.$store.commit("LOGIN");
-              // console.log(this.$store.state.isLoggedIn);
-              console.log("yes")
-              this.$router.push({ name: "Dashboard" });
-            });
-          })
-          .catch(() => {});
+          const response = await this.$httpClient.post("/api/google-login/", { code: this.googleCode })
+          const response_data = await response.data
+          localStorage.setItem("authTokens", JSON.stringify({access : response_data.access_token, refresh : response_data.refresh_token}));
+          localStorage.setItem("access", response_data.access_token)
+          localStorage.setItem("refresh", response_data.refresh_token)
+          const isLogin = await localStorage.setItem("loginStatus", true)
+          await localStorage.setItem("id",response_data.id)
+           localStorage.setItem("isStudent",false)
+           localStorage.setItem("isMentor",false)
+           this.loginButton()
+          await this.login()
+          this.$router.push({ name: 'Dashboard'})
+
+         
       } else {
-        window.location.href = "http://localhost:8000/api/google-login/";
+        window.location.href = "http://localhost:8000/api/google-login/"
       }
     }
   },
 
-  mounted() {
-    this.googleCode = this.$route.query.code;
+  mounted () {
+    this.googleCode = this.$route.query.code
     if (this.googleCode) {
-      console.log(this.googleCode);
-      this.googleSignIn();
+      this.googleSignIn()
     }
-    console.log(this.googleCode);
-    if (localStorage.getItem("access_token")) {
-      this.$store.dispatch("auth/login").then(() => {
-        this.$store.commit("LOGIN");
-        console.log(this.$store.state.isLoggedIn);
-        console.log("yes")
-        this.$router.push({ name: "Dashboard" });
-      
-        if (this.$route.query.next) this.$router.push(this.$route.query.next);
-        else this.$router.push({ name: "Home" });
-      });
+    if (localStorage.getItem('access_token')) {
+      this.$store.dispatch('auth/login').then(() => {
+        this.$store.commit('LOGIN')
+        this.$router.push({ name: 'Dashboard' })
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
   .google-sign-in > img
+    cursor pointer
     width 280px
     @media screen and (max-width: 375px)
       width 220px
 
   .text-decoration-none
-    text-decoration: none
+    text-decoration: none 
 </style>

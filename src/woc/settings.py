@@ -163,10 +163,10 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, config('STATIC_PATH', default='../staticfiles', cast=str))
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, config('MEDIA_PATH', default='../media', cast=str))
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 WSGI_APPLICATION = 'woc.wsgi.application'
@@ -177,8 +177,8 @@ WSGI_APPLICATION = 'woc.wsgi.application'
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PERMISSION_CLASSES': (
-    # 'rest_framework.permissions.AllowAny',
-    'rest_framework.permissions.IsAuthenticated'
+    'rest_framework.permissions.AllowAny',
+    # 'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
             'rest_framework.authentication.SessionAuthentication',

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from account.models import StudentProfile, MentorProfile
+from account.models import StudentProfile, MentorProfile, BaseProfile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -49,7 +49,22 @@ class StudentsListSerializer(serializers.ModelSerializer):
 
     def get_year(self, value):
         return value.get_year_display()
+    
 
     class Meta:
         model = StudentProfile
-        fields = ('id', 'first_name', 'last_name', 'email', 'phone', 'gender', 'branch', 'year')
+        fields = ('id', 'first_name', 'last_name', 'email', 'phone', 'gender', 'branch', 'year', 'github')
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField()
+
+    class Meta:
+        model = User
+        fields = ('id',)
+
+class StudentDetailSerializer (serializers.ModelSerializer):
+    id = serializers.IntegerField()
+
+    class Meta:
+        model = StudentProfile
+        fields = ('id',)

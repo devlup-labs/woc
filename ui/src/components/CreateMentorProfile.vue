@@ -9,12 +9,12 @@
           <v-form>
             <v-layout row wrap>
               <v-flex sm6 xs12>
-                <v-text-field prepend-icon="person" v-model="localUser.first_name"
+                <v-text-field prepend-icon="person" v-model="fname"
                               :rules="[rules.required]" name="first_name"
                               label="First Name"/>
               </v-flex>
               <v-flex sm6 xs12>
-                <v-text-field prepend-icon="person" v-model="localUser.last_name" name="last_name"
+                <v-text-field prepend-icon="person" v-model="lname" name="last_name"
                               :rules="[rules.required]" label="Last Name"/>
               </v-flex>
               <v-flex sm6 xs12>
@@ -65,6 +65,8 @@
     props: ['user'],
     data () {
       return {
+        fname : null,
+        lname: null,
         localUser: {
           first_name: '',
           last_name: ''
@@ -92,9 +94,9 @@
     },
     methods: {
       createMentorProfile () {
-        this.$httpClient.patch(`/api/account/user/${this.user.id}/`, {
-          first_name: this.localUser.first_name,
-          last_name: this.localUser.last_name
+        this.$httpClient.patch(`/api/account/user/${localStorage.getItem('id')}/`, {
+          first_name: this.fname,
+          last_name: this.lname
         }).then(response => {
           this.localUser = response.data
           this.$httpClient.post('/api/account/mentor-profile/', {
@@ -106,11 +108,13 @@
             past_experience: this.profile.past_experience
           }).then(response => {
             this.profile = response.data
+            localStorage.setItem('isMentor',true)
             this.$store.dispatch('messages/showMessage', {
               message: 'Profile created successfully',
               color: 'success'
             }, {root: true})
             this.$emit('profile_created', {id: this.profile.id, type: 'mentor-profile'})
+            this.$router.push({name: 'Dashboard'})
           }).catch(() => this.$store.dispatch('messages/showMessage', {
             message: 'Failed to create mentor profile',
             color: 'error',
