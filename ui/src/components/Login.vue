@@ -23,7 +23,7 @@
 <script>
 import signInImage from "../assets/btn_google_signin_dark_normal_web.png";
 import { mapGetters, mapActions } from "vuex";
-import { BACKEND_API_URL } from '../config';
+import { BACKEND_API_ADDRESS } from "../config/index";
 
 export default {
   name: "Login",
@@ -32,44 +32,50 @@ export default {
     ...mapGetters("auth", ["isLoggedIn"])
   },
   methods: {
-    ...mapActions('app',['loginButton']),
+    ...mapActions("app", ["loginButton"]),
     ...mapActions("auth", ["login"]),
     ...mapActions("auth", ["updateToken"]),
     async googleSignIn() {
       if (this.googleCode) {
-          const response = await this.$httpClient.post("/api/google-login/", { code: this.googleCode })
-          const response_data = await response.data
-          localStorage.setItem("authTokens", JSON.stringify({access : response_data.access_token, refresh : response_data.refresh_token}));
-          localStorage.setItem("access", response_data.access_token)
-          localStorage.setItem("refresh", response_data.refresh_token)
-          const isLogin = await localStorage.setItem("loginStatus", true)
-          await localStorage.setItem("id",response_data.id)
-           localStorage.setItem("isStudent",false)
-           localStorage.setItem("isMentor",false)
-           this.loginButton()
-          await this.login()
-          this.$router.push({ name: 'Dashboard'})
-
-         
+        const response = await this.$httpClient.post("/api/google-login/", {
+          code: this.googleCode
+        });
+        const response_data = await response.data;
+        localStorage.setItem(
+          "authTokens",
+          JSON.stringify({
+            access: response_data.access_token,
+            refresh: response_data.refresh_token
+          })
+        );
+        localStorage.setItem("access", response_data.access_token);
+        localStorage.setItem("refresh", response_data.refresh_token);
+        const isLogin = await localStorage.setItem("loginStatus", true);
+        await localStorage.setItem("id", response_data.id);
+        localStorage.setItem("isStudent", false);
+        localStorage.setItem("isMentor", false);
+        this.loginButton();
+        await this.login();
+        this.$router.push({ name: "Dashboard" });
       } else {
-        window.location.href = `${BACKEND_API_URL}/api/google-login/`
+        window.location.href = `${BACKEND_API_URL}/api/google-login/`;
       }
     }
   },
 
-  mounted () {
-    this.googleCode = this.$route.query.code
+  mounted() {
+    this.googleCode = this.$route.query.code;
     if (this.googleCode) {
-      this.googleSignIn()
+      this.googleSignIn();
     }
-    if (localStorage.getItem('access_token')) {
-      this.$store.dispatch('auth/login').then(() => {
-        this.$store.commit('LOGIN')
-        this.$router.push({ name: 'Dashboard' })
-      })
+    if (localStorage.getItem("access_token")) {
+      this.$store.dispatch("auth/login").then(() => {
+        this.$store.commit("LOGIN");
+        this.$router.push({ name: "Dashboard" });
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
