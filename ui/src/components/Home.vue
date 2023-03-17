@@ -130,7 +130,7 @@
               <v-list class="transparent">
                 <v-list-tile>
                   <v-list-tile-action>
-                    <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+                    <i class="fab fa-github fa-2x" aria-hidden="true"></i>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title><a href="https://github.com/devlup-labs"
@@ -140,7 +140,7 @@
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-action>
-                    <i class="fa fa-slack fa-2x" aria-hidden="true"></i>
+                    <i class="fab fa-discord fa-2x" aria-hidden="true"></i>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title><a href="https://discord.gg/5kKqzGdhPP"
@@ -150,7 +150,7 @@
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-action>
-                    <v-icon class="black--text text--lighten-2">email</v-icon>
+                    <i class="fas fa-envelope fa-2x"></i>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title>
