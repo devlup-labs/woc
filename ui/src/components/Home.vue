@@ -140,7 +140,7 @@
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-action>
-                    <i class="fas fa-discord fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-slack fa-2x" aria-hidden="true"></i>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title><a href="https://discord.gg/5kKqzGdhPP"
