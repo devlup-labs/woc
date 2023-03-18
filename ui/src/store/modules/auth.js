@@ -4,7 +4,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import jwt_decode from 'jwt-decode'
 import Vuex from 'vuex'
-import { BACKEND_API_ADDRESS } from '../config/index'
+import { BACKEND_API_ADDRESS } from '../../config/index'
 import {httpClient} from '../../plugins/httpClient'
 
 

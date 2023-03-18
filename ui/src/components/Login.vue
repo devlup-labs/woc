@@ -58,7 +58,7 @@ export default {
         await this.login();
         this.$router.push({ name: "Dashboard" });
       } else {
-        window.location.href = `${BACKEND_API_URL}/api/google-login/`;
+        window.location.href = `${BACKEND_API_ADDRESS}/api/google-login/`;
       }
     }
   },
