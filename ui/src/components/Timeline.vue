@@ -7,24 +7,26 @@
       <v-stepper class="v-card--flat" v-model="e1" vertical>
         <template v-for="(item, key) in timeline">
           <v-stepper-step
+            class="rounded-circle"
             color="secondary"
             :complete="item.endTime < new Date()"
             :key="`${key+1}-step`"
             :step="key+1"
           >
             <v-flex>
-              <div @click="nextTimeline(key)" :style="{color: $vuetify.theme.primary}">{{item.title}}
+              <div @click="nextTimeline(key)" :style="{color: $vuetify.theme.primary}">
                 <v-spacer></v-spacer>
                 {{getEventTimestamp(item)}}
               </div>
             </v-flex>
           </v-stepper-step>
-          <v-stepper-content
-            :key="`${key+1}-content`"
-            :step="key+1"
-          >
-            <p>{{item.description}}</p>
-          </v-stepper-content>
+          <v-flex xs12>
+            <ul class="pl-5">
+              <li v-for="(description, index) in item.descriptions" :key="index" class="body-1">
+                {{ description }}
+              </li>
+            </ul>
+          </v-flex>
         </template>
       </v-stepper>
     </v-card-text>
@@ -32,99 +34,105 @@
 </template>
 
 <script>
-  export default {
-    name: 'Timeline',
-    data () {
-      return {
-        e1: 1,
-        timeline: [
-          {
-            startTime: new Date('2018-10-01T00:00:00'),
-            endTime: new Date('2018-10-01T00:00:00'),
-            title: 'Program Announced',
-            description: 'WoC is declared open and student community is informed about it.'
-          },
-          {
-            startTime: new Date('2018-10-01T00:00:00'),
-            endTime: new Date('2018-10-16T23:59:59'),
-            title: 'Mentor Registrations Open',
-            description: 'Potential mentors start registering on the platform and add their projects as well.'
-          },
-          {
-            startTime: new Date('2018-10-17T00:00:00'),
-            endTime: new Date('2018-10-17T00:00:00'),
-            title: 'Mentor Registration Ends and Projects Announced',
-            description: 'Students can have a look at the projects which is followed by the student registration.'
-          },
-          {
-            startTime: new Date('2018-10-17T00:00:00'),
-            endTime: new Date('2018-10-17T00:00:00'),
-            title: 'Student Registration Begins',
-            description: 'Students start applying to the program and start preparing their proposals.'
-          },
-          {
-            startTime: new Date('2018-10-17T00:00:00'),
-            endTime: new Date('2018-10-25T23:59:59'),
-            title: 'Proposal Period',
-            description: 'During this period students start preparing proposals for the projects and get it verified' +
-              ' by the mentors. At the end of this period, student registrations will close.'
-          },
-          {
-            startTime: new Date('2018-10-26T00:00:00'),
-            endTime: new Date('2018-10-26T00:00:00'),
-            title: 'Student Projects Announced',
-            description: 'Students selected for the program are announced along with their projects.'
-          },
-          {
-            startTime: new Date('2018-10-27T00:00:00'),
-            endTime: new Date('2018-10-27T00:00:00'),
-            title: 'Coding Begins',
-            description: 'Students start coding their projects under the guidance of their mentors.'
-          },
-          {
-            startTime: new Date('2018-11-24T00:00:00'),
-            endTime: new Date('2018-11-26T23:59:59'),
-            title: 'First Phase Evaluation',
-            description: 'Mentors submit the report of first phase evaluation. Students satisfying this phase move ' +
-              'to the next phase.'
-          },
-          {
-            startTime: new Date('2018-12-24T00:00:01'),
-            endTime: new Date('2018-12-26T23:59:59'),
-            title: 'Final Evaluation',
-            description: 'Mentors submit the report of final phase evaluation. Students satisfying this phase are ' +
-              'considered to have successfully completed the program and are eligible for goodies.'
-          },
-          {
-            startTime: new Date('2019-01-01T00:00:00'),
-            endTime: new Date('2019-01-01T00:00:00'),
-            title: 'Results Announced',
-            description: 'Results are announced with the names of students who have successfully completed the program.'
-          }
-        ]
+export default {
+  data () {
+    return {
+      timeline: [
+        {
+          startTime: new Date('2023-03-10T00:00:00'),
+          endTime: new Date('2023-03-10T23:59:59'),
+          descriptions: ['Mentors can submit their applications along with ideas']
+        },
+        {
+          startTime: new Date('2023-03-15T00:00:00'),
+          endTime: new Date('2023-03-15T23:59:59'),
+          descriptions: ['SoC kickoff session', 'Projects are announced in the session', 'Mentors are announced in the session', 'Potential contributors discuss application ideas with mentors']
+        },
+        {
+          startTime: new Date('2023-03-16T00:00:00'),
+          endTime: new Date('2023-03-16T23:59:59'),
+          descriptions: ['Mentee application period begins']
+        },
+        {
+          startTime: new Date('2023-03-18T00:00:00'),
+          endTime: new Date('2023-03-18T23:59:59'),
+          descriptions: ['Mentee application period ends']
+        },
+        {
+          startTime: new Date('2023-03-20T00:00:00'),
+          endTime: new Date('2023-03-20T23:59:59'),
+          descriptions: ['Accepted mentee projects announced']
+        },
+        {
+          startTime: new Date('2023-03-21T00:00:00'),
+          endTime: new Date('2023-03-21T23:59:59'),
+          descriptions: ['Coding Officially Begins!']
+        },
+        {
+          startTime: new Date('2023-04-03T00:00:00'),
+          endTime: new Date('2023-04-03T23:59:59'),
+          descriptions: ['Mentors and mentees can begin submitting midterm evaluations']
+        },
+        {
+          startTime: new Date('2023-04-05T00:00:00'),
+          endTime: new Date('2023-04-05T23:59:59'),
+          descriptions: ['Midterm evaluation deadline', 'Early incentives to top 3 progress projects']
+        },
+        {
+          startTime: new Date('2023-04-13T00:00:00'),
+          endTime: new Date('2023-04-20T23:59:59'),
+          descriptions: ['Final week: mentees submit their final work product and their final mentor evaluation']
+        },
+        {
+          startTime: new Date('2023-04-24T00:00:00'),
+          endTime: new Date('2023-04-24T23:59:59'),
+          descriptions: ['Results of SoC 2023 Announced ', 'Handing over the incentives in the closing ceremony']
+        }
+      ],
+      e1: 0
+    }
+  },
+  methods: {
+    nextTimeline (n) {
+      if (n === this.timeline.length) {
+        this.e1 = 1
+      } else {
+        this.e1 = n + 1
       }
     },
-    methods: {
-      nextTimeline (n) {
-        if (n === this.timeline.length) {
-          this.e1 = 1
-        } else {
-          this.e1 = n + 1
-        }
-      },
-      getEventTimestamp (event) {
-        if (event.startTime.toLocaleString() === event.endTime.toLocaleString()) {
-          return event.startTime.toDateString('en-in')
-        } else {
-          return `${event.startTime.toDateString('en-in')} to ${event.endTime.toDateString('en-in')}`
-        }
+    getEventTimestamp (item) {
+      const startTime = new Date(item.startTime)
+      const endTime = new Date(item.endTime)
+      const start = startTime.toDateString('en-in')
+      const end = endTime.toDateString('en-in')
+      if (start === end) {
+        return start
+      } else {
+        return `${start} - ${end}`
       }
     }
   }
+}
 </script>
 
 <style scoped>
+
   .v-stepper {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+  }
+
+  .v-stepper-step ul li {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #333;
+  }
+
+  .display-1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  }
+
+  .v-stepper__wrapper {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
   }
+
 </style>
