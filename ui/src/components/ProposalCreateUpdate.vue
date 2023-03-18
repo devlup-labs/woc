@@ -5,7 +5,7 @@
         fluid>
         <v-layout row wrap>
           <v-card-title primary-title>
-            <span class="display-1 primary--text">{{this.mode|capitalize}} Proposal</span>
+            <span class="display-1 primary--text"> Proposal</span>
           </v-card-title>
           <v-spacer></v-spacer>
           <v-icon @click="$emit('close_dialog')">fa-times-circle</v-icon>
@@ -22,7 +22,7 @@
         <v-card-actions>
           <v-flex xs4></v-flex>
           <v-flex xs4>
-            <v-btn primary round large block color="primary" @click="performCreateUpdate">
+            <v-btn v-if="applyButton" primary round large block color="primary" @click="performCreateUpdate">
               {{mode === 'apply' ? 'Apply':'Update'}}
             </v-btn>
           </v-flex>
@@ -41,6 +41,7 @@
     name: 'ProposalCreateUpdate',
     props: ['mode', 'baseProposal', 'projectId'],
     data: () => ({
+      applyButton : true,
       proposal: {
         id: '',
         project: '',
@@ -61,6 +62,7 @@
     },
     mounted () {
       if (this.mode === 'update') {
+        this.applyButton = false
         this.setProposal()
       }
       if (this.studentProfile.id === '') this.fetchStudentProfile()
@@ -70,7 +72,7 @@
       ...mapActions('proposalList', ['addProposal', 'updateProposal']),
       performCreateUpdate () {
         if (this.mode === 'apply') this.performApply()
-        else this.performUpdate()
+        // else this.performUpdate()
       },
       performApply () {
         this.$httpClient.post('/api/project/student-proposal/', {

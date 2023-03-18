@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {BACKEND_API_ADDRESS} from '../config'
+import { BACKEND_API_ADDRESS } from '../config/index'
 import store from '../store'
 import router from '../router'
 

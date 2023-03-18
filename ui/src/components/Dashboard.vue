@@ -129,7 +129,7 @@
   import MentorProfile from './MentorProfile'
   import StudentProfile from './StudentProfile'
   import {mapGetters, mapActions} from 'vuex'
-
+  import axios from 'axios'
   export default {
     name: 'Dashboard',
     components: {
@@ -142,6 +142,8 @@
     },
     data () {
       return {
+        filteredStudentProjectList: [],
+        filteredMentorProjectList: [],
         dialog: false,
         user: {
           id: null,
@@ -153,7 +155,11 @@
           id: null
         },
         showCreateMentorProfileDialogue: false,
-        showCreateStudentProfileDialogue: false
+        showCreateStudentProfileDialogue: false,
+        
+        isLogin : localStorage.getItem('isLogin'),
+        isStudent : localStorage.getItem('isStudent'),
+        isMentor : localStorage.getItem('isMentor')
       }
     },
     props: ['index'],
@@ -170,39 +176,58 @@
       ]),
       ...mapGetters('proposalList', [
         'studentProposalList'
-      ])
+      ])      
     },
     methods: {
       ...mapActions('projectList', [
         'fetchProjectList'
       ]),
+      ...mapActions('studentProfile', [
+        'fetchStudentProfile'
+      ]),
+      ...mapActions('app',['loginButton']),
       fetchUserType () {
-        this.$httpClient.get('/api/account/user/current/').then(response => {
+        this.$httpClient.post('/api/account/auth/user/',{'id': localStorage.getItem('id')}).then(response => {
           this.user = response.data
         })
-        this.$httpClient.get('/api/account/user/profile/')
+        this.$httpClient.post('/api/account/auth/user/profile/', {'id': localStorage.getItem('id')})
           .then(response => {
             if (response.status === 204) {
-              this.showCreateStudentProfileDialogue = true
+              this.showCreateStudentProfileDialogue = true             
             } else {
               this.profile = response.data
+              if (this.profile.type === 'mentor-profile') {
+                localStorage.setItem('isMentor', true)
+            } else if (this.profile.type === 'student-profile') {
+                localStorage.setItem('isStudent', true)
+              }
             }
-          })
+              })
           .catch(err => console.log(err))
       },
       refreshDashboard (profile) {
         this.showCreateMentorProfileDialogue = false
         this.showCreateStudentProfileDialogue = false
         this.profile = profile
-      }
+      },  
     },
     mounted () {
+      if (localStorage.getItem('loginStatus') === 'true'){
+      this.$store.state.app.loginStatus = true
+        this.$router.push({ name: 'Dashboard' })
+      } else {
+        this.$router.push({ name: 'Login' })
+      }
       this.fetchUserType()
+      this.app.loginStatus = true
+
+      if (!localStorage.getItem('loginStatus')){
+        this.$router.push({ name: 'Login' })
+     }  
     },
     watch: {
       profile (value) {
-        this.fetchProjectList()
-        // if (value.id && value.type === 'mentor-profile') this.fetchProjectList()
+        this.fetchProjectList()       
       }
     }
   }

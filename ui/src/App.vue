@@ -47,7 +47,7 @@
         :value="filterString"
       ></v-text-field>
       <v-spacer></v-spacer>
-      <v-menu  v-if="isLoggedIn" offset-y open-on-hover>
+      <v-menu  v-if="loginStatus" offset-y open-on-hover>
         <v-btn
           slot="activator"
           icon
@@ -56,11 +56,11 @@
         <v-avatar size="38px">
           <img
             :src="thumbnailUrl"
-          >
+           >
         </v-avatar>
       </v-btn>
       <v-list>
-        <v-list-tile href="/logout/">
+        <v-list-tile @click="userLogout">
           <v-list-tile-title>Logout</v-list-tile-title>
         </v-list-tile>
       </v-list>
@@ -94,11 +94,12 @@
   export default {
     data () {
       return {
-        drawer: null
+        drawer: null,
       }
     },
     computed: {
       ...mapGetters('app', ['items']),
+      ...mapGetters('app', ['loginStatus']),
       ...mapGetters('projectList', ['filterString']),
       ...mapGetters('auth', ['isLoggedIn', 'thumbnailUrl']),
       ...mapGetters('messages', ['message', 'color', 'timeout', 'mode']),
@@ -119,10 +120,20 @@
         'login',
         'logout'
       ]),
-      ...mapActions('projectList', ['search'])
+      ...mapActions('app',['loginButton']),
+      ...mapActions('projectList', ['search']),
+      async userLogout (){
+        localStorage.clear()
+        await this.loginButton()
+        this.$router.push({name: 'Login'})
+      }
     },
     mounted () {
       this.$store.dispatch('auth/loadThumbnail')
+      if (localStorage.getItem('loginStatus') === 'true'){
+      this.$store.state.app.loginStatus = true
+      }
+
     },
     props: {
       source: String

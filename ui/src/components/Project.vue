@@ -6,8 +6,8 @@
       <div>
         <v-icon class="mx-2" v-if="mentor" @click="dialog = true">fa-trash</v-icon>
         <v-icon class="mx-2" v-if="mentor" @click="editDialog = true">fa-pencil</v-icon>
-        <v-btn v-if="showProposalDialogButton" @click="proposalDialog = true">{{$route.name ===
-          'Dashboard'?'Update':'Add'}} Proposal
+        <v-btn v-if=" applyDialog && showProposalDialogButton" @click="proposalDialog = true">
+          {{ $route.name === 'Dashboard' ? null : 'Add ' }}Proposal
         </v-btn>
         <a :href="project.github_link" target="_blank" class="dashline">
           <v-icon class="mx-2">fa-github</v-icon>
@@ -73,76 +73,108 @@
 </template>
 
 <script>
-  import {mapGetters, mapActions} from 'vuex'
-  import ProjectCreateUpdate from './ProjectCreateUpdate'
-  import ProposalCreateUpdate from './ProposalCreateUpdate'
-  import ProjectStudentsList from './ProjectStudentsList'
+import { mapGetters, mapActions } from "vuex";
+import ProjectCreateUpdate from "./ProjectCreateUpdate";
+import ProposalCreateUpdate from "./ProposalCreateUpdate";
+import ProjectStudentsList from "./ProjectStudentsList";
 
-  export default {
-    name: 'Project',
-    components: {ProjectCreateUpdate, ProposalCreateUpdate, ProjectStudentsList},
-    props: ['project', 'mentor', 'mode'],
-    data () {
-      return {
-        dialog: false,
-        editDialog: false,
-        proposalDialog: false
-      }
+export default {
+  name: "Project",
+  components: {
+    ProjectCreateUpdate,
+    ProposalCreateUpdate,
+    ProjectStudentsList
+  },
+  props: ["project", "mentor", "mode"],
+  data() {
+    return {
+      dialog: false,
+      editDialog: false,
+      proposalDialog: false,
+      applyDialog: true
+    };
+  },
+  computed: {
+    ...mapGetters("mentorList", ["mentorList"]),
+    ...mapGetters("proposalList", ["studentProposalList"]),
+    ...mapGetters("studentList", ["studentList"]),
+    ...mapGetters("studentProfile", ["studentProfile"]),
+    ...mapGetters("auth", ["isLoggedIn"]),
+    chips() {
+      return this.project.technologies;
     },
-    computed: {
-      ...mapGetters('mentorList', ['mentorList']),
-      ...mapGetters('proposalList', ['studentProposalList']),
-      ...mapGetters('studentList', ['studentList']),
-      ...mapGetters('studentProfile', ['studentProfile']),
-      ...mapGetters('auth', ['isLoggedIn']),
-      chips () {
-        return this.project.technologies
-      },
-      showProposalDialogButton () {
-        return !this.mentor && this.isLoggedIn && this.studentProfile.id !== ''
-      }
-    },
-    methods: {
-      ...mapActions('mentorList', ['fetchMentorList']),
-      ...mapActions('studentList', ['fetchStudentList']),
-      ...mapActions('proposalList', ['fetchProposalList']),
-      ...mapActions('studentProfile', ['fetchStudentProfile']),
-      getMentorNameById (mentorId) {
-        const mentor = this.mentorList.find(mentor => mentor.id === mentorId)
-        if (mentor) return `${mentor.first_name} ${mentor.last_name}`
-        else return ''
-      },
-      getStudentListByIds (studentIds) {
-        return this.studentList.filter(student => studentIds.indexOf(student.id) >= 0)
-      },
-      getProposalByProjectId (projectId) {
-        return this.studentProposalList.find(proposal => proposal.project === projectId)
-      },
-      remove () {
-        this.$httpClient.delete(`/api/project/projects/${this.project.id}/`).then(response => {
-          this.$store.dispatch('projectList/removeProjectById', this.project.id)
-          this.$store.dispatch('messages/showMessage', {
-            message: `Project ${this.project.name} was deleted!`,
-            color: 'success'
-          }, {root: true})
-        }).catch(() => this.$store.dispatch('messages/showMessage', {
-          message: 'Error deleting project!',
-          color: 'error'
-        }, {root: true}))
-        this.dialog = false
-      }
-    },
-    mounted () {
-      if (!this.fetchStudentList.length) this.fetchStudentList()
-      if (!this.studentProposalList.length) this.fetchProposalList()
-      if (!this.mentorList.length) this.fetchMentorList()
-      if (!this.studentProfile.id) this.fetchStudentProfile()
+    showProposalDialogButton() {
+      return (
+        !this.mentor &&
+        localStorage.getItem("loginStatus") &&
+        localStorage.getItem("idStudent") !== ""
+      );
     }
+  },
+  methods: {
+    ...mapActions("mentorList", ["fetchMentorList"]),
+    ...mapActions("studentList", ["fetchStudentList"]),
+    ...mapActions("proposalList", ["fetchProposalList"]),
+    ...mapActions("studentProfile", ["fetchStudentProfile"]),
+    getMentorNameById(mentorId) {
+      const mentor = this.mentorList.find(mentor => mentor.id === mentorId);
+      if (mentor) return `${mentor.first_name} ${mentor.last_name}`;
+      else return "";
+    },
+    getStudentListByIds(studentIds) {
+      return this.studentList.filter(
+        student => studentIds.indexOf(student.id) >= 0
+      );
+    },
+    getProposalByProjectId(projectId) {
+      return this.studentProposalList.find(
+        proposal => proposal.project === projectId
+      );
+    },
+    remove() {
+      this.$httpClient
+        .delete(`/api/project/projects/${this.project.id}/`)
+        .then(response => {
+          this.$store.dispatch(
+            "projectList/removeProjectById",
+            this.project.id
+          );
+          this.$store.dispatch(
+            "messages/showMessage",
+            {
+              message: `Project ${this.project.name} was deleted!`,
+              color: "success"
+            },
+            { root: true }
+          );
+        })
+        .catch(() =>
+          this.$store.dispatch(
+            'messages/showMessage',
+            {
+              message: 'Error deleting project!',
+              color: 'error'
+            },
+            { root: true }
+          )
+        )
+      this.dialog = false
+    }
+  },
+  mounted () {
+    if (!this.fetchStudentList.length) this.fetchStudentList()
+    if (!this.studentProposalList.length) this.fetchProposalList()
+    if (!this.mentorList.length) this.fetchMentorList()
+    if (!this.studentProfile.id) {
+      this.fetchStudentProfile()
+      this.applyDialog = false
+    };
   }
+};
 </script>
 
 <style scoped>
-  a.dashline:link {
-    text-decoration: none;
-  }
+a.dashline:link {
+  text-decoration: none;
+}
 </style>

@@ -35,3 +35,9 @@ class StudentProposal(models.Model):
 
     def __str__(self):
         return self.student.user.get_full_name() + " | " + self.project.name
+
+class StudentManual(models.Model):
+    manual = models.FileField(upload_to='manuals', null=True, blank=True, help_text='File link')
+
+class MentorManual(models.Model):
+    manual = models.FileField(upload_to='manuals', null=True, blank=True, help_text='File link')

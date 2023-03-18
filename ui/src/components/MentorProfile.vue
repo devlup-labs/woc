@@ -104,6 +104,7 @@
     },
     methods: {
       ...mapActions('mentorProfile', [
+        'fetchUser',
         'fetchMentorProfile',
         'saveMentorProfile',
         'setFirstName',
@@ -116,6 +117,10 @@
     },
     mounted () {
       this.fetchMentorProfile()
+      this.fetchUser()
+      if (!localStorage.getItem('loginStatus')){
+        this.$router.push({ name: 'Login' })
+        }
     }
   }
 </script>
