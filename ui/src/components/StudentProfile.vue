@@ -108,11 +108,19 @@
       },
       branchItems () {
         return [
-          {label: 'Computer Science and Engineering', value: 'CSE'},
+         {label: 'Computer Science and Engineering', value: 'CSE'},
+          {label: 'Artificial Intelligence and Data Science', value: 'AIDE'},
           {label: 'Electrical Engineering', value: 'EE'},
           {label: 'Mechanical Engineering', value: 'ME'},
-          {label: 'BioScience and BioTechnology', value: 'BB'}
-        ]
+          {label: 'Chemical Engineering', value: 'CH'},
+          {label: 'Civil Engineering', value: 'CI'},
+          {label: 'Materials Engineering', value: 'MT'},
+          {label: 'BioScience and BioTechnology', value: 'BB'},
+          {label: 'Engineering Science', value: 'ES'},
+          {label: 'Bachelor of Science (Physics)', value: 'BS_Physics'},
+          {label: 'Bachelor of Science (Chemistry)', value: 'BS_Chemistry'},
+          {label: 'Other', value: 'OTHER'},
+          ]
       },
       yearItems () {
         return [

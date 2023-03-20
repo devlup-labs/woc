@@ -111,7 +111,11 @@
           {label: 'Chemical Engineering', value: 'CH'},
           {label: 'Civil Engineering', value: 'CI'},
           {label: 'Materials Engineering', value: 'MT'},
-          {label: 'BioScience and BioTechnology', value: 'BB'}
+          {label: 'BioScience and BioTechnology', value: 'BB'},
+          {label: 'Engineering Science', value: 'ES'},
+          {label: 'Bachelor of Science (Physics)', value: 'BS_Physics'},
+          {label: 'Bachelor of Science (Chemistry)', value: 'BS_Chemistry'},
+          {label: 'Other', value: 'OTHER'},
         ]
       },
       yearItems () {
