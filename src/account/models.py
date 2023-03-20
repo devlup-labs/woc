@@ -31,7 +31,11 @@ class StudentProfile(BaseProfile):
         ('CH', 'Chemical Engineering'),
         ('CI', 'Civil Engineering'),
         ('MT', 'Materials Engineering'),
-        ('BB', 'BioScience and BioTechnology')
+        ('BB', 'BioScience and BioTechnology'),
+        ('ES', 'Engineering Science'),
+        ('BS_Physics', 'Bachelor of Science (Physics)'),
+        ('BS_Chemistry', 'Bachelor of Science (Chemistry)'),
+        ('OTHER', 'Other'),
     )
     YEAR_CHOICES = (
         ('1', '1st Year'),
@@ -39,7 +43,7 @@ class StudentProfile(BaseProfile):
         ('3', '3rd Year'),
         ('4', '4th Year')
     )
-    branch = models.CharField(max_length=4, choices=BRANCH_CHOICES, help_text='Department of the user')
+    branch = models.CharField(max_length=15, choices=BRANCH_CHOICES, help_text='Department of the user')
     year = models.CharField(max_length=1, choices=YEAR_CHOICES, help_text='Year of studying')
 
     def __str__(self):

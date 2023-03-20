@@ -69,7 +69,7 @@ const actions = {
       .then(response => {
         commit("SET_STUDENT_PROFILE", response.data);
         httpClient
-          .post(`/api/account/auth/user/`, { id: response.data.id })
+          .post(`/api/account/auth/user/`, { id: localStorage.getItem("id") })
           .then(response => commit("SET_USER", response.data))
           .catch(err => commit("ADD_ERROR", err));
       })
