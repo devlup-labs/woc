@@ -3,7 +3,7 @@
     <v-flex xs12 >
       <v-card>
         <v-img
-          :src="require('../assets/index.jpg')"
+          :src="`https://i.imgur.com/F0yCdfn.jpg`"
           aspect-ratio="2.75">
         </v-img>
       </v-card>
