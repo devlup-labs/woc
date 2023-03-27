@@ -2,7 +2,8 @@
   <div>
     <v-parallax
       dark
-      :src="banner"
+      :src="'https://i.imgur.com/We1DyJi.png'"
+    >
     >
       <v-layout
         align-center
@@ -84,7 +85,7 @@
         </v-container>
       </v-flex>
     </v-layout>
-    <v-parallax :src="codeImage"
+    <v-parallax :src="`https://i.imgur.com/WwDfTfH.png`"
                 height="320" fill-height>
       <v-layout column align-center justify-center>
         <div class="headline white--text mb-3 text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
@@ -94,7 +95,7 @@
       </v-layout>
     </v-parallax>
     <v-container grid-list-xl justify-center>
-      <v-layout row wrap class="mt-5 "justify-center>
+      <v-layout row wrap class="mt-5" justify-center>
         <p class="display-1 justify-center text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">Interested to know more?</p>
       </v-layout>
       <v-layout row wrap class="mt-5 justify-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
@@ -108,7 +109,7 @@
       </v-layout>
     </v-container>
     <v-container grid-list-xl justify-center >
-      <v-layout row wrap class="mt-5 "justify-center >
+      <v-layout row wrap class="mt-5" justify-center >
         <p class="display-1 justify-center text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">Login with your Gmail account to register as a student</p>
       </v-layout>
       <v-layout row wrap class="mt-5 justify-center">
@@ -167,8 +168,8 @@
   </div>
 </template>
 <script>
-import banner from "../assets/bg.png";
-import codeImage from "../assets/programming-1873854_1280.png";
+// import banner from "../assets/bg.png";
+// import codeImage from "../assets/programming-1873854_1280.png";
 import mentorManual from "../assets/manuals/MentorManual.pdf";
 import studentManual from "../assets/manuals/StudentManual.pdf";
 import { httpClient } from "../plugins/httpClient";

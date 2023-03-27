@@ -8,7 +8,7 @@
               <v-card-title primary-title>
                 <v-flex row justify-center>
                   <div  class="text-decoration-none" @click="googleSignIn">
-                    <div class="google-sign-in" ><img :src="signInImage" alt="sign-in-image"></div>
+                    <div class="google-sign-in" ><img :src="`https://i.imgur.com/oSUWjLH.png`" alt="sign-in-image"></div>
                   </div>
                 </v-flex>
               </v-card-title>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import signInImage from "../assets/btn_google_signin_dark_normal_web.png";
+// import signInImage from "../assets/btn_google_signin_dark_normal_web.png";
 import { mapGetters, mapActions } from "vuex";
 import { BACKEND_API_ADDRESS } from "../config/index";
 
