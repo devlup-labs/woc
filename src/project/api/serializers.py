@@ -9,7 +9,6 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 class StudentProposalSerializer(serializers.ModelSerializer):
-    is_accepted = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = StudentProposal
@@ -19,7 +18,7 @@ class StudentProposalSerializer(serializers.ModelSerializer):
 class StudentProposalApproveSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentProposal
-        fields = ('id', 'is_accepted')
+        fields = ('id', 'proposalStatus')
 
 class MentorManualSerializer(serializers.ModelSerializer):
     class Meta:

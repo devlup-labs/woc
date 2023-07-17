@@ -124,7 +124,7 @@
 <script>
   import CreateMentorProfile from './CreateMentorProfile'
   import CreateStudentProfile from './CreateStudentProfile'
-  import ProjectCreateUpdate from './ProjectCreateUpdate'
+  import ProjectCreateUpdate from './ProjectCreateUpdate' 
   import Project from './Project'
   import MentorProfile from './MentorProfile'
   import StudentProfile from './StudentProfile'

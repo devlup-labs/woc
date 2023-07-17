@@ -65,6 +65,7 @@
         <ProjectStudentsList
           v-for="(student, i) in getStudentListByIds(project.students)"
           :student="student"
+          :project="project"
           :key="i"
         />
       </ul>

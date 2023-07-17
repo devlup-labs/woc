@@ -19,8 +19,8 @@ class MentorProfileAdmin(admin.ModelAdmin):
 
 @admin.register(StudentProposal)
 class StudentProposalAdmin(admin.ModelAdmin):
-    list_display = ('student', 'project','drive_link', 'is_accepted',)
-    list_filter = ('project__name', 'student__user__username', 'is_accepted',)
+    list_display = ('student', 'project','drive_link', 'proposalStatus',)
+    list_filter = ('project__name', 'student__user__username', 'proposalStatus',)
     search_fields = ['student__user__username',]
 
     class Meta:
