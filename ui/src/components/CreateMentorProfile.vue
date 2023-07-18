@@ -17,7 +17,7 @@
                 <v-text-field prepend-icon="person" v-model="lname" name="last_name"
                               :rules="[rules.required]" label="Last Name"/>
               </v-flex>
-              <v-flex sm6 xs12>
+              <!--<v-flex sm6 xs12>
                 <v-select
                   prepend-icon="fa-venus-mars"
                   v-model="profile.gender"
@@ -26,7 +26,7 @@
                   item-value="value"
                   :rules="[rules.required]" label="Gender"
                 />
-              </v-flex>
+              </v-flex>-->
               <v-flex sm6 xs12>
                 <v-text-field prepend-icon="fa-phone" v-model="profile.phone" name="phone"
                               :rules="[rules.required, rules.phone]" label="Contact Number"/>

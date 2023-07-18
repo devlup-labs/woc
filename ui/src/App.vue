@@ -55,7 +55,7 @@
         >
         <v-avatar size="38px">
           <img
-            :src="thumbnailUrl"
+            :src="require('@/assets/user_avatar.png')"    
            >
         </v-avatar>
       </v-btn>
