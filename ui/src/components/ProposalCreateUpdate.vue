@@ -48,7 +48,7 @@
         student: '',
         drive_link: '',
         file: null,
-        is_accepted: false
+        proposalStatus: false
       },
       rules: {
         required: value => !!value || 'Required.',

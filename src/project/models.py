@@ -28,7 +28,12 @@ class StudentProposal(models.Model):
     student = models.ForeignKey(StudentProfile, on_delete=models.CASCADE, help_text='Name of the student proposed')
     drive_link = models.URLField(help_text='Custom drive link for proposal')
     file = models.FileField(upload_to='proposals', null=True, blank=True, help_text='File link')
-    is_accepted = models.BooleanField(default=False, help_text='Accepted/Rejected')
+    # proposalStatus = models.BooleanField(default=False, help_text='Accepted/Rejected')
+    proposalStatus = models.CharField(max_length=20, default='Pending',choices=(
+         ('pending', 'Pending'),
+         ('rejected', 'Rejected'),
+         ('accepted', 'Accepted'),
+     ))
 
     class Meta:
         unique_together = (('project', 'student'),)

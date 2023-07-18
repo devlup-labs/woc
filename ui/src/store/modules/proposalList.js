@@ -8,7 +8,7 @@ const state = {
     student: '',
     drive_link: '',
     file: null,
-    is_accepted: false
+    proposalStatus: false
   } */
   ]
 }
