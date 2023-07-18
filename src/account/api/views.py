@@ -60,7 +60,7 @@ class StudentProfile (APIView):
         gender = request.data['gender']
         branch = request.data['branch']
         github = request.data['github']
-        year = request.data['year']
+        year = request.data['year'] 
         print(id)
         user = User.objects.filter(id=id).first()
         if StudentDetail.objects.filter(user=user):
