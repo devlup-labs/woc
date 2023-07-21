@@ -2,17 +2,17 @@ import store from '../../store'
 
 const AuthGuard = (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.getters['auth/isLoggedIn']) {
+    if (localStorage.getItem('loginStatus')) {
+      next()
+    } else {
       next({
         path: '/sign-in',
-        query: {next: to.fullPath}
+        query: { next: to.fullPath }
       })
-    } else {
-      next()
     }
   } else {
     next()
   }
-}
+  }
 
 export default AuthGuard

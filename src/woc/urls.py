@@ -2,14 +2,16 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.contrib.auth.views import LogoutView
+from django.conf.urls.static import static
 from .views import VueView
 
 urlpatterns = [
     path('', include('social_django.urls', namespace='social')),
     path('logout/', LogoutView.as_view(next_page='/sign-in'), name='logout'),
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls'))
-]
+    path('api/', include('api.urls')),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 
 if settings.DEBUG:
     from rest_framework.permissions import AllowAny

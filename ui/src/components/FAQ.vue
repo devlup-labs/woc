@@ -66,7 +66,7 @@
           },
           {
             question: 'Can I submit more than one proposal?',
-            answer: 'Yes, each student may submit up to three proposals. However, only one per student may be accepted.'
+            answer: 'Yes, each student may submit up to two proposals. However, only one per student may be accepted.'
           },
           {
             question: 'Can a group submit a proposal together to work on a single project?',

@@ -85,6 +85,7 @@
       ...mapActions('projectList', ['addProject', 'update']),
       createProject () {
         this.$httpClient.post('/api/project/projects/', {
+          id : localStorage.getItem('id'),
           name: this.project.name,
           short_description: this.project.short_description,
           description: this.project.description,

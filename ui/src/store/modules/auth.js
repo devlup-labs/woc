@@ -1,11 +1,24 @@
+import Vue from 'vue'
 import router from '../../router'
 import axios from 'axios'
-import {BACKEND_API_ADDRESS} from '../../config'
+import VueAxios from 'vue-axios'
+import jwt_decode from 'jwt-decode'
+import Vuex from 'vuex'
+import { BACKEND_API_ADDRESS } from '../../config/index'
 import {httpClient} from '../../plugins/httpClient'
+
+
+Vue.use(Vuex)
+Vue.use(VueAxios, axios)
 
 const state = {
   isLoggedIn: false,
-  thumbnailUrl: null
+  thumbnailUrl: null,
+  accessToken: localStorage.getItem('access_token'),
+  refreshToken: localStorage.getItem('refresh_token'),
+  endpoints: {
+    refreshJWT: `${BACKEND_API_ADDRESS}/api/auth/token/refresh`
+  }
 }
 
 const getters = {
@@ -22,6 +35,18 @@ const mutations = {
   },
   'SET_THUMBNAIL_URL' (state, URL) {
     state.thumbnailUrl = URL
+  },
+  updateToken (state, access, refresh) {
+    localStorage.setItem('access_token', access)
+    localStorage.setItem('refresh_token', refresh)
+    state.accessToken = access
+    state.refreshToken = refresh
+  },
+  removeToken (state) {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('refresh_token')
+    state.accessToken = null
+    state.refreshToken = null
   }
 }
 
@@ -42,6 +67,34 @@ const actions = {
         commit('SET_THUMBNAIL_URL', response.data.entry.gphoto$thumbnail.$t)
       })
     })
+  },
+  refreshToken () {
+    const payload = {
+      token: this.state.refreshToken
+    }
+    axios.post(this.state.endpoints.refreshJWT, payload)
+      .then(( response ) => {
+        this.commit('updateToken', response.data.access_token, response.data.refresh_token)
+        this.commit('LOGIN')
+        })
+      .catch((error )=>{
+          console.log(error)
+        })
+  },
+  inspectToken () {
+    const token = this.state.accessToken
+    if (token) {
+      const decoded = jwt_decode(token)
+      const exp = decoded.exp
+      const orig_iat = decode.orig_iat
+      if(exp - (Date.now()/1000) < 1800 && (Date.now()/1000) - orig_iat < 628200){
+        this.dispatch('refreshToken')
+      } else if (exp -(Date.now()/1000) < 1800){
+        // DO NOTHING, DO NOT REFRESH          
+      } else {
+        window.location.href = '/sign-in'
+      }
+    }
   }
 }
 

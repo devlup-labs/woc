@@ -9,12 +9,12 @@
           <v-form>
             <v-layout row wrap>
               <v-flex sm6 xs12>
-                <v-text-field prepend-icon="person" v-model="localUser.first_name"
+                <v-text-field prepend-icon="person" v-model="fname"
                               :rules="[rules.required]" name="first_name"
                               label="First Name"/>
               </v-flex>
               <v-flex sm6 xs12>
-                <v-text-field prepend-icon="person" v-model="localUser.last_name" name="last_name"
+                <v-text-field prepend-icon="person" v-model="lname" name="last_name"
                               :rules="[rules.required]" label="Last Name"/>
               </v-flex>
               <v-flex sm6 xs12>
@@ -76,9 +76,12 @@
     props: ['user'],
     data () {
       return {
+        id : localStorage.getItem('id'),
+        fname : null,
+        lname: null,
         localUser: {
-          first_name: '',
-          last_name: ''
+          first_name: null,
+          last_name: null
         },
         profile: {
           id: null,
@@ -102,9 +105,17 @@
       branchItems () {
         return [
           {label: 'Computer Science and Engineering', value: 'CSE'},
+          {label: 'Artificial Intelligence and Data Science', value: 'AIDE'},
           {label: 'Electrical Engineering', value: 'EE'},
           {label: 'Mechanical Engineering', value: 'ME'},
-          {label: 'BioScience and BioTechnology', value: 'BB'}
+          {label: 'Chemical Engineering', value: 'CH'},
+          {label: 'Civil Engineering', value: 'CI'},
+          {label: 'Materials Engineering', value: 'MT'},
+          {label: 'BioScience and BioTechnology', value: 'BB'},
+          {label: 'Engineering Science', value: 'ES'},
+          {label: 'Bachelor of Science (Physics)', value: 'BS_Physics'},
+          {label: 'Bachelor of Science (Chemistry)', value: 'BS_Chemistry'},
+          {label: 'Other', value: 'OTHER'},
         ]
       },
       yearItems () {
@@ -118,12 +129,12 @@
     },
     methods: {
       createStudentProfile () {
-        this.$httpClient.patch(`/api/account/user/${this.user.id}/`, {
-          first_name: this.localUser.first_name,
-          last_name: this.localUser.last_name
+        this.$httpClient.patch(`/api/account/user/${this.id}/`, {
+          first_name: this.fname,
+          last_name: this.lname
         }).then(response => {
           this.localUser = response.data
-          this.$httpClient.post('/api/account/student-profile/', {
+          this.$httpClient.post('/api/account/auth/student-profile/', {
             user: this.localUser.id,
             phone: this.profile.phone,
             github: this.profile.github,
@@ -132,11 +143,15 @@
             year: this.profile.year
           }).then(response => {
             this.profile = response.data
+            localStorage.setItem('isStudent', true);
+            localStorage.setItem('idStudent', this.profile.id)
+            localStorage.setItem('createStudent',true)
             this.$store.dispatch('messages/showMessage', {
               message: 'Profile created successfully',
               color: 'success'
             }, {root: true})
             this.$emit('profile_created', {id: this.profile.id, type: 'student-profile'})
+            this.$router.push({name: 'Dashboard'})
           }).catch(() => this.$store.dispatch('messages/showMessage', {
             message: 'Failed to create student profile',
             color: 'error',

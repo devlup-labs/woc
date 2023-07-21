@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==3.2.14"
+django-decouple = "*"
+django-cleanup = "*"
+social-auth-app-django = "*"
+djangorestframework = "*"
+psycopg2 = "*"
+drf-yasg = "*"
+django-cors-headers = "*"
+config = "*"
+dj-rest-auth = "*"
+djangorestframework-simplejwt = "*"
+django-filter = "*"
+django-allauth = "*"
+
+
+[dev-packages]
+flake8 = "*"
+drf-yasg = "*"
+flex = "*"
+coveralls = "*"
+swagger-spec-validator = "*"
+
+[requires]
+python_version = "3.10"

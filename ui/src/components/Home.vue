@@ -2,7 +2,8 @@
   <div>
     <v-parallax
       dark
-      :src="banner"
+      :src="'https://i.imgur.com/We1DyJi.png'"
+    >
     >
       <v-layout
         align-center
@@ -84,7 +85,7 @@
         </v-container>
       </v-flex>
     </v-layout>
-    <v-parallax :src="codeImage"
+    <v-parallax :src="`https://i.imgur.com/WwDfTfH.png`"
                 height="320" fill-height>
       <v-layout column align-center justify-center>
         <div class="headline white--text mb-3 text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
@@ -94,21 +95,21 @@
       </v-layout>
     </v-parallax>
     <v-container grid-list-xl justify-center>
-      <v-layout row wrap class="mt-5 "justify-center>
+      <v-layout row wrap class="mt-5" justify-center>
         <p class="display-1 justify-center text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">Interested to know more?</p>
       </v-layout>
       <v-layout row wrap class="mt-5 justify-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">
         <v-flex xs8 sm6>
           <v-layout column>
             <v-btn outline large color="secondary" :to="{name: 'HowItWorks'}">See Program Timeline</v-btn>
-            <v-btn outline large color="secondary" :href="studentManual">Student Manual</v-btn>
-            <v-btn outline large color="secondary" :href="mentorManual">Mentor Manual</v-btn>
+            <v-btn outline large color="secondary" @click="manualStudent">Student Manual</v-btn>
+            <v-btn outline large color="secondary" @click="manualMentor">Mentor Manual</v-btn>
           </v-layout>
         </v-flex>
       </v-layout>
     </v-container>
     <v-container grid-list-xl justify-center >
-      <v-layout row wrap class="mt-5 "justify-center >
+      <v-layout row wrap class="mt-5" justify-center >
         <p class="display-1 justify-center text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important;">Login with your Gmail account to register as a student</p>
       </v-layout>
       <v-layout row wrap class="mt-5 justify-center">
@@ -130,7 +131,7 @@
               <v-list class="transparent">
                 <v-list-tile>
                   <v-list-tile-action>
-                    <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-github fa-2x" aria-hidden="true"></i>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title><a href="https://github.com/devlup-labs"
@@ -139,18 +140,16 @@
                   </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile>
-                  <v-list-tile-action>
-                    <i class="fab fa-discord fa-2x" aria-hidden="true"></i>
+                <v-list-tile-action>
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111363.png" width="32" height="32">
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title><a href="https://discord.gg/5kKqzGdhPP"
-                                          class="text-decoration-none">Discord</a>
-                    </v-list-tile-title>
+                    <v-list-tile-title><a href="https://discord.gg/5kKqzGdhPP" class="text-decoration-none">Discord</a></v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-action>
-                    <i class="fas fa-envelope fa-2x"></i>
+                    <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title>
@@ -169,26 +168,42 @@
   </div>
 </template>
 <script>
-  import banner from '../assets/bg.png'
-  import codeImage from '../assets/programming-1873854_1280.png'
-  import mentorManual from '../assets/manuals/MentorManual.pdf'
-  import studentManual from '../assets/manuals/StudentManual.pdf'
+// import banner from "../assets/bg.png";
+// import codeImage from "../assets/programming-1873854_1280.png";
+import mentorManual from "../assets/manuals/MentorManual.pdf";
+import studentManual from "../assets/manuals/StudentManual.pdf";
+import { httpClient } from "../plugins/httpClient";
+import { BACKEND_API_ADDRESS } from "../config/index";
 
-  export default {
-    name: 'Home',
-    data () {
-      return {
-        banner,
-        codeImage,
-        mentorManual,
-        studentManual
-      }
+export default {
+  name: "Home",
+  data() {
+    return {
+      banner,
+      codeImage,
+      mentorManual,
+      studentManual
+    };
+  },
+  methods: {
+    manualStudent() {
+      this.$httpClient.get("/api/project/student-manual/").then(response => {
+        URL = BACKEND_API_ADDRESS + response.data[0].manual;
+        window.open(URL);
+      });
+    },
+    manualMentor() {
+      this.$httpClient.get("/api/project/mentor-manual/").then(response => {
+        URL = BACKEND_API_ADDRESS + response.data[0].manual;
+        window.open(URL, "_blank");
+      });
     }
   }
+};
 </script>
 
 <style scoped>
-  .text-decoration-none {
-    text-decoration: none;
-  }
+.text-decoration-none {
+  text-decoration: none;
+}
 </style>

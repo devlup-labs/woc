@@ -10,6 +10,11 @@ import Help from '../components/Help'
 import Dashboard from '../components/Dashboard'
 import MentorList from '../components/MentorList'
 
+import MentorProfile from '../components/MentorProfile'
+import StudentProfile from '../components/StudentProfile'
+import CreateStudentProfile from '../components/CreateStudentProfile'
+import CreateMentorProfile from '../components/CreateMentorProfile'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -21,8 +26,8 @@ const router = new Router({
     {path: '/how-it-works', name: 'HowItWorks', component: HowItWorks},
     {path: '/help', name: 'Help', component: Help},
     {path: '/mentors', name: 'MentorList', component: MentorList},
-    {path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: {requiresAuth: true}},
-    {path: '/not-found', component: NotFound},
+    {path: '/dashboard', name: 'Dashboard', component: Dashboard},
+    { path: '/not-found', component: NotFound },
     {path: '*', redirect: '/not-found'}
   ]
 })
