@@ -84,7 +84,7 @@ const actions = {
       .then(response => {
         commit("SET_USER", response.data);
         httpClient
-          .patch(`/api/account/student-profile/${localStorage.getItem('id')}/update_profile/`, {
+          .patch(`/api/account/student-profile/${state.studentProfile.id}/update_profile/`, {
             id: localStorage.getItem("id"),
             phone: state.studentProfile.phone,
             github: state.studentProfile.github,
