@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status,viewsets
 from django.shortcuts import get_object_or_404
 from account.api.permissions import IsApprovedMentor
 from project.api.serializers import ProjectSerializer, StudentProposalSerializer, StudentProposalApproveSerializer, MentorManualSerializer, StudentManualSerializer
@@ -25,14 +25,28 @@ class ProjectViewSet(ModelViewSet):
         if self.action in ['retrieve', 'list', 'proposals']:
             self.permission_classes = [AllowAny]
         else :
-            id = self.request.data['id']
-            user = User.objects.filter(id=id).first()
-            mentor = MentorProfile.objects.filter(user=user).first()
-            if mentor.is_approved == False:
-                self.permission_classes = [IsApprovedMentor]
-            else:
-                self.permission_classes = [AllowAny]    
+             id = self.request.data.get('id')
+             if id is not None:
+                user = User.objects.filter(id=id).first()
+                if user is not None:
+                    mentor = MentorProfile.objects.filter(user=user).first()
+                    if mentor is not None and mentor.is_approved is False:
+                        self.permission_classes = [IsApprovedMentor]
+                # if mentor.is_approved == False:
+                    else:
+                        self.permission_classes = [AllowAny]  
+                else:
+                    self.permission_classes = [AllowAny] 
+             else:
+                  self.permission_classes = [AllowAny]  
         return super().get_permissions()
+        #     id = self.request.data['id']
+        #     user = User.objects.filter(id=id).first()
+        #     mentor = MentorProfile.objects.filter(user=user).first()
+        #     if mentor.is_approved == False:
+        #         self.permission_classes = [IsApprovedMentor]
+        #     else:
+        #         self.permission_classes = [AllowAny]    
 
     @action(methods=['get'], detail=True)
     def all_proposals(self, request, pk=None):
