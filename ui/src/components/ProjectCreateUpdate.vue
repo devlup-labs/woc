@@ -115,13 +115,14 @@
       updateProject () {
         this.$httpClient.patch(`/api/project/projects/${this.project.id}/`, {
           name: this.project.name,
-          short_description: this.project.shortDescription,
+          short_description: this.project.short_description,
           description: this.project.description,
           github_link: this.project.github_link,
           technologies: this.technologiesAsPipeSeparatedString
         }).then(response => {
           response.data.technologies = response.data.technologies.split('|')
           this.update(_.cloneDeep(response.data))
+          this.project=response.data
           this.$emit('close_dialog')
           this.$store.dispatch('messages/showMessage', {
             message: 'Project updated successfully',

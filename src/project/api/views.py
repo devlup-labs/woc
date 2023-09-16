@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status,viewsets
 from django.shortcuts import get_object_or_404
 from account.api.permissions import IsApprovedMentor
 from project.api.serializers import ProjectSerializer, StudentProposalSerializer, StudentProposalApproveSerializer, MentorManualSerializer, StudentManualSerializer
@@ -22,23 +22,52 @@ class ProjectViewSet(ModelViewSet):
         """
         Instantiates and returns the list of permissions that this view requires.
         """
+        # if self.action in ['retrieve', 'list', 'proposals']:
+        #     self.permission_classes = [AllowAny]
+        # else :
+        #     id = self.request.data['id']
+        #     user = User.objects.filter(id=id).first()
+        #     mentor = MentorProfile.objects.filter(user=user).first()
+        #     if mentor.is_approved == False:
+        #         self.permission_classes = [IsApprovedMentor]
+        #     else:
+        #         self.permission_classes = [AllowAny]    
+        # return super().get_permissions()
         if self.action in ['retrieve', 'list', 'proposals']:
             self.permission_classes = [AllowAny]
         else :
-            id = self.request.data['id']
-            user = User.objects.filter(id=id).first()
-            mentor = MentorProfile.objects.filter(user=user).first()
-            if mentor.is_approved == False:
-                self.permission_classes = [IsApprovedMentor]
+            id = self.request.data.get('id')
+            if id is not None:
+                user = User.objects.filter(id=id).first()
+                if user is not None:
+                    mentor = MentorProfile.objects.filter(user=user).first()
+                    if mentor is not None and mentor.is_approved is False:
+                        self.permission_classes = [IsApprovedMentor]
+                # if mentor.is_approved == False:
+                    else:
+                        self.permission_classes = [AllowAny]  
+                else:
+                    self.permission_classes = [AllowAny]  
             else:
-                self.permission_classes = [AllowAny]    
+                self.permission_classes = [AllowAny]  
+                  
         return super().get_permissions()
-
     @action(methods=['get'], detail=True)
     def all_proposals(self, request, pk=None):
         proposals = get_object_or_404(Project, pk=pk).studentproposal_set.all()
         serializer = StudentProposalSerializer(proposals, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    # def destroy(self, request, *args, **kwargs):
+    #     instance = self.get_object()
+    #     instance.delete()
+    #     return Response(status=status.HTTP_204_NO_CONTENT)
+    # @action(methods=['patch'], detail=True)
+    # def update_project(self, request, pk=None):
+    #     project_profile = self.get_object()
+    #     serializer = self.get_serializer(project_profile, data=request.data, partial=True)
+    #     serializer.is_valid(raise_exception=True)
+    #     serializer.save()
+    #     return Response(serializer.data)
 
 
 class StudentProposalViewSet(ModelViewSet):
@@ -76,3 +105,4 @@ class StudentManualView(APIView):
         manual = StudentManual.objects.all()
         serializer = StudentManualSerializer(manual, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+ 
