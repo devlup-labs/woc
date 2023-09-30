@@ -1,4 +1,6 @@
+import { BACKEND_API_ADDRESS } from '../../config'
 import {httpClient} from '../../plugins/httpClient'
+import axios from 'axios'
 
 const state = {
   mentorList: [
@@ -25,7 +27,7 @@ const mutations = {
 
 const actions = {
   fetchMentorList ({commit}, state) {
-    httpClient.get('/api/account/mentor-profile/all/').then(response => {
+    axios.get(`${BACKEND_API_ADDRESS}/api/account/mentor-profile/all/`).then(response => {
       commit('SET_MENTOR_LIST', response.data)
     })
   }

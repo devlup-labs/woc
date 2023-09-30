@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny,IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status,viewsets
@@ -23,7 +23,8 @@ class ProjectViewSet(ModelViewSet):
         Instantiates and returns the list of permissions that this view requires.
         """
         if self.action in ['retrieve', 'list', 'proposals']:
-            self.permission_classes = [AllowAny]
+            self.permission_classes = [AllowAny,]
+            #  self.permission_classes = [AllowAny] if self.action == 'all' else self.permission_classes==[IsAuthenticated,]
         else :
              id = self.request.data.get('id')
              if id is not None:
@@ -38,7 +39,7 @@ class ProjectViewSet(ModelViewSet):
                 else:
                     self.permission_classes = [AllowAny] 
              else:
-                  self.permission_classes = [AllowAny]  
+                  self.permission_classes = [IsAuthenticated]  
         return super().get_permissions()
         #     id = self.request.data['id']
         #     user = User.objects.filter(id=id).first()
