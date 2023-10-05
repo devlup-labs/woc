@@ -1,6 +1,6 @@
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import mixins
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import action
 from account.api.serializers import StudentProfileSerializer, MentorProfileSerializer
 from account.api.serializers import UserSerializer, MentorsListSerializer, StudentsListSerializer, UserDetailSerializer, StudentDetailSerializer
@@ -16,6 +16,7 @@ class StudentProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, 
                             mixins.UpdateModelMixin, GenericViewSet):
     serializer_class = StudentProfileSerializer
     queryset = StudentDetail.objects.all()
+    permission_classes=[IsAuthenticated,]
 
     def get_object(self):
         id = self.request.data['id']
@@ -28,7 +29,7 @@ class StudentProfileViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, 
         return StudentsListSerializer if self.action == 'all' else self.serializer_class
 
     def get_permissions(self):
-        self.permission_classes = [AllowAny] if self.action == 'all' else self.permission_classes
+        self.permission_classes = [IsAuthenticated] if self.action == 'all' else self.permission_classes
         return super().get_permissions()
 
     @action(methods=['post'], detail=False)
@@ -150,7 +151,7 @@ class UserViewSet(mixins.UpdateModelMixin, mixins.RetrieveModelMixin, GenericVie
 class UserDetail (APIView):
     serializer_class = UserDetailSerializer
     queryset = User.objects.all()
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
 
     def post (self,request, *args, **kwargs):
         id = request.data['id']
@@ -162,7 +163,7 @@ class UserDetail (APIView):
 class UserProfile (APIView):
     serializer_class = UserDetailSerializer
     queryset = User.objects.all()
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
 
     def post (self,request, *args, **kwargs):
         id = request.data['id']

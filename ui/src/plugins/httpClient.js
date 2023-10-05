@@ -6,7 +6,12 @@ import router from '../router'
 const httpClient = axios.create({
   baseURL: BACKEND_API_ADDRESS,
   xsrfCookieName: 'csrftoken',
-  xsrfHeaderName: 'X-CSRFToken'
+  xsrfHeaderName: 'X-CSRFToken',
+  headers:{
+    Authorization: `Bearer ${localStorage.getItem('access')}`,
+    // 'Content-Type': 'multipart/form-data',
+
+  },
 })
 
 httpClient.interceptors.response.use(response => response, error => {

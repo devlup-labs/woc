@@ -1,4 +1,6 @@
+import { BACKEND_API_ADDRESS } from '../../config'
 import {httpClient} from '../../plugins/httpClient'
+import axios from 'axios'
 
 function arrayUnique (a) {
   for (let i = 0; i < a.length; ++i) {
@@ -73,7 +75,7 @@ const mutations = {
 
 const actions = {
   fetchProjectList ({commit}, state) {
-    httpClient.get('/api/project/projects/').then(response => {
+    axios.get(`${BACKEND_API_ADDRESS}/api/project/projects/`).then(response => {
       commit('SET_PROJECT_LIST', response.data)
     }).catch(err => console.log(err))
   },

@@ -24,6 +24,7 @@
 // import signInImage from "../assets/btn_google_signin_dark_normal_web.png";
 import { mapGetters, mapActions } from "vuex";
 import { BACKEND_API_ADDRESS } from "../config/index";
+import axios from 'axios'
 
 export default {
   name: "Login",
@@ -37,7 +38,7 @@ export default {
     ...mapActions("auth", ["updateToken"]),
     async googleSignIn() {
       if (this.googleCode) {
-        const response = await this.$httpClient.post("/api/google-login/", {
+        const response = await this.axios.post(`${BACKEND_API_ADDRESS}/api/google-login/`, {
           code: this.googleCode
         });
         const response_data = await response.data;

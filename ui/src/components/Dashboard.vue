@@ -129,6 +129,7 @@
   import MentorProfile from './MentorProfile'
   import StudentProfile from './StudentProfile'
   import {mapGetters, mapActions} from 'vuex'
+  import { BACKEND_API_ADDRESS } from '../config'
   import axios from 'axios'
   export default {
     name: 'Dashboard',
@@ -190,7 +191,7 @@
         this.$httpClient.post('/api/account/auth/user/',{'id': localStorage.getItem('id')}).then(response => {
           this.user = response.data
         })
-        this.$httpClient.post('/api/account/auth/user/profile/', {'id': localStorage.getItem('id')})
+        this.$httpClient.post('/api/account/auth/user/profile/',{'id': localStorage.getItem('id')})
           .then(response => {
             if (response.status === 204) {
               this.showCreateStudentProfileDialogue = true             
