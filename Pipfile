@@ -8,7 +8,7 @@ django = "==2.1.2"
 django-decouple = "==2.1"
 django-cleanup = "==2.1.0"
 social-auth-app-django = "==2.1.0"
-djangorestframework = "==3.8.2"
+djangorestframework = "==3.11.2"
 psycopg2 = "==2.7.5"
 
 [dev-packages]
