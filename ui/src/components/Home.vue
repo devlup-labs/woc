@@ -10,7 +10,7 @@
         column
         justify-center
       >
-        <h1 class="display-3 text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important; color: black;">Spring Of Code</h1>
+        <h1 class="display-3 text-xs-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important; color: black;">Winter Of Code</h1>
         <h2 class="font-weight-thin" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important; color: black;">Organised By</h2>
         <h2 class="display-1" style="font-family: Verdana, Geneva, Tahoma, sans-serif !important; color: black;">Devlup Labs</h2>
       </v-layout>
@@ -41,8 +41,8 @@
                   </div>
                 </v-card-title>
                 <v-card-text style="font-size: medium">
-                  SoC is a place where you don’t just get to apply your skills but also get to acquire a bunch of new
-                  ones. SoC introduces you to the open source world and building code collaboratively while working
+                  WoC is a place where you don’t just get to apply your skills but also get to acquire a bunch of new
+                  ones. WoC introduces you to the open source world and building code collaboratively while working
                   under experienced mentors.
                 </v-card-text>
               </v-card>
@@ -153,7 +153,7 @@
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title>
-                      <a href="mailto:devluplabs@iitj.ac.in?subject=[SoC]" class="text-decoration-none">
+                      <a href="mailto:devluplabs@iitj.ac.in?subject=[WoC]" class="text-decoration-none">
                         devluplabs@iitj.ac.in
                       </a>
                     </v-list-tile-title>
