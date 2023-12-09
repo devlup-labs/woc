@@ -81,7 +81,7 @@ export default {
         {
           startTime: new Date('2024-02-24T00:00:00'),
           endTime: new Date('2024-02-24T23:59:59'),
-          descriptions: ['Results of SoC 2024 Announced ', 'Handing over the incentives in the closing ceremony']
+          descriptions: ['Results of WoC 2024 Announced ', 'Handing over the incentives in the closing ceremony']
         }
       ],
       e1: 0
