@@ -8,7 +8,7 @@
         <template v-for="(item, key) in timeline">
           <v-stepper-step
             class="rounded-circle"
-            color="secondary"
+            color="blue"
             :complete="item.endTime < new Date()"
             :key="`${key+1}-step`"
             :step="key+1"
@@ -39,54 +39,49 @@ export default {
     return {
       timeline: [
         {
-          startTime: new Date('2023-03-10T00:00:00'),
-          endTime: new Date('2023-03-10T23:59:59'),
-          descriptions: ['Mentors can submit their applications along with ideas']
+          startTime: new Date('2023-11-24T00:00:00'),
+          endTime: new Date('2023-12-06T23:59:59'),
+          descriptions: ['Project Suggestion Period']
         },
         {
-          startTime: new Date('2023-03-15T00:00:00'),
-          endTime: new Date('2023-03-15T23:59:59'),
-          descriptions: ['SoC kickoff session', 'Projects are announced in the session', 'Mentors are announced in the session', 'Potential contributors discuss application ideas with mentors']
+          startTime: new Date('2023-12-08T00:00:00'),
+          endTime: new Date('2023-12-08T23:59:59'),
+          descriptions: ['Final Projects & Mentor Reveal']
         },
         {
-          startTime: new Date('2023-03-16T00:00:00'),
-          endTime: new Date('2023-03-16T23:59:59'),
-          descriptions: ['Mentee application period begins']
+          startTime: new Date('2023-12-09T00:00:00'),
+          endTime: new Date('2023-12-25T23:59:59'),
+          descriptions: ['Proposal Submission and Learnig Period']
         },
         {
-          startTime: new Date('2023-03-18T00:00:00'),
-          endTime: new Date('2023-03-18T23:59:59'),
-          descriptions: ['Mentee application period ends']
-        },
-        {
-          startTime: new Date('2023-03-20T00:00:00'),
-          endTime: new Date('2023-03-20T23:59:59'),
+          startTime: new Date('2024-01-03T00:00:00'),
+          endTime: new Date('2024-01-03T23:59:59'),
           descriptions: ['Accepted mentee projects announced']
         },
         {
-          startTime: new Date('2023-03-21T00:00:00'),
-          endTime: new Date('2023-03-21T23:59:59'),
+          startTime: new Date('2024-01-05T00:00:00'),
+          endTime: new Date('2024-01-05T23:59:59'),
           descriptions: ['Coding Officially Begins!']
         },
         {
-          startTime: new Date('2023-04-03T00:00:00'),
-          endTime: new Date('2023-04-03T23:59:59'),
+          startTime: new Date('2024-01-24T00:00:00'),
+          endTime: new Date('2024-01-24T23:59:59'),
           descriptions: ['Mentors and mentees can begin submitting midterm evaluations']
         },
         {
-          startTime: new Date('2023-04-05T00:00:00'),
-          endTime: new Date('2023-04-05T23:59:59'),
+          startTime: new Date('2024-01-25T00:00:00'),
+          endTime: new Date('2024-01-25T23:59:59'),
           descriptions: ['Midterm evaluation deadline', 'Early incentives to top 3 progress projects']
         },
         {
-          startTime: new Date('2023-04-13T00:00:00'),
-          endTime: new Date('2023-04-20T23:59:59'),
+          startTime: new Date('2024-02-11T00:00:00'),
+          endTime: new Date('2024-02-18T23:59:59'),
           descriptions: ['Final week: mentees submit their final work product and their final mentor evaluation']
         },
         {
-          startTime: new Date('2023-04-24T00:00:00'),
-          endTime: new Date('2023-04-24T23:59:59'),
-          descriptions: ['Results of SoC 2023 Announced ', 'Handing over the incentives in the closing ceremony']
+          startTime: new Date('2024-02-24T00:00:00'),
+          endTime: new Date('2024-02-24T23:59:59'),
+          descriptions: ['Results of SoC 2024 Announced ', 'Handing over the incentives in the closing ceremony']
         }
       ],
       e1: 0
