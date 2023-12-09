@@ -77,7 +77,7 @@
                 <v-card-text style="font-size: medium">
                   During the 5 weeks of writing good code, you interact and share ideas with some great people. At the
                   end of it, you’ve made great interactions with the mentors, and finally get ready to compete in
-                  <a href="https://summerofcode.withgoogle.com" target="_blank" class="text-decoration-none">GSoC'23</a>.
+                  <a href="https://summerofcode.withgoogle.com" target="_blank" class="text-decoration-none">GSoC'24</a>.
                 </v-card-text>
               </v-card>
             </v-flex>
