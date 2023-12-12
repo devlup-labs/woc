@@ -75,7 +75,7 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:8080',
-  'https://soc.devluplabs.tech',
+  'https://woc.devluplabs.tech'
 )
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8080','https://soc.devluplabs.tech']
 
@@ -192,7 +192,7 @@ REST_FRAMEWORK = {
         'rest_framework.schemas.coreapi.AutoSchema',
 }
 
-FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:8080', cast=str)
+FRONTEND_URL = config('FRONTEND_URL', default='https://woc.devluplabs.tech', cast=str)
 
 LOGIN_URL = FRONTEND_URL + '/sign-in'
 
