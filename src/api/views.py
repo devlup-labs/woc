@@ -57,6 +57,10 @@ class LoginAPIView(APIView):
         response_data = resp.json()
 
         print("response_data",response_data)
+        # Check if the email ends with "@iitj.ac.in"
+        if not response_data['email'].endswith('@iitj.ac.in'):
+            return Response({'detail': 'Only users with @iitj.ac.in email addresses are allowed.'}, status=status.HTTP_403_FORBIDDEN)
+
         user = User.objects.filter(email=response_data['email']).first()
         if user is None:
             user = User.objects.create_user(
