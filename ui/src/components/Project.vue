@@ -7,9 +7,9 @@
       <div>
         <v-icon class="mx-2" v-if="mentor" @click="dialog = true">fa-trash</v-icon>
         <v-icon class="mx-2" v-if="mentor" @click="editDialog = true">fa-pencil</v-icon>
-        <!-- <v-btn v-if=" applyDialog && showProposalDialogButton" @click="proposalDialog = true">
+        <v-btn v-if=" applyDialog && showProposalDialogButton" @click="proposalDialog = true">
           {{ $route.name === 'Dashboard' ? null : 'Add ' }}Proposal
-        </v-btn> -->
+        </v-btn> 
         <a :href="project.github_link" target="_blank" class="dashline">
           <v-icon class="mx-2">fa-github</v-icon>
         </a>
@@ -50,7 +50,12 @@
       <v-flex sm12 md4>
         <h5>Mentors</h5>
         <ul>
-          <li v-for="(mentorId, i) in project.mentors" :key="i">{{getMentorNameById(mentorId)}}</li>
+          <li v-for="(mentorId, i) in project.mentors" :key="i">
+           {{getMentorNameById(mentorId)
+      .split(' ')
+      .map(name => name.charAt(0).toUpperCase() + name.slice(1))
+      .join(' ')}}
+</li>
         </ul>
         <h5>Technologies</h5>
         <v-chip v-for="(chip, index) in chips" :key="index">{{chip}}</v-chip>

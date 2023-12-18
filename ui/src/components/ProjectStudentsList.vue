@@ -13,24 +13,26 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import { mapState,mapActions } from 'vuex'
+
 
   export default {
     name: 'ProjectStudentsList',
-    props: ['student', 'project'], 
+    props: ['student', 'project','proposalStatus'], 
     
-    data() {
-      return {
-        selectedStatus: "proposal.proposalStatus",
-      };
-    },
+
     computed: {
       ...mapState('proposalList', ['proposalList']),
       proposal() {
-        return this.proposalList.find(proposal => proposal.student === this.student.id && proposal.project === this.project.id) || { drive_link: '' };
+        return this.proposalList.find(proposal => proposal.student === this.student.id && proposal.project === this.project.id) || { drive_link: '',proposalStatus:'pending' };
       },
     },
+    methods: {
+    ...mapActions('proposalList', ['updateProposal']),
+    
+  },
   };
+
 </script>
 
 <style scoped>

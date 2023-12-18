@@ -13,12 +13,11 @@ services:
       - MODE=Development-docker
     ports:
       - 8000:8000
+    network_mode: bridge
     volumes:
       - ./src:/app
     depends_on:
       - postgresql
-    networks:
-      - app-network
     command:
       - /bin/sh
       - -c
@@ -39,13 +38,12 @@ services:
       - CHOKIDAR_USEPOLLING=true
     ports:
     - 8080:8080
+    network_mode: bridge
     volumes:
     - ./ui:/app
     - /app/node_modules
     depends_on:
       - django
-    networks:
-      - app-network
     command: npm run dev
   postgresql:
     image: 'bitnami/postgresql:latest'
@@ -61,14 +59,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    network_mode: bridge
     volumes:
       - dbdata:/bitnami/postgresql
-    networks:
-      - app-network
-  
-networks:
-  app-network:
-    driver: bridge
+
 
 volumes:
   dbdata:

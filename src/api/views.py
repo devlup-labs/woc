@@ -13,6 +13,8 @@ from rest_framework import status
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
 
+
+
 import requests
 from woc.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_KEY as CLIENT_ID
 from woc.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET as CLIENT_SECRET
@@ -20,6 +22,7 @@ from woc.settings import LOGIN_URL as REDIRECT_URI
 from woc.settings import FRONTEND_URL
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import MyTokenObtainPairSerializer
+
 
 class MyObtainTokenPairView(TokenObtainPairView):
     permission_classes = (AllowAny,)
@@ -32,7 +35,7 @@ class LoginAPIView(APIView):
     @method_decorator(never_cache)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
-    
+
     def get(self, request, *args, **kwargs):
         SCOPE = 'profile+email'
         auth_uri = ('https://accounts.google.com/o/oauth2/v2/auth?response_type=code'
@@ -42,7 +45,6 @@ class LoginAPIView(APIView):
 
     def post(self, request, *args, **kwargs):
         SCOPE = 'profile+email'
-
         auth_code = request.data['code']
         print("code",auth_code)
         data = {'code': auth_code,
@@ -50,10 +52,10 @@ class LoginAPIView(APIView):
                 'client_secret': CLIENT_SECRET,
                 'redirect_uri': REDIRECT_URI,
                 'grant_type': 'authorization_code'}
-        
         token = requests.post('https://oauth2.googleapis.com/token', data=data)
         resp = requests.post('https://oauth2.googleapis.com/tokeninfo', data=token)
         response_data = resp.json()
+
         print("response_data",response_data)
         user = User.objects.filter(email=response_data['email']).first()
         if user is None:
