@@ -51,7 +51,7 @@ export default {
         {
           startTime: new Date('2023-12-09T00:00:00'),
           endTime: new Date('2023-12-25T23:59:59'),
-          descriptions: ['Proposal Submission and Learnig Period']
+          descriptions: ['Proposal Submission and Learning Period']
         },
         {
           startTime: new Date('2024-01-03T00:00:00'),

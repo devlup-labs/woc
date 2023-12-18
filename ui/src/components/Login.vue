@@ -58,6 +58,7 @@ export default {
         this.loginButton();
         await this.login();
         this.$router.push({ name: "Dashboard" });
+        location.reload()
       } else {
         window.location.href = `${BACKEND_API_ADDRESS}/api/google-login/`;
       }
