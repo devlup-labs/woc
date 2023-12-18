@@ -77,7 +77,7 @@ CORS_ORIGIN_WHITELIST = (
   'http://localhost:8080',
   'https://woc.devluplabs.tech'
 )
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8080','https://soc.devluplabs.tech']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8080','https://woc.devluplabs.tech']
 
 ROOT_URLCONF = 'woc.urls'
 
@@ -186,7 +186,7 @@ REST_FRAMEWORK = {
             'rest_framework.authentication.BasicAuthentication',
             'rest_framework_simplejwt.authentication.JWTAuthentication',
             'rest_framework.authentication.TokenAuthentication',
-            
+
     ),
     'DEFAULT_SCHEMA_CLASS':
         'rest_framework.schemas.coreapi.AutoSchema',
@@ -207,7 +207,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     # 'rest_framework_social_oauth2.backends.DjangoOAuth2',
     'allauth.account.auth_backends.AuthenticationBackend',
-    
+
 ]
 
 # Social Auth settings

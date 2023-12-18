@@ -79,7 +79,8 @@
                   <v-card-text>
                     <div class="mentor-info">
                       <div class="name-wrapper">
-                        <div class="headline">{{ mentor.first_name + ' ' + mentor.last_name }}</div>
+                      <div class="headline">{{ mentor.first_name.charAt(0).toUpperCase() + mentor.first_name.slice(1) + ' ' + mentor.last_name }}</div>
+
                         <v-list>
                           <v-list-item>
                          

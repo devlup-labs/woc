@@ -50,7 +50,12 @@
       <v-flex sm12 md4>
         <h5>Mentors</h5>
         <ul>
-          <li v-for="(mentorId, i) in project.mentors" :key="i">{{getMentorNameById(mentorId)}}</li>
+          <li v-for="(mentorId, i) in project.mentors" :key="i">
+           {{getMentorNameById(mentorId)
+      .split(' ')
+      .map(name => name.charAt(0).toUpperCase() + name.slice(1))
+      .join(' ')}}
+</li>
         </ul>
         <h5>Technologies</h5>
         <v-chip v-for="(chip, index) in chips" :key="index">{{chip}}</v-chip>
