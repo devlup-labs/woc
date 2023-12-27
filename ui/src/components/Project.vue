@@ -7,9 +7,7 @@
       <div>
         <v-icon class="mx-2" v-if="mentor" @click="dialog = true">fa-trash</v-icon>
         <v-icon class="mx-2" v-if="mentor" @click="editDialog = true">fa-pencil</v-icon>
-        <v-btn v-if=" applyDialog && showProposalDialogButton" @click="proposalDialog = true">
-          {{ $route.name === 'Dashboard' ? null : 'Add ' }}Proposal
-        </v-btn> 
+ 
         <a :href="project.github_link" target="_blank" class="dashline">
           <v-icon class="mx-2">fa-github</v-icon>
         </a>
