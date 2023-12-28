@@ -44,13 +44,14 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'project.apps.ProjectConfig',
     'api.apps.ApiConfig',
-    'social_django',
     'corsheaders',
     'rest_framework_simplejwt',
-    # 'rest_social_auth',
-    # 'allauth',
+    "import_export",
+    'allauth',
     # 'allauth.account',
     # 'allauth.socialaccount',
+    # 'allauth.account.apps.AccountConfig',
+    # 'rest_social_auth',
     # 'allauth.socialaccount.providers.google',
 ]
 

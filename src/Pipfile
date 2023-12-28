@@ -17,6 +17,8 @@ dj-rest-auth = "*"
 djangorestframework-simplejwt = "*"
 django-filter = "*"
 django-allauth = "*"
+django-import-export = "*"
+
 
 
 [dev-packages]
@@ -27,4 +29,4 @@ coveralls = "*"
 swagger-spec-validator = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.8"

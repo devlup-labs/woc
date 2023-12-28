@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import StudentProfile, MentorProfile
 from project.models import StudentProposal
 from import_export.admin import ImportExportModelAdmin
+from .resources import StudentProposalResource
 
 
 @admin.register(StudentProfile)
@@ -20,6 +21,7 @@ class MentorProfileAdmin(admin.ModelAdmin):
 
 @admin.register(StudentProposal)
 class StudentProposalAdmin(ImportExportModelAdmin,admin.ModelAdmin):
+    resource_class = StudentProposalResource
     list_display = ('student', 'project','drive_link', 'proposalStatus',)
     list_filter = ('project__name', 'student__user__username', 'proposalStatus',)
     search_fields = ['student__user__username',]
